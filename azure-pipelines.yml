@@ -14,4 +14,16 @@ stages:
                 displayName: 'Install Nodes modules'
                 inputs:
                     command: 'install'
-              
+              - task: Docker@2
+                inputs:
+                  containerRegistry: 'DockerHub'
+                  repository: 'nv-business'
+                  command: 'buildAndPush'
+                  Dockerfile: '**/Dockerfile'
+              - task: AzureRmWebAppDeployment@4
+                inputs:
+                  ConnectionType: 'AzureRM'
+                  azureSubscription: 'Azure subscription 1(0ca1780b-a809-4aea-8956-fd4913e0ab89)'
+                  appType: 'webAppContainer'
+                  WebAppName: 'nv-business'
+                  DockerNamespace: 'nv-business'
