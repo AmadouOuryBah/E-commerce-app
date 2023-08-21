@@ -1,0 +1,17 @@
+trigger:
+  - develop
+
+pool:
+    name : Azure Pipelines
+    VmImage : 'windows-2022'
+
+stages:
+    - stage: Build_And_Test
+      jobs:
+          - job:  Build
+            steps :
+              - task: Npm@1
+                displayName: 'Install Nodes modules'
+                inputs:
+                    command: 'install'
+              
