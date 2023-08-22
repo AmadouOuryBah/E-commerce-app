@@ -11,6 +11,7 @@ stages:
           - job:  Build
             steps :
               - task: Docker@2
+                displayName: Build and push to docker hub
                 inputs:
                   containerRegistry: 'DockerHub'
                   repository: 'nathankaleng/nv-business'
