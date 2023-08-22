@@ -10,6 +10,7 @@ stages:
       jobs:
           - job:  Build
             steps :
+              - script: "npm install --force"
               - task: Npm@1
                 displayName: 'Install Nodes modules'
                 inputs:
