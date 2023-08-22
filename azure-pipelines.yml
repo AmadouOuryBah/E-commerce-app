@@ -17,10 +17,8 @@ stages:
                   repository: 'nathankaleng/nv-business'
                   command: 'buildAndPush'
                   Dockerfile: '**/Dockerfile'
-              - task: AzureRmWebAppDeployment@4
+              - task: AzureWebAppContainer@1
                 inputs:
-                  ConnectionType: 'AzureRM'
                   azureSubscription: 'Azure subscription 1(0ca1780b-a809-4aea-8956-fd4913e0ab89)'
-                  appType: 'webAppContainer'
-                  WebAppName: 'nv-business'
-                  DockerNamespace: 'nv-business'
+                  appName: 'nv-business'
+                  containers: 'nathankaleng/nv-business:$(Build.BuildId)'
