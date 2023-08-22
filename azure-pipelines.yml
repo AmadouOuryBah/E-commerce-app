@@ -10,11 +10,6 @@ stages:
       jobs:
           - job:  Build
             steps :
-              - script: "npm install --force"
-              #- task: Npm@1
-                #displayName: 'Install Nodes modules'
-                #inputs:
-                   # command: 'install'
               - task: Docker@2
                 inputs:
                   containerRegistry: 'DockerHub'
