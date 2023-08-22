@@ -1,1 +1,1 @@
- export const APP_URL = "https://localhost:7125/";
+ export const APP_URL = "https://identity-nvbusiness.azurewebsites.net/";
