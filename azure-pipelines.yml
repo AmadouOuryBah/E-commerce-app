@@ -3,7 +3,7 @@ trigger:
 
 pool:
     name : Azure Pipelines
-    VmImage : 'windows-2022'
+    VmImage : 'ubuntu-latest'
 
 stages:
     - stage: Build_And_Test
