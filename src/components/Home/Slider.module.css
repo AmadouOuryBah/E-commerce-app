@@ -1,0 +1,33 @@
+.container{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 450px;
+  
+    overflow-x: hidden;
+   padding-top: 74px;
+    background-color: #D7DDDF;
+}
+.btn{
+    background-color: #272727;
+    color:#FFFFFF;
+    width: 224px;
+    height: 53px;
+    margin-top: 50px;
+    border: 0;
+    border-radius: 3px;
+}
+.btn:hover{
+    background-color:#FFFFFF;;
+    color: #272727;
+    transition: 1s;
+}
+.img_container{
+    width: 300px;
+}
+.img{
+
+    width: 100%;
+    height: 100%;
+ 
+}
