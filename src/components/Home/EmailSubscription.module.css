@@ -1,0 +1,51 @@
+.container{
+    background-color: #272727;
+    width: 900px;
+    margin-left: 230px;
+    margin-top: 40px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+.title{
+    font-weight: 500;
+    font-size: 20px;
+}
+.input_container input{
+  border: 0;
+  width: 70%;
+}
+.input_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 354px;
+}
+.input_container input[type=email]{
+    padding: 9px 28px;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    font-size: 13px;
+  
+}
+
+
+.input_container button{
+    background-color: #72AEC8;
+    color: white;
+    font-size: 10px;
+    padding: 11px 12px;
+    width: 30%;
+    border: 0;
+
+}
+.second_para{
+    font-size: 12px;
+    
+}
+.mailInfo{
+    margin-right: 60px;
+}

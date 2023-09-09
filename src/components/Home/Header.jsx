@@ -8,10 +8,10 @@ import search from "../../assets/search.png"
 const Header = () => {
 
     return (
-        <nav className="navbar navbar-expand-lg ">
+        <nav className="navbar navbar-expand-lg " style = {{ width: "1300px" , marginLeft: "50px", marginRight: "50px" }}>
         <div className={`${HeaderCss.container}`}>
             
-          <a className="navbar-brand" href="#">MiniStore</a>
+            <a className="navbar-brand" href="#">MiniStore</a>
 
             <div className="navbar-nav">
               <a className="nav-link active" aria-current="page" href="#">Home</a>
@@ -24,11 +24,7 @@ const Header = () => {
                 <a className="nav-link" href="#"><img src={person}/></a>
                 <a className="nav-link" href="#"><img src={cart}/></a>
              </div>
-
             </div>
-            
-           
-
           
         </div>
       </nav>

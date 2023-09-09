@@ -1,11 +1,22 @@
 .card_container{
-    width: 1311px;
+    width: 900px;
     display: flex;
    
    }
-   .section_title{
+.section_title{
        display: flex;
-       justify-content: space-around;
        margin-top: 150px;
    }
+   .section_title h3{
+    margin-right: 580px;
+   }
+   .btn{
+    background-color: #272727;
+    color:#FFFFFF;
+    width: 224px;
+    height: 53px;
+    margin-top: 20px;
+    border: 0;
+    border-radius: 3px;
+}
    

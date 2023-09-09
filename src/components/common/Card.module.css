@@ -3,12 +3,11 @@
     height: 100%;
 }
 .card{
-    width: 280px;
-    height: 457px;
+    width: 200px;
+    height: 320px;
     position: relative;
     border: 0;
-    border-radius: 3px
-    ;
+    border-radius: 3px;
     transition: 3s;
 }
 .price{
@@ -32,12 +31,12 @@
     display: none;
     background-color: #272727;
     color:#FFFFFF;
-    width: 150px;
+    width: 100px;
     height: 30px;
     border: 0;
     font-size: 12px;
     border-radius: 3px;
     position: absolute;
-    top:383px;
-    left:47px;
+    top:260px;
+    left:37px;
 }

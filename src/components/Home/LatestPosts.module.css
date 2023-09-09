@@ -1,0 +1,13 @@
+.title{
+    display: flex;
+   
+}
+.card_container{
+    display: flex;
+    width: 900px;
+    justify-Content: space-between;
+    margin-top: 30px;
+}
+.title h3{
+    margin-right: 560px;
+}

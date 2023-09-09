@@ -3,7 +3,8 @@
     display: flex;
     justify-content: space-around;
     width: 100%;
-    overflow-x: hidden;
+    
+ 
 }
 .Icon_Container {
     margin-left: 121px;
