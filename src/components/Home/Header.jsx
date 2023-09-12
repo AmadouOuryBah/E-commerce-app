@@ -8,25 +8,25 @@ import search from "../../assets/search.png"
 const Header = () => {
 
     return (
-        <nav className="navbar navbar-expand-lg " style = {{ width: "1300px" , marginLeft: "50px", marginRight: "50px" }}>
-        <div className={`${HeaderCss.container}`}>
+        <nav className={`${HeaderCss.navbar} navbar-expand-lg`}>
+          <div className={`${HeaderCss.container}`}>
+              
+              <a className={`${HeaderCss.navbar_brand}`} href="#">MiniStore</a>
+
+              <div className={` navbar-nav ${HeaderCss.navbar_nav} `} >
+                <a className="nav-link active" aria-current="page" href="#">Home</a>
+                <a className="nav-link" href="#">About</a>
+                <a className="nav-link" href="#">Blog</a>
+                <a className="nav-link" href="#">Contact</a>
+
+                <div className={ `navbar-nav ${HeaderCss.Icon_Container}`}>
+                  <a className="nav-link" href="#"><img src={search}/></a>
+                  <a className="nav-link" href="#"><img src={person}/></a>
+                  <a className="nav-link" href="#"><img src={cart}/></a>
+              </div>
+              </div>
             
-            <a className="navbar-brand" href="#">MiniStore</a>
-
-            <div className="navbar-nav">
-              <a className="nav-link active" aria-current="page" href="#">Home</a>
-              <a className="nav-link" href="#">About</a>
-              <a className="nav-link" href="#">Blog</a>
-              <a className="nav-link" href="#">Contact</a>
-
-              <div className={ `navbar-nav ${HeaderCss.Icon_Container}`}>
-                <a className="nav-link" href="#"><img src={search}/></a>
-                <a className="nav-link" href="#"><img src={person}/></a>
-                <a className="nav-link" href="#"><img src={cart}/></a>
-             </div>
-            </div>
-          
-        </div>
+          </div>
       </nav>
     )
 }

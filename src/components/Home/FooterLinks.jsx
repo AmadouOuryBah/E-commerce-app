@@ -1,5 +1,5 @@
 import React from "react";
-import Footer from "../../components/Home/Footerlinks.module.css"
+import Footer from "../../components/Home/FooterLinks.module.css"
 
 const FooterLinks = () => {
 
@@ -7,40 +7,42 @@ const FooterLinks = () => {
         <div className={Footer.footer_container}> 
         
             <div>
-                <p>MiniStore</p>
-                <p>
+                <p className={Footer.title}>MiniStore</p>
+                <p className={Footer.paraSize}>
                     Nisi, purus vitae, ultrices nunc. <br/>Sit ac sit suscipit hendrerit. 
                     Gravida massa volutpat aenean odio<br/> erat nullam fringilla.
                 </p>
                
             </div>
             <div>
-                <p>QUICKS LINKS</p>
-                <ul>
-                    <li><a>HOME</a></li>
-                    <li><a>ABOUT</a></li>
-                    <li><a>SHOP</a></li>
-                    <li><a>BLOGS</a></li>
-                    <li><a>CONTACT</a></li>
+               
+                <ul className={Footer.list}>
+                    <li><p>QUICKS LINKS</p></li>
+                    <li className={Footer.link}><a href="#">HOME</a></li>
+                    <li className={Footer.link}><a href="#">ABOUT</a></li>
+                    <li className={Footer.link}><a href="#">SHOP</a></li>
+                    <li className={Footer.link}><a href="#">BLOGS</a></li>
+                    <li className={Footer.link}><a href="#">CONTACT</a></li>
 
                 </ul>
             </div>
             <div>
-                <p>HELP & INFO</p>
-                <ul>
-                    <li>TRACK YOUR ORDER</li>
-                    <li>RETURN POLICIES</li>
-                    <li>SHIPPIMG + DELIVERY</li>
-                    <li>CONTACT US</li>
-                    <li>FAQS</li>
+           
+                <ul className={Footer.list}>
+                <li><p>HELPS $ INFO</p></li>
+                    <li className={Footer.link}> <a href="#">TRACK YOUR ORDER</a></li>
+                    <li className={Footer.link}> <a href="#">RETURN POLICIES</a></li>
+                    <li className={Footer.link} ><a href="#">SHIPPIMG + DELIVERY</a></li>
+                    <li className={Footer.link}><a href="#">CONTACT US</a></li>
+                    <li className={Footer.link}><a href="#">FAQS</a></li>
                 </ul>
             </div>
 
             <div>
-                <p>CONTACT US</p>
-                <p>Do you have any queries<br/>or suggestions?</p>
-                <p>YourInfo@gmail.com</p>
-                <p>if you need a support ? just give us <br/>a call</p>
+                <p className={Footer.title}>CONTACT US</p>
+                 <p>o you have any queries or  suggestions?<br/>
+                    <span className={Footer.email}>YourInfo@gmail.com<br/></span>
+                 if you need a support ? just give us <br/>a call</p>
             </div>
         </div> 
 

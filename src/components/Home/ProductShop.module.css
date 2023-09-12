@@ -1,0 +1,21 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 90px;
+  margin-left: 150px;
+  margin-right: 150px;
+    
+ 
+ 
+}
+.container h3 {
+    display: flex;
+    justify-content: center;
+}
+.card_container {
+ 
+    display: flex;
+    justify-content: space-between;
+}

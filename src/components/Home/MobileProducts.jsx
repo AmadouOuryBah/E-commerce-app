@@ -8,12 +8,12 @@ import Iphone1 from "../../assets/Iphone1.png.png"
 const MobileProducts = () => {
 
     return (
-            <div style = {{width: "1300px"  ,   marginLeft: "230px" , marginTop: "40px"}} > 
+            <div className={MobileProduct.container} > 
               <div className={MobileProduct.section_title}>
                 <h3>MOBILE PRODUCTS</h3>
                 <p>GO TO SHOP</p>
               </div>
-              <div classsName={MobileProduct.card_container} style = {{ display: "flex", width:"900px", justifyContent: "space-between"}}>
+              <div classsName={MobileProduct.cardContainer}  style={{ display: "flex", justifyContent: "space-between"}} >
                   <Card icon ={CartIcone} cardImg = {Iphone1}/>
                   <Card icon={CartIcone} cardImg= {Iphone1}/>
                   <Card  icon={CartIcone} cardImg = {Iphone1}/>

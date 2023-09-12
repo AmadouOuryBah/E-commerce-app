@@ -1,15 +1,24 @@
 .card_container{
-    width: 900px;
-    display: flex;
-   
-   }
+  display: flex;
+ justify-content: space-between;
+ 
+}
+.container{
+    height: 308px;
+    margin-top: 60px;
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
 .section_title{
        display: flex;
        margin-top: 150px;
    }
+
    .section_title h3{
-    margin-right: 580px;
+  
    }
+
    .btn{
     background-color: #272727;
     color:#FFFFFF;

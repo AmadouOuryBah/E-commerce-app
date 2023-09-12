@@ -8,12 +8,12 @@ import CartIcone from "../../assets/CardIcone.png"
 const SmartWatches = () => {
 
     return (
-            <div style = {{width: "1300px"  ,   marginLeft: "230px" , marginTop: "40px"}}> 
-              <div className={SmartWatcCss.section_title}>
+            <div  className= {SmartWatcCss.container}> 
+              <div className={SmartWatcCss.section_title}  style={{ display: "flex", justifyContent: "space-between"}}>
                 <h3>SMART WATCHES</h3>
                 <p>GO TO SHOP</p>
               </div>
-              <div classsName={SmartWatcCss.card_container} style = {{ display: "flex",  width: "900px",justifyContent: "space-between"}}>
+              <div classsName={SmartWatcCss.card_container}  style={{ display: "flex", justifyContent: "space-between"}}>
                   <Card icon ={CartIcone} cardImg={WatchIcone }/>
                   <Card icon ={CartIcone} cardImg={WatchIcone }/>
                   <Card  icon ={CartIcone} cardImg={WatchIcone }/>

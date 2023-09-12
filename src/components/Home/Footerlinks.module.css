@@ -1,9 +1,36 @@
 .footer_container{
-    display: flex;
-    background-color: red;
-    width: 900px;
-    margin-left: 230px;
-    margin-top: 40px;
-    height: 300px;
-    margin-right: 760px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 90px;
+  margin-left: 150px;
+  margin-right: 150px;
+
+}
+.list li{
+    font-size: 13px;
+
+}
+.link , .list li   {
+    list-style: none;
+}
+.list li p , .title {
+    font-weight: bold;
+    font-size: 13px;
+}
+.list li  a{
+    text-decoration: none;
+    color: black;
+}
+.list li  a:hover{
+
+    color:#72AEC8;
+}
+.paraSize {
+    width: 250px;
+    opacity: 0.3;
+
+}
+.email {
+    text-decoration: underline;
+    font-weight: 800;
 }

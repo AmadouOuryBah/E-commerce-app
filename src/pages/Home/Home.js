@@ -15,7 +15,7 @@ function Home() {
 
     return (
           <>
-             <Header />
+             <Header/>
              <Slider/>
              <MobileProducts/>
              <SmartWatches/>
@@ -25,6 +25,7 @@ function Home() {
              <ProductShop/>
              <FooterLinks/>
              <Footer/>
+            
           </>
     );
   }

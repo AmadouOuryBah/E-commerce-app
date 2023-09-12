@@ -1,11 +1,26 @@
 
-.container{
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    
+.container { 
+    height: 50px;
+    margin-top: 14px;
+    margin-left: 150px;
+    margin-right: 150px;
+    display: flex;  
+    justify-content: space-between;      
+ }
+
+.navbar_brand{
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+}
+.navbar_nav a{
+    margin-right: 10px;
+}
+.navbar_brand:hover {
  
+    color: black;
 }
-.Icon_Container {
-    margin-left: 121px;
+.Icon_Container { 
+     margin-left: 130px;
 }
+

@@ -10,7 +10,7 @@ const LatestPosts = (props) => {
 
     return (
             <> 
-                <div style = {{width: "1300px"  ,   marginLeft: "230px" , marginTop: "40px"}}> 
+                <div  className={LatestPostsCss.container}> 
                     <div className={LatestPostsCss.title}>
                         <h3>LATEST POSTS </h3>
                         <p>READ BLOG</p>

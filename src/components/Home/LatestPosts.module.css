@@ -1,13 +1,19 @@
 .title{
     display: flex;
+    justify-content: space-between;
    
 }
 .card_container{
     display: flex;
-    width: 900px;
-    justify-Content: space-between;
-    margin-top: 30px;
+    justify-content: space-between;
 }
 .title h3{
-    margin-right: 560px;
+
+}
+.container{ 
+   height: 308px;
+   margin-top: 60px;
+   margin-left: 150px;
+   margin-right: 150px;
+         
 }
