@@ -11,7 +11,7 @@ const Footer = () => {
           
                 <p>We ship with :  ....</p>
                 <p>Payments options : </p>
-                <p>Copyright 2023 MiniStore Design by <span className={FooterCss.designerName}>BahAmadou</span></p>
+                <p>Copyright 2023 MiniStore Design by <span className={FooterCss.designerName}>NathanMusoko</span></p>
 
             </div> 
         </>
