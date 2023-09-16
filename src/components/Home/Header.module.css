@@ -24,3 +24,11 @@
      margin-left: 130px;
 }
 
+
+@media screen and (max-width: 576px) {
+  nav{
+    display: none
+    ;
+  }
+}
+

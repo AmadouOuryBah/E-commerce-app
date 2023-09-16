@@ -1,6 +1,6 @@
 import React from "react";
 import Card  from "../../components/common/Card";
-import SmartWatcCss from "../../components/Home/SmartWatches.module.css"
+import SmartWatchCss from "../../components/Home/SmartWatches.module.css"
 import WatchIcone from "../../assets/Watch1.png"
 import CartIcone from "../../assets/CardIcone.png" 
 
@@ -8,12 +8,12 @@ import CartIcone from "../../assets/CardIcone.png"
 const SmartWatches = () => {
 
     return (
-            <div  className= {SmartWatcCss.container}> 
-              <div className={SmartWatcCss.section_title}  style={{ display: "flex", justifyContent: "space-between"}}>
+            <div  className= {SmartWatchCss.container}> 
+              <div className={SmartWatchCss.section_title} >
                 <h3>SMART WATCHES</h3>
                 <p>GO TO SHOP</p>
               </div>
-              <div classsName={SmartWatcCss.card_container}  style={{ display: "flex", justifyContent: "space-between"}}>
+              <div className={SmartWatchCss.card_container}>
                   <Card icon ={CartIcone} cardImg={WatchIcone }/>
                   <Card icon ={CartIcone} cardImg={WatchIcone }/>
                   <Card  icon ={CartIcone} cardImg={WatchIcone }/>

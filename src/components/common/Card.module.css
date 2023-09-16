@@ -40,3 +40,13 @@
     top:255px;
     left:65px;
 }
+
+@media screen and (max-width: 576px) {
+    .card{
+    
+        height: 300px;
+        width: 100%;
+    
+    }
+  
+}
