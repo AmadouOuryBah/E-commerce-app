@@ -1,0 +1,19 @@
+.bg{
+  
+    background-color:#D7DDDF;
+    height: 745px;
+
+ 
+}
+
+.container{
+    width: 500px;
+    background-color: #fff;
+    margin-top: 50px;
+    height: 600px;
+    border-radius: 10px;
+}
+
+.btn{
+    background-color: #72AEC8;
+}

@@ -1,17 +1,19 @@
 
-.container { 
+.container{ 
     height: 50px;
-    margin-top: 14px;
     margin-left: 150px;
     margin-right: 150px;
-    display: flex;  
-    justify-content: space-between;      
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+ 
  }
 
 .navbar_brand{
     font-weight: bold;
     text-decoration: none;
     color: black;
+    
 }
 .navbar_nav a{
     margin-right: 10px;
@@ -26,9 +28,11 @@
 
 
 @media screen and (max-width: 576px) {
-  nav{
-    display: none
-    ;
-  }
+
+   .container{
+    display: none;
+   }
+  
+    
 }
 
