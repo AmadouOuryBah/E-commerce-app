@@ -14,20 +14,20 @@ const Register = () => {
           <form className={`{mt-4 row px-4  flex-column align-items-center justify-content-center } }`} >
           <h2 class="text-center mb-5 pt-3  text-uppercase flex-column align-items-center justify-content-center ">Create an account</h2>
               <div class=" mb-2 col-12">
-                  <label class="form-label" for="">Your Name</label>
+                  <label class="form-label" for="">Name</label>
                   <input type="text" id=""  class="form-control shadow-none form-control-lg form-control-sm" />
                 
               </div>
 
               <div class="form-outline mb-2 col-12">
-                  <label class="form-label" for="form3Example3cg">Your Email</label>
-                  <input type="email" id="form3Example3cg" class="form-control form-control-lg shadow-none" />
+                  <label class="form-label" for="">Email address</label>
+                  <input type="email" id="" class="form-control form-control-lg shadow-none" />
                 
               </div>
 
               <div class="form-outline mb-2 col-12">
-              <label class="form-label" for="form3Example4cg">Password</label>
-                  <input type="password" id="form3Example4cg" class="form-control form-control-lg shadow-none" />
+              <label class="form-label" for="">Password</label>
+                  <input type="password" id="" class="form-control form-control-lg shadow-none" />
                 
               </div>
 
@@ -44,12 +44,12 @@ const Register = () => {
                   </label>
                 </div>
 
-                <div class="d-flex justify-content-center col-12" >
+                <div class="d-flex justify-content-center mt-3 col-12" >
                   <button type="button"
-                    class="btn  btn-block btn-lg px-5 text-body" style={{backgroundColor: " #72AEC8", border: "0", color: "white", width: "100%", fontSize: "13px"}}>REGISTER</button>
+                    class="btn  btn-block fw-bold btn-lg px-5 text-body" style={{backgroundColor: " #72AEC8", border: "0", color: "white", width: "100%", fontSize: "16px"}}>REGISTER</button>
                 </div>
 
-                <p class="text-center text-muted mt-2 mb-0 col-12" >Have already an account? <a href="#!"
+                <p class="text-center text-muted  mt-2 mb-0 col-12" >Have already an account? <a href="/Login"
                     class="fw-bold text-body"><u>Login here</u></a></p>
 
               </form>

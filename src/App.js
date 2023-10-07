@@ -2,6 +2,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from  './pages/Home/Home';
 import Register from "./pages/Register"
+import Login from "./pages/Login"
+import Store from "./pages/Store"
+import StoreDetail from  "./pages/StoreDetail"
 import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
 import React from "react";
 import Header from "./components/Home/Header"
@@ -14,6 +17,9 @@ function App() {
             <Routes>
               <Route path="/Home" exact element={<Home/>} />
               <Route path="/Register" exact element={<Register/>} />
+              <Route path="/Login" exact element={<Login/>} />
+              <Route path="/Store" exact element={<Store/>} />
+               <Route path="/StoreDetail" exact element={<StoreDetail/>} />
             
            </Routes>
           </BrowserRouter>
