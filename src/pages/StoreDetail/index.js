@@ -1,8 +1,7 @@
 import React from "react";
 
-import FooterLinks from "../../components/Home/FooterLinks";
-import Footer from "../../components/Home/Footer";
-import style from  "../Store/index.module.css"
+import StoreDetailHeader from "../../components/StoreDetail/StoreDetailHeader";
+import style from  "../StoreDetail/index.module.css"
 
 
 const Index = () => {
@@ -10,13 +9,9 @@ const Index = () => {
     return (
         <>
             <div className={style.container}>
-                <p className="d-flex align-items-center mb-4 justify-content-center">
-                    Store Page Deatil Not implemented yet
-                </p>
-             
+                  <StoreDetailHeader/>
             </div>
-            <FooterLinks/>
-            <Footer/>
+         
         </>
                   
     )

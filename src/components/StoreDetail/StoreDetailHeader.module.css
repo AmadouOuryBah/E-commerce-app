@@ -1,0 +1,26 @@
+.image_container img , .MiniImage_container img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.image_container{
+    border: 1px solid rgba(126, 123, 123, 0.4);
+    border-radius: 0.5rem;
+    height: 260px;
+    margin-bottom: 1.4rem;
+}
+.MiniImage_container{
+    width: 70px;
+    height:70px;
+    border: 1px solid rgba(126, 123, 123, 0.4);
+    border-radius: 0.5rem;
+    margin-right: 1rem;
+}
+.city , .total_followers{
+    font-size: 12px;
+    font-weight:400;
+}
+
+.store_name{
+    font-weight:600;
+}

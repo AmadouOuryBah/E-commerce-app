@@ -2,8 +2,7 @@ import React from "react";
 import CardCss from "../../components/Store/StoreCard.module.css"
 import CartIcone from "../../assets/product1.jpg" 
 import {BiMap} from "react-icons/bi";
-import {AiOutlineStar} from "react-icons/ai"
-import {IoIosPeople} from "react-icons/io"
+
 
 
 
