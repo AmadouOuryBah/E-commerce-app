@@ -1,0 +1,27 @@
+.search_icon{
+    width:20%;
+    font-size: 1.4rem;
+    opacity: 0.5;
+  
+   }
+
+   .form_input{
+    display: flex;
+    align-items: center;
+    width: 40%;
+    border: 1px solid rgba(51, 47, 47,0.4);
+    border-radius: 0.4rem;
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+ 
+   }
+
+   .form_input input[type=text]{
+    width: 80%;
+    border: none;
+    
+   }
+   .form_input input {
+    outline: none !important;
+   }
+   
