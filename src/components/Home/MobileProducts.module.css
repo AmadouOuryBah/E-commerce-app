@@ -1,6 +1,7 @@
 .card_Container{
  display: flex;
  justify-content: space-between;
+
 }
 .section_title{
     display: flex;
@@ -11,13 +12,12 @@
 }
 
 .container{
-    
-    height: 308px;
-    margin-top: 60px;
-    margin-left: 150px;
-    margin-right: 150px;
+ 
+    margin: 60px 150px 80px 150px;
      
 }
+
+
 @media screen and (max-width: 576px) {
 
     .section_title h3, .section_title p{

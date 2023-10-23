@@ -1,9 +1,10 @@
 import React from "react";
 import LatestPostsCss from "../../components/Home/LatestPosts.module.css"
-import LatestPostCard  from "../common/LatestPostCard";
+import Card  from "../../components/common/Card";
 import picture from "../../assets/Watch1.png"
 import picture2 from "../../assets/Iphone1.png.png"
 import picture3 from "../../assets/daniel-korpai-hbTKIbuMmBI-unsplash.png"
+
 
 
 const LatestPosts = (props) => {
@@ -16,9 +17,10 @@ const LatestPosts = (props) => {
                         <p>READ BLOG</p>
                     </div>
                     <div className={LatestPostsCss.card_container}>
-                        <LatestPostCard picture={picture}/>
-                        <LatestPostCard picture={picture2}/>
-                        <LatestPostCard picture={picture3}/>
+                        <Card  image = {picture }/>
+                        <Card  image = {picture2 }/>
+                        <Card  image = {picture3}/>
+                        <Card  image = {picture }/>                    
                     </div >
                 </div>
                 

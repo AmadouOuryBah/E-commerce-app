@@ -8,6 +8,7 @@ import StoreDetail from  "./pages/StoreDetail"
 import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
 import React from "react";
 import Header from "./components/Home/Header"
+import './App.css'
 
 function App() {
   return (

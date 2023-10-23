@@ -1,8 +1,8 @@
 import React from "react";
 import MobileProduct from "../../components/Home/MobileProducts.module.css"
 import Card  from "../../components/common/Card";
-import CartIcone from "../../assets/CardIcone.png" 
 import Iphone1 from "../../assets/Iphone1.png.png"
+import StoreItem from "../common/StoreItem";
 
 
 const MobileProducts = () => {
@@ -17,13 +17,23 @@ const MobileProducts = () => {
                 <h3>MOBILE PRODUCTS</h3>
                 <p>GO TO SHOP</p>
               </div>
-              <div className={MobileProduct.card_Container} >
-                  <Card icon ={CartIcone} cardImg = {Iphone1}/>
-                  <Card icon={CartIcone} cardImg= {Iphone1}/>
-                  <Card  icon={CartIcone} cardImg = {Iphone1}/>
-                  <Card  icon={CartIcone} cardImg = {Iphone1}/>
-              </div>
-            </div>        
+              <div class="row gap-3">
+                            <div class="col pb-4">
+                                <Card image={Iphone1}/>
+                            </div>
+                            <div class="col">
+                            <Card image={Iphone1}/>
+                            </div>
+                            <div class="col">
+                            <Card image={Iphone1}/>
+                            </div>
+                            <div class="col">
+                            <Card image={Iphone1}/>
+                            </div>
+                    
+                 </div>
+            </div>     
+               
     )
 }
 

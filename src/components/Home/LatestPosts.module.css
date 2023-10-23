@@ -7,13 +7,12 @@
     display: flex;
     justify-content: space-between;
 }
-.title h3{
 
-}
 .container{ 
    height: 308px;
-   margin-top: 60px;
+   margin-top: 110px;
    margin-left: 150px;
    margin-right: 150px;
+   
          
 }

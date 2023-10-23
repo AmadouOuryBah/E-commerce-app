@@ -14,10 +14,10 @@ const SmartWatches = () => {
                 <p>GO TO SHOP</p>
               </div>
               <div className={SmartWatchCss.card_container}>
-                  <Card icon ={CartIcone} cardImg={WatchIcone }/>
-                  <Card icon ={CartIcone} cardImg={WatchIcone }/>
-                  <Card  icon ={CartIcone} cardImg={WatchIcone }/>
-                  <Card  icon ={CartIcone} cardImg={WatchIcone }/>
+                  <Card icon ={CartIcone} image = {WatchIcone }/>
+                  <Card icon ={CartIcone} image = {WatchIcone }/>
+                  <Card  icon ={CartIcone} image = {WatchIcone }/>
+                  <Card  icon ={CartIcone} image = {WatchIcone }/>
               </div>
             </div>        
     )

@@ -1,0 +1,23 @@
+.btn {
+    background-color: #f4511e;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    padding: 10px 48px;
+    text-align: center;
+    font-size: 14px;
+    margin: 4px 2px;
+    opacity: 0.6;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    opacity: 1;
+    color: white;
+}
+.city{
+    padding: 8px 20px;
+}

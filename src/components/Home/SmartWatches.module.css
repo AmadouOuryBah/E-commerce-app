@@ -5,22 +5,19 @@
 }
 .container{
     height: 308px;
-    margin-top: 60px;
+    margin-bottom: 160px;
     margin-left: 150px;
     margin-right: 150px;
 }
 
 .section_title{
-       display: flex;
-       justify-content: space-between;;
-       margin-top: 150px;
-   }
+    display: flex;
+    justify-content: space-between; 
+    margin-top: 150px;
+}
 
-   .section_title h3{
-  
-   }
 
-   .btn{
+.btn{
     background-color: #272727;
     color:#FFFFFF;
     width: 224px;
