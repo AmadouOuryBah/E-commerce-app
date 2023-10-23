@@ -20,9 +20,9 @@ const Header = () => {
                 <a className="nav-link" href="#">Contact</a>
 
                 <div className={ `navbar-nav ${HeaderCss.Icon_Container}`}>
-                  <a className="nav-link" href="/Register"><img src={search}/></a>
-                  <a className="nav-link" href="#"><img src={person}/></a>
-                  <a className="nav-link" href="#"><img src={cart}/></a>
+                  <a className="nav-link" href=""><img src={search}/></a>
+                  <a className="nav-link" href="/Register"><img src={person}/></a>
+                  <a className="nav-link" href="/Cart"><img src={cart}/></a>
                </div>
              </div>
             
