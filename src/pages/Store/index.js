@@ -6,6 +6,7 @@ import StoreCard from "../../components/Store/StoreCard"
 import style from  "../Store/index.module.css"
 import SearchBar from "../../components/common/SearchBar";
 import { APP_URL } from "../../utils/constants/applicationConstants";
+import { Spinner } from '@chakra-ui/react';
  
 
 const Index =  () => {
@@ -73,7 +74,7 @@ const Index =  () => {
             <StoreCard key={store.id} store={store} /> 
           ))}
         </div>
-        {loading && <p>Loading...</p>} {/* Show loading indicator while fetching data */}
+        {loading && <Spinner size="xl" />} {/* Show loading indicator while fetching data */}
         {!loading && (
           <button onClick={loadMoreStores} className="btn btn-primary">Load More</button>
         )}
