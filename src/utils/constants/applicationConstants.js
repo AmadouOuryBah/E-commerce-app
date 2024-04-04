@@ -1,1 +1,1 @@
- export const APP_URL = "https://identity-nvbusiness.azurewebsites.net/";
+ export const APP_URL = "http://173.212.204.232:80";

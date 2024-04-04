@@ -16,14 +16,14 @@ const StoreCard = (props) => {
                     <img src={CartIcone} className={CardCss.card_img_top} alt="..."/>
                     <div className="card-body">
                         <h5 className={CardCss.card_title}>
-                            LubumShop Official Store 
-                           <span className={CardCss.title}>WholeSale & Retail</span> 
+                            {props.store.name} 
+                           <span className={CardCss.title}>{props.store.addressLineFirst}</span> 
                         </h5>
                         <p className={CardCss.card_text}>
-                            Best Online Store
+                            {props.store.description}
                         </p>
                         <p className={CardCss.city}>
-                            <span ><BiMap size="16px"/></span> Lubumbashi - Democratic Republic of th..
+                            <span ><BiMap size="16px"/></span> {props.store.city} - {props.store.region}
                         </p>
                        
                     </div>

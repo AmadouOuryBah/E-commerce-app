@@ -17,12 +17,13 @@ function App() {
           <BrowserRouter>
             <Header/>
             <Routes>
+              <Route path='/' element={<Home/>} />
               <Route path="/Home" exact element={<Home/>} />
               <Route path="/Register" exact element={<Register/>} />
               <Route path="/Login" exact element={<Login/>} />
               <Route path="/Store" exact element={<Store/>} />
                <Route path="/StoreDetail" exact element={<StoreDetail/>} />
-                 <Route path="/Cart" exact element={<Cart/>} />
+              <Route path="/Cart" exact element={<Cart/>} />
             
            </Routes>
           </BrowserRouter>
