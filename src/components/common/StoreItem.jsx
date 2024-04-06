@@ -2,22 +2,22 @@ import React from "react";
 import storeItemCss from "../../components/common/StoreItem.module.css"
 import {AiOutlineStar} from "react-icons/ai"
 import {VscVerifiedFilled} from "react-icons/vsc"
-
-
+import { CartContext } from '../../context/CartContext'
+import { useContext, useEffect, useState } from 'react'
 
 
 const StoreItem = (props) => {
+
+    const {addToCart } =  useContext(CartContext)
    
     return (
             <> 
-               
-                    {props.storeItems.map((storeItem , index) => (
+                {props.storeItems.map((storeItem , index) => (
 
-                         <div key={index} className={`card ${storeItemCss.card_item} `} >
-
-                                <img src={props.image} className="card-img-top" alt="..."/>
+                     <div key={index} className={`card ${storeItemCss.card_item} `} >
+                             <img src={props.image} className="card-img-top" alt="..."/>
     
-                                <div className="card-body">
+                            <div className="card-body">
                                     <h5 className="card-title fw-bold">$ {storeItem.price}</h5>
                                     <p className="card-text">{storeItem.description} </p>
                                 </div>
@@ -31,9 +31,15 @@ const StoreItem = (props) => {
                                 </div>
     
                                 <div className="card-body d-flex align-items-center justify-content-center">
-                                    <a href="#" className={`card-link  ${storeItemCss.btn} `}> + Add to Cart</a>
+                                    <a
+                                        href="#"
+                                        className={`card-link  ${storeItemCss.btn} `}
+                                        onClick={()  => addToCart(storeItem)}
+                                    >
+                                         + Add to Cart
+                                    </a>
                                 </div>
-                         </div>
+                     </div>
 
                     ))}              
             </>        

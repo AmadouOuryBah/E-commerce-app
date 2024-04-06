@@ -53,7 +53,6 @@ const Index = () => {
               return response.json()
             })
             .then(data => {
-              console.log(data)
               setStoreItems([...data]);
              
             })
