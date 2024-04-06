@@ -7,14 +7,50 @@ import StoreDetailHeader from "../../components/StoreDetail/StoreDetailHeader";
 import style from  "../StoreDetail/index.module.css"
 import StoreSearchBar from "../../components/StoreDetail/StoreSearchBar";
 import StoreItem from "../../components/common/StoreItem";
+import { useParams } from "react-router-dom";
+import { useState , useEffect} from "react";
+import { APP_URL } from "../../utils/constants/applicationConstants";
 
 
 const Index = () => {
 
+    const [store, setStore ] = useState({})
+    const { id } = useParams()
+
+    console.log("id ", id)
+
+    const getStore = () =>{
+          
+          fetch(`${APP_URL}/stores/${id}` , {
+            method: 'GET',
+          })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+
+            return response.json()
+          })
+          .then(data => {
+            console.log(data)
+            setStore(data);
+           
+          })
+          .catch(error => {
+           
+          });
+
+        }
+
+     useEffect(() => {
+            getStore()
+        },[])
+    
+
     return (
         <>
             <div className={style.container}>
-                  <StoreDetailHeader/>
+                  <StoreDetailHeader store={store}/>
                   <StoreSearchBar/>
                   <div >
                         <div class="row gap-4">

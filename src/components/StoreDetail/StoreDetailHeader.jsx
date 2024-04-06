@@ -5,7 +5,8 @@ import storeMiniImage from "../../assets/storePageDetail/storeLogo.jpg"
 import {BsShare} from "react-icons/bs"
 
 
-const StoreDetailHeader = () => {
+const StoreDetailHeader = (props) => {
+    console.log(props)
 
     return (
         <>
@@ -21,10 +22,12 @@ const StoreDetailHeader = () => {
                         </div>
                       
                         <p className="d-flex flex-column"> 
-                           <span className={storeDetailCss.store_name}>LubumShop</span> 
-                            <span>Best Online Store</span>
+                           <span className={storeDetailCss.store_name}>{props.store.name}</span> 
+                            <span>{props.store.description}</span>
                             <span className={storeDetailCss.city}>
-                                Lubumbashi, Democratic Republic of the Congo
+                                {props.store.city},
+                                {props.store.country} 
+
                             </span>
                           
                             <span className={storeDetailCss.total_followers}>6 followers</span>

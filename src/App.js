@@ -18,12 +18,12 @@ function App() {
             <Header/>
             <Routes>
               <Route path='/' element={<Home/>} />
-              <Route path="/Home" exact element={<Home/>} />
-              <Route path="/Register" exact element={<Register/>} />
-              <Route path="/Login" exact element={<Login/>} />
-              <Route path="/Store" exact element={<Store/>} />
-               <Route path="/StoreDetail" exact element={<StoreDetail/>} />
-              <Route path="/Cart" exact element={<Cart/>} />
+              <Route path="/home" exact element={<Home/>} />
+              <Route path="/register" exact element={<Register/>} />
+              <Route path="/login" exact element={<Login/>} />
+              <Route path="/stores" exact element={<Store/>} />
+               <Route path="/stores/:id" exact element={<StoreDetail/>} />
+              <Route path="/cart" exact element={<Cart/>} />
             
            </Routes>
           </BrowserRouter>
