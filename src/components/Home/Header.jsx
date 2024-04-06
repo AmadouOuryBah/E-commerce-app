@@ -11,7 +11,7 @@ const Header = () => {
       <nav className={`${HeaderCss.navbar} navbar-expand-lg`}>
           <div className={`${HeaderCss.container}`}>
               
-              <a className={`${HeaderCss.navbar_brand}`} href="#">MiniStore</a>
+              <a className={`${HeaderCss.navbar_brand}`} href="#">NvBusiness</a>
 
               <div className={` navbar-nav ${HeaderCss.navbar_nav} `} >
                 <a className="nav-link active" aria-current="page" href="/Home">Home</a>
