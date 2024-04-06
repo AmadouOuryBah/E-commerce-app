@@ -59,30 +59,34 @@ const Index =  () => {
 
     return (
         <>
-      <div className={style.container}>
-        <hr />
-        <p className="d-flex align-items-center mb-4 justify-content-between">
-          <SearchBar placeholder="search " />
-          <div className={style.filter_section}>
-            <div>Categories <FaChevronDown /></div>
-            <div>Brands <FaChevronDown /></div>
+          <div className={style.container}>
+            <hr />
+            <p className="d-flex align-items-center mb-4 justify-content-between">
+              <SearchBar placeholder="search " />
+              <div className={style.filter_section}>
+                <div>Categories <FaChevronDown /></div>
+                <div>Brands <FaChevronDown /></div>
+              </div>
+            </p>
+            <hr />
+            <div className={style.card_container}>
+              {stores.map(store => (
+                <StoreCard key={store.id} store={store} /> 
+              ))}
+              
+             
+            </div>
+            <div className={style.loader}>
+                {loading && <Spinner size="xl" /> }{/* Show loading indicator while fetching data */}
+               </div>
           </div>
-        </p>
-        <hr />
-        <div className={`row row-cols-1 row-cols-md-2 g-4 ${style.card_container}`}>
-          {stores.map(store => (
-            <StoreCard key={store.id} store={store} /> 
-          ))}
-        </div>
-        {loading && <Spinner size="xl" />} {/* Show loading indicator while fetching data */}
-        {!loading && (
-          <button onClick={loadMoreStores} className="btn btn-primary">Load More</button>
-        )}
-      </div>
-
-      <FooterLinks />
-      <Footer />
-    </>
+          <div className={style.btn_container}>
+              {!loading && <button onClick={loadMoreStores} className="btn btn-primary">Load More</button> }
+          </div>
+        
+          <FooterLinks />
+          <Footer />
+      </>
                   
     )
 }
