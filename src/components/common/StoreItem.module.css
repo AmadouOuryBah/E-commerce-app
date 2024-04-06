@@ -21,3 +21,9 @@
 .city{
     padding: 8px 20px;
 }
+.stats{
+  display: flex;
+  justify-content: space-between;
+  padding-left: 7px;
+  padding-right: 7px;
+}

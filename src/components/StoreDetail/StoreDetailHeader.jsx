@@ -6,7 +6,6 @@ import {BsShare} from "react-icons/bs"
 
 
 const StoreDetailHeader = (props) => {
-    console.log(props)
 
     return (
         <>
