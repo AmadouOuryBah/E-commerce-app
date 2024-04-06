@@ -15,9 +15,8 @@ import { APP_URL } from "../../utils/constants/applicationConstants";
 const Index = () => {
 
     const [store, setStore ] = useState({})
+    const [storeItems, setStoreItems ] = useState([])
     const { id } = useParams()
-
-    console.log("id ", id)
 
     const getStore = () =>{
           
@@ -32,7 +31,6 @@ const Index = () => {
             return response.json()
           })
           .then(data => {
-            console.log(data)
             setStore(data);
            
           })
@@ -42,8 +40,32 @@ const Index = () => {
 
         }
 
+        const getStoreItems = () =>{
+          
+            fetch(`${APP_URL}/stores/${id}/items` , {
+              method: 'GET',
+            })
+            .then(response => {
+              if (!response.ok) {
+                throw new Error('Network response was not ok');
+              }
+  
+              return response.json()
+            })
+            .then(data => {
+              console.log(data)
+              setStoreItems([...data]);
+             
+            })
+            .catch(error => {
+             
+            });
+  
+          }
+
      useEffect(() => {
             getStore()
+            getStoreItems()
         },[])
     
 
@@ -54,21 +76,7 @@ const Index = () => {
                   <StoreSearchBar/>
                   <div >
                         <div class="row gap-4">
-                            <div class="col pb-4">
-                            <StoreItem image={hamburger}/>
-                            </div>
-                            <div class="col">
-                            <StoreItem image={iceCream}/>
-                            </div>
-                            <div class="col">
-                            <StoreItem image={istockPhoto_1}/>
-                            </div>
-                            <div class="col">
-                            <StoreItem image={istockPhoto_2}/>
-                            </div>
-                            <div class="col">
-                            <StoreItem image={istockPhoto_2}/>
-                            </div>
+                            <StoreItem  storeItems={storeItems} image={hamburger}/>
                         </div>
                     </div>
             </div>
