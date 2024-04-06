@@ -2,8 +2,11 @@ import React from "react";
 import CartCss from "../Cart/index.module.css"
 import {AiOutlineDelete} from "react-icons/ai"
 import image from "../../assets/storeItemImage/hamburger-494706_640.jpg"
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
 
 const Index = () => {
+    const {cartItems , addToCart,  removeFromCart} = useContext(CartContext)
 
     return (
         <>
@@ -11,34 +14,38 @@ const Index = () => {
                 <hr/>
                 <div className={CartCss.Cart_title}>
                     <h3>Cart</h3>
-                    <p> <span>1</span>  item in your cart</p>
+                    <p> <span>{cartItems.length}</span>  item in your cart</p>
                 </div>
-
-                <div >
-                    <p className={CartCss.Card_title}>Shop World</p>
-                    <div className={CartCss.Cart_info}>
-                        <div className={CartCss.card}>
-                            <div className={CartCss.img_container}>
-                                <img src={image} alt="product image"/>
+                {cartItems.map( (item, index ) => ( 
+                     <div key={index}>
+                        <p className={CartCss.Card_title}>Shop World</p>
+                        <div className={CartCss.Cart_info}>
+                            <div className={CartCss.card}>
+                                <div className={CartCss.img_container}>
+                                    <img src={image} alt="product image"/>
+                                </div>
+                                <p>
+                                   {item.description}
+                                    <span className={CartCss.price}>{item.price}</span>
+                                </p>
                             </div>
-                            <p>
-                                Chic Home Sachi 3 Piece Quilt Set Floral Scroll Pattern Design Bedding - Pillow Shams Included, Queen, Purple Queen Purple
-                                <span className={CartCss.price}>$66.50</span>
-                            </p>
-                        </div>
-
-                        <div className="d-flex align-items-center">
-                              
-                            <span className={CartCss.sign}>-</span> 
-                            <span className={CartCss.total_item}>1</span>
-                            <span className={CartCss.sign}>+</span>
-                            <span className={CartCss.delete_icon}><AiOutlineDelete /></span>
+    
+                            <div className="d-flex align-items-center">
                                 
+                                <span onClick={() =>  removeFromCart(item)} className={CartCss.sign}>-</span> 
+                                <span className={CartCss.total_item}>1</span>
+                                <span className={CartCss.sign}>+</span>
+                                <span className={CartCss.delete_icon}><AiOutlineDelete /></span>
+                                    
+                            </div>
                         </div>
-                    </div>
+                     </div>))
+
+                }
+               
                   
 
-                </div>
+              
 
                  <div className={CartCss.Order_Summary}>
                     <h5>Order Summary</h5>

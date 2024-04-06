@@ -4,14 +4,11 @@ import CartIcone from "../../assets/Cart.png"
 import {BiMap} from "react-icons/bi";
 
 
-
-
-
 const StoreCard = (props) => {
 
     return (
             <> 
-               <a  href={`stores/${props.store.id}`} className={`col ${CardCss.card}`} >
+               <a  href={`stores/${props.store.id}`} className={CardCss.card} >
                     <div className="card">
                     <img src={CartIcone} className={CardCss.card_img_top} alt="..."/>
                     <div className="card-body">

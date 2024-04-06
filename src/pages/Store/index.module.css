@@ -1,16 +1,27 @@
 .card_container{
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
     align-items: center;
+    min-width: 270px;
     width: 100%;
-   }
+}
+.loader{
+display: flex;
+justify-content: center;
+align-items: center;
+}
    
 .container{
-   
        margin-top: 60px;
        margin-left: 150px;
-       margin-right: 150px;    
+       margin-right: 150px;  
+        
    }
+   .btn_container{
+    margin-top: 20px;
+    margin-left: 150px;
+    margin-right: 150px;    
+}
    .form_input{
     display: flex;
     align-items: center;

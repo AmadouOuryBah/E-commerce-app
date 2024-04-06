@@ -53,7 +53,6 @@ const Index = () => {
               return response.json()
             })
             .then(data => {
-              console.log(data)
               setStoreItems([...data]);
              
             })
@@ -74,11 +73,10 @@ const Index = () => {
             <div className={style.container}>
                   <StoreDetailHeader store={store}/>
                   <StoreSearchBar/>
-                  <div >
-                        <div class="row gap-4">
-                            <StoreItem  storeItems={storeItems} image={hamburger}/>
-                        </div>
-                    </div>
+                  <div className={style.card_container}>
+                        <StoreItem  storeItems={storeItems} image={hamburger}/>
+                  </div>
+                    
             </div>
          
         </>

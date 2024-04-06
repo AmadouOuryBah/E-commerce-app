@@ -35,7 +35,6 @@ const StoreDetailHeader = (props) => {
 
                     <div>
                         <button className="btn btn-outline-secondary px-3 mx-2 ">Follow</button>
-                        <span className=" border p-2 rounded-circle"> <BsShare/> </span>
                     </div>
                 </div>
             </section>
