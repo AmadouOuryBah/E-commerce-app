@@ -11,7 +11,7 @@ const StoreCard = (props) => {
 
     return (
             <> 
-               <div className={`col ${CardCss.card}`} >
+               <a  href={`stores/${props.store.id}`} className={`col ${CardCss.card}`} >
                     <div className="card">
                     <img src={CartIcone} className={CardCss.card_img_top} alt="..."/>
                     <div className="card-body">
@@ -28,7 +28,7 @@ const StoreCard = (props) => {
                        
                     </div>
                     </div>
-                </div>
+                </a>
             </>        
     )
 }
