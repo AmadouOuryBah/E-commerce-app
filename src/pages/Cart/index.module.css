@@ -1,33 +1,33 @@
-.cart_container{
-    height: 308px;
+.section_container{
+    min-height: 308px;
     margin-top: 50px;
     margin-left: 150px;
     margin-right: 150px;
 }
-.Cart_title h3{
-font-weight: 700;
-}
-.Card_title{
-    font-weight: 600;
-}
 .card{
     display: flex;
     align-items: center;
+    margin-right: 60px;
 }
 .price{
     display: block;
     color: brown;
     margin-top: 0.6rem;
 }
+.items_container{
+    width: 75%;
+}
 .price , .pricing{
     font-weight: 600;
 } 
-
-.Cart_info{
-    margin-bottom: 120px;
+.section_items{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+}
+.Cart_info{
+    display: flex;
+   
+    margin-bottom: 30px;
+
 }
 .Cart_info p{
     width: 35%;
@@ -44,10 +44,12 @@ font-weight: 700;
     border-radius: 9px;
 }
 .Order_Summary{
-    padding:40px 30px;
+    width: 25%;
+    padding:10px 20px;
     background-color:#D7DDDF;
     border: none;
     border-radius: 8px;
+    height: 260px
 }
 .order_total, .Order_Summary h5{
     font-weight: 700;
