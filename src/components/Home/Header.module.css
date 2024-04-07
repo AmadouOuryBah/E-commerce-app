@@ -8,6 +8,13 @@
     margin-top: 20px;
  
  }
+ .cart_logo{
+    display: flex;
+    justify-content: center;
+ }
+ .cart_logo span  {
+   margin-left: -9px;
+ }
 
 .navbar_brand{
     font-weight: bold;
@@ -27,12 +34,7 @@
 }
 
 
-@media screen and (max-width: 576px) {
 
-   .container{
-    display: none;
-   }
   
-    
-}
+
 

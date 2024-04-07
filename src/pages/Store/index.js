@@ -7,12 +7,14 @@ import style from  "../Store/index.module.css"
 import SearchBar from "../../components/common/SearchBar";
 import { APP_URL } from "../../utils/constants/applicationConstants";
 import { Spinner } from '@chakra-ui/react';
+
  
 
 const Index =  () => {
     const [stores, setStores] = useState([]);
     const [loading, setLoading] = useState(true);
     const [pageNumber, setPageNumber] = useState(1);
+
 
     const getStores = () =>{
         
@@ -68,22 +70,23 @@ const Index =  () => {
                 <div>Brands <FaChevronDown /></div>
               </div>
             </p>
+
             <hr />
+
             <div className={style.card_container}>
               {stores.map(store => (
                 <StoreCard key={store.id} store={store} /> 
               ))}
-              
-             
             </div>
+
             <div className={style.loader}>
                 {loading && <Spinner size="xl" /> }{/* Show loading indicator while fetching data */}
                </div>
           </div>
+
           <div className={style.btn_container}>
               {!loading && <button onClick={loadMoreStores} className="btn btn-primary">Load More</button> }
           </div>
-        
           <FooterLinks />
           <Footer />
       </>
