@@ -20,28 +20,6 @@
 
 @media screen and (max-width: 576px) {
 
-    .section_title h3, .section_title p{
-   
-
-       font-size: 11px;
-    }
-    .container{
-    
-       min-width: 300px;
-       height: 1300px;
-       margin-bottom: 45px; 
-       margin-left: 40px;
-       margin-right: 40px;
-         
-    }
-
-    .card_Container{
-        display: flex;
-        flex-wrap: wrap;
-        gap: 40px;
-        width: 100%;
-    
-    }
    
   
 }

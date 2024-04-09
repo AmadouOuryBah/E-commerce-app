@@ -42,7 +42,6 @@ const Index =  () => {
           })
           .then(data => {
             setStores([...stores, ...data.data]); // Append new stores to existing ones
-            console.log(stores)
             setLoading(false);
           })
           .catch(error => {

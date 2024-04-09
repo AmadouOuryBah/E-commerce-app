@@ -1,62 +1,116 @@
-import React from "react";
-import indexCss from "../../components/Register/index.module.css"
-
+import React, { useState } from "react";
+import { APP_IDENTITY_URL } from "../../utils/constants/applicationConstants";
+import {
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  Box,
+  Text,
+  useToast
+} from '@chakra-ui/react'
 
 const Register = () => {
 
+  const [userCredentials, setUserCredentials ] = useState({
+    username:'',
+    email:'',
+    password:'',
+    confirmPassword:'',
+    role: 'user'
+  })
+
+  const handleOnchangeUserCredentials = (e) => {
+    setUserCredentials({...userCredentials , [e.target.name] : e.target.value })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(userCredentials)
+    createUser()
+  }
+
+  const createUser = () => {
+        fetch(`${APP_IDENTITY_URL}/users` , {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json'},
+          body: JSON.stringify(userCredentials) 
+      })
+      .then(response => {
+          if(!response.ok){
+              throw new Error('Network response was not ok')
+          }
+          return response.json()
+      })
+      .then(data => {
+          console.log(data)
+      })
+      .catch(err => {
+          console.error('There was a problem with the fetch operation:', err);
+      })
+      }
+
     return (
-        <section className={`{my-4 pb-4 row flex-column align-items-center justify-content-center ${indexCss.bg}`} >
 
+      <section style={{maxWidth: '350px',
+              margin: '50px auto', 
+              border: '1px solid black' ,
+              padding:'30px' ,
+              borderRadius:'8px',
+       }}>
+ 
+            <h3 style={{marginBottom:'20px'}}>Sign up</h3>
+            <form onSubmit={handleSubmit}>
+              <FormControl mb={4} mr={4}>
+                <FormLabel>username</FormLabel>
+                <Input
+                  name='username'  
+                  value={userCredentials.username}
+                  onChange={handleOnchangeUserCredentials}     
+                  placeholder='username' />
+              </FormControl>
 
-          <div className={indexCss.container}>
-        
-      
-          <form className={`{mt-4 row px-4  flex-column align-items-center justify-content-center } }`} >
-          <h2 class="text-center mb-5 pt-3  text-uppercase flex-column align-items-center justify-content-center ">Create an account</h2>
-              <div class=" mb-2 col-12">
-                  <label class="form-label" for="">Name</label>
-                  <input type="text" id=""  class="form-control shadow-none form-control-lg form-control-sm" />
-                
-              </div>
+                <FormControl  mb={4}>
+                  <FormLabel>email</FormLabel>
+                    <Input
+                      type="email"
+                      name='email'
+                      value={userCredentials.email}
+                      onChange={handleOnchangeUserCredentials}
+                      placeholder='email' />
+                </FormControl>
 
-              <div class="form-outline mb-2 col-12">
-                  <label class="form-label" for="">Email address</label>
-                  <input type="email" id="" class="form-control form-control-lg shadow-none" />
-                
-              </div>
+                <FormControl  mb={4}>
+                  <FormLabel>password</FormLabel>
+                    <Input
+                      type="password"
+                      name='password'
+                      value={userCredentials.password}
+                      onChange={handleOnchangeUserCredentials}
+                      placeholder='password' />
+                </FormControl>
 
-              <div class="form-outline mb-2 col-12">
-              <label class="form-label" for="">Password</label>
-                  <input type="password" id="" class="form-control form-control-lg shadow-none" />
-                
-              </div>
+                <FormControl  mb={4}>
+                  <FormLabel>confirm password</FormLabel>
+                    <Input
+                      type="password"
+                      name='confirmPassword'
+                      value={userCredentials.confirmPassword}
+                      onChange={handleOnchangeUserCredentials}
+                      placeholder='confirmPassword' />
+                </FormControl>
 
-                <div class="form-outline mb-4 col-12">
-                  <label class="form-label" for="form3Example4cdg">Repeat your password</label>
-                  <input type="password" id="form3Example4cdg" class="form-control form-control-lg shadow-none" />
-                
-                </div>
+                <Box  w="100%" mt='15px'>
+                    <Button w="100%"   type='submit' colorScheme='orange' mr={3}>
+                      create
+                    </Button>
+                </Box>
 
-                <div class="form-check d-flex justify-content-center mb-3 col-12">
-                  <input class="form-check-input me-2 shadow-none" type="checkbox" value="" id="form2Example3cg" />
-                  <label class="form-check-label" for="form2Example3g">
-                    I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
-                  </label>
-                </div>
-
-                <div class="d-flex justify-content-center mt-3 col-12" >
-                  <button type="button"
-                    class="btn  btn-block fw-bold btn-lg px-5 text-body" style={{backgroundColor: " #72AEC8", border: "0", color: "white", width: "100%", fontSize: "16px"}}>REGISTER</button>
-                </div>
-
-                <p class="text-center text-muted  mt-2 mb-0 col-12" >Have already an account? <a href="/Login"
-                    class="fw-bold text-body"><u>Login here</u></a></p>
-
-              </form>
-          </div>
-
-          
-    
+            </form>
+            
+              <Box mt='10px'>
+                <Text> Already have an account ? log in</Text>
+              </Box>
       </section>
                   
     )
