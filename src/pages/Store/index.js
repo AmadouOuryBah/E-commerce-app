@@ -14,6 +14,7 @@ const Index =  () => {
     const [stores, setStores] = useState([]);
     const [loading, setLoading] = useState(true);
     const [pageNumber, setPageNumber] = useState(1);
+    const [pictureUrl, setPictureUrl] = useState(null);
 
 
     const getStores = () =>{
@@ -50,7 +51,71 @@ const Index =  () => {
           });
     };
 
-    useEffect(() =>{
+ /*   const  fetchStorePicture = async () => {
+
+        if(stores){
+          stores.map( store => {
+    
+              if(store.pictureId){
+                  fetch(`${APP_URL}/stores/${store.id}/pictures/${store.pictureId}`)
+
+                  .then(response => {
+                    if (response.ok) {
+                      return response.blob();
+                       // const url = URL.createObjectURL(blob);
+                       // store.pictureId = url
+                    }
+                    else {
+                        console.error('Failed to fetch store picture');
+                    }
+                  })
+                  .then( blob =>{
+                    const url = URL.createObjectURL(blob);
+                    store.pictureId = url
+                  })
+                .catch (error => {
+                  console.error('Error fetching store picture:', error);
+                }  ) 
+              }
+          })
+        }
+    }       
+      */
+     const fetchPicture = (store) => {
+      if(store.pictureId){
+        fetch(`${APP_URL}/stores/${store.id}/pictures/${store.pictureId}`)
+        .then( response => {
+          if (response.ok) {
+            const blob =  response.blob();
+            const url = URL.createObjectURL(blob);
+            store.pictureId = url
+        
+          } else if (response.status === 404) {
+            console.error('Store picture not found');
+          } else {
+            console.error('Failed to fetch store picture');
+          }
+        
+        })
+        .catch(error => {
+        console.error('Error fetching store picture:', error);
+      })
+     }
+    }
+     
+    const renderStore = (store) => {
+      fetchPicture(store)
+      return (
+        <StoreCard key={store.id} store={store} /> 
+      );
+    };
+  
+              
+
+     
+    
+
+    useEffect(() => {
          getStores()
     }, [pageNumber])
 
@@ -74,7 +139,7 @@ const Index =  () => {
 
             <div className={style.card_container}>
               {stores.map(store => (
-                <StoreCard key={store.id} store={store} /> 
+                renderStore(store)
               ))}
             </div>
 

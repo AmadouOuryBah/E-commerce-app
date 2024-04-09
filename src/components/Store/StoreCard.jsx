@@ -10,7 +10,11 @@ const StoreCard = (props) => {
             <> 
                <a  href={`stores/${props.store.id}`} className={CardCss.card} >
                     <div className="card">
-                    <img src={CartIcone} className={CardCss.card_img_top} alt="..."/>
+                    {props.store.pictureId ? <img src={props.store.pictureId} className={CardCss.card_img_top} alt="..."/>
+                    :
+                    <p>jjjj</p>
+                    }
+                   
                     <div className="card-body">
                         <h5 className={CardCss.card_title}>
                             {props.store.name} 

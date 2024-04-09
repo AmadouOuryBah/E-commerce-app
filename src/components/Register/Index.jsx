@@ -109,7 +109,7 @@ const Register = () => {
             </form>
             
               <Box mt='10px'>
-                <Text> Already have an account ? log in</Text>
+                <Text> Already have an account ? <a href="/login">log in</a></Text>
               </Box>
       </section>
                   
