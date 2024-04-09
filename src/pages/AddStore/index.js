@@ -7,7 +7,7 @@ import {
    
   } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
-import { APP_URL , APP_IDENTITY_URL} from "../../utils/constants/applicationConstants";
+import { APP_URL} from "../../utils/constants/applicationConstants";
 
 const Index = () => {
 
@@ -44,16 +44,19 @@ const Index = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(store)
+        setFile(document.getElementById('fileInput').files[0])
+       // console.log(document.getElementById('fileInput').files[0])
         createStore()
+        console.log(newStore)
         createPicture()
       }
 
 
     const createPicture = () => {
         const formData = new FormData();
-        formData.append('file', file);
+        formData.append('picture', file);
 
-        fetch(`${APP_IDENTITY_URL}/${newStore.id}/pictures` , {
+        fetch(`${APP_URL}/stores/${newStore.id}/pictures` , {
             method: 'POST',
             body: formData 
         })
@@ -61,7 +64,7 @@ const Index = () => {
             if(!response.ok){
                 throw new Error('Network response was not ok')
             }
-            return response.json()
+            return response
         })
         .then(data => {
             console.log(data)
@@ -139,11 +142,13 @@ const Index = () => {
                 >
                     <h4 style={{marginBottom:'10px'}}>create store </h4>
 
+
+                    <FormControl mr={4}>
+                                <FormLabel>Photo</FormLabel>
+                                <Input id="fileInput" type='file' />
+                    </FormControl>
                     <form onSubmit={handleSubmit}> 
-                        <FormControl mr={4}>
-                                    <FormLabel>Photo</FormLabel>
-                                    <Input type='file' />
-                                </FormControl>
+                           
                             <div style={{display:'flex'}}>
                                 <FormControl mr={4}>
                                     <FormLabel>name</FormLabel>
