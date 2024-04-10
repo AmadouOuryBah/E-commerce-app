@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CardCss from "../../components/Store/StoreCard.module.css"
-import CartIcone from "../../assets/product1.jpg" 
+import noPicture from "../../assets/noImage.jpg"
 import {BiMap} from "react-icons/bi";
 
 
 const StoreCard = (props) => {
+
+   
+    useEffect(()=>{
+        props.fetchPicture(props.store)
+        props.setPictureId(props.store.pictureId)
+    },[props.pictureId])
 
     return (
             <> 
@@ -12,7 +18,7 @@ const StoreCard = (props) => {
                     <div className="card">
                     {props.store.pictureId ? <img src={props.store.pictureId} className={CardCss.card_img_top} alt="..."/>
                     :
-                    <p>jjjj</p>
+                                            <img style={{height: '165px'}} className={CardCss.card_img_top} src={noPicture}/>
                     }
                    
                     <div className="card-body">

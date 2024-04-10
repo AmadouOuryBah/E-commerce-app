@@ -13,8 +13,8 @@ import { Spinner } from '@chakra-ui/react';
 const Index =  () => {
     const [stores, setStores] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [pageNumber, setPageNumber] = useState(1);
-    const [pictureUrl, setPictureUrl] = useState(null);
+    const [pageNumber, setPageNumber] = useState(1)
+    const [pictureId, setPictureId] = useState("")
 
 
     const getStores = () =>{
@@ -84,11 +84,12 @@ const Index =  () => {
      const fetchPicture = (store) => {
       if(store.pictureId){
         fetch(`${APP_URL}/stores/${store.id}/pictures/${store.pictureId}`)
-        .then( response => {
+        .then(async response => {
           if (response.ok) {
-            const blob =  response.blob();
+            const blob = await response.blob();
             const url = URL.createObjectURL(blob);
             store.pictureId = url
+            console.log(url)
         
           } else if (response.status === 404) {
             console.error('Store picture not found');
@@ -102,22 +103,20 @@ const Index =  () => {
       })
      }
     }
+
      
     const renderStore = (store) => {
-      fetchPicture(store)
+  
       return (
-        <StoreCard key={store.id} store={store} /> 
+        <StoreCard setPictureId={setPictureId}  fetchPicture={fetchPicture} key={store.id} store={store} /> 
       );
     };
-  
-              
 
-     
-    
-
+   
+            
     useEffect(() => {
          getStores()
-    }, [pageNumber])
+    }, [pageNumber, pictureId])
 
     const loadMoreStores = () => {
         setPageNumber(pageNumber + 1); // Increment pageNumber to fetch next page

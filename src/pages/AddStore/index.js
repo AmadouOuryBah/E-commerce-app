@@ -45,10 +45,9 @@ const Index = () => {
         e.preventDefault();
         console.log(store)
         setFile(document.getElementById('fileInput').files[0])
-       // console.log(document.getElementById('fileInput').files[0])
         createStore()
         console.log(newStore)
-        createPicture()
+       
       }
 
 
@@ -88,6 +87,7 @@ const Index = () => {
         .then(data => {
             console.log(data)
             setNewStore(data)
+            createPicture()
         })
         .catch(err => {
             console.error('There was a problem with the fetch operation:', err);
