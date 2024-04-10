@@ -39,26 +39,23 @@ const StoreCard = (props) => {
     return (
             <> 
                <a  href={`stores/${props.store.id}`} className={CardCss.card} >
-                    <div className="card">
-                    {pictureUrl ? <img src={pictureUrl} className={CardCss.card_img_top} alt="..."/>
-                    :
-                                            <img style={{height: '165px'}} className={CardCss.card_img_top} src={noPicture}/>
-                    }
-                   
-                    <div className="card-body">
-                        <h5 className={CardCss.card_title}>
-                            {props.store.name} 
-                           <span className={CardCss.title}>{props.store.addressLineFirst}</span> 
-                        </h5>
-                        <p className={CardCss.card_text}>
-                            {props.store.description}
-                        </p>
-                        <p className={CardCss.city}>
-                            <span ><BiMap size="16px"/></span> {props.store.city} - {props.store.region}
-                        </p>
-                       
-                    </div>
-                    </div>
+                            {pictureUrl ? <img src={pictureUrl} className={CardCss.card_img_top} alt="..."/>  :
+                            <img  className={CardCss.card_img_top} src={noPicture}/>
+                        }
+                     
+                        <div className={CardCss.card_body}>
+                            <h5 className={CardCss.card_title}>
+                                {props.store.name} 
+                            <span className={CardCss.title}>{props.store.addressLineFirst}</span> 
+                            </h5>
+                            <p className={CardCss.card_text}>
+                                {props.store.description}
+                            </p>
+                            <p className={CardCss.city}>
+                                <span ><BiMap size="16px"/></span> {props.store.city} - {props.store.region}
+                            </p>
+                        
+                        </div>
                 </a>
             </>        
     )

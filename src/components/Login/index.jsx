@@ -45,6 +45,7 @@ const Index = () => {
       })
       .then(data => {
           console.log(data.accessToken)
+          setAccessToken(data.accessToken)
       })
       .catch(err => {
           console.error('There was a problem with the fetch operation:', err);
