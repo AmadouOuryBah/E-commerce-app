@@ -5,6 +5,7 @@ import {BiMap} from "react-icons/bi";
 import { APP_URL } from "../../utils/constants/applicationConstants";
 
 const StoreCard = (props) => {
+    
     const [pictureUrl, setPictureUrl] = useState("");
 
     const fetchPicture = (store) => {
@@ -36,6 +37,8 @@ const StoreCard = (props) => {
             fetchPicture(props.store)
         }
       }, [])
+
+      
     return (
             <> 
                <a  href={`stores/${props.store.id}`} className={CardCss.card} >

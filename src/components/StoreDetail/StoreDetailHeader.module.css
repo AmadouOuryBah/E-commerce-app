@@ -3,6 +3,7 @@
     height: 100%;
     object-fit: cover;
 }
+
 .image_container{
     border: 1px solid rgba(126, 123, 123, 0.4);
     border-radius: 0.5rem;

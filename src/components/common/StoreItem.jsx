@@ -4,28 +4,62 @@ import {AiOutlineStar} from "react-icons/ai"
 import {VscVerifiedFilled} from "react-icons/vsc"
 import { CartContext } from '../../context/CartContext'
 import { useContext, useEffect, useState } from 'react'
+import noPicture from '../../assets/noImage.jpg'
+import { APP_URL } from "../../utils/constants/applicationConstants";
 
 
 const StoreItem = (props) => {
 
     const {addToCart } =  useContext(CartContext)
+    const [pictureUrl, setPictureUrl] = useState("")
+
+    const fetchPicture = (storeItem) => {
+        if(storeItem.pictureId){
+          fetch(`${APP_URL}/stores/60/items/${storeItem.id}/pictures/${storeItem.pictureId}`)
+          .then(async response => {
+            if (response.ok) {
+              const blob = await response.blob();
+              const url = URL.createObjectURL(blob);
+              storeItem.pictureId = url
+              console.log(url)
+              setPictureUrl(url)
+          
+            } else if (response.status === 404) {
+              console.error('Store picture not found');
+            } else {
+              console.error('Failed to fetch store picture');
+            }
+          
+          })
+          .catch(error => {
+          console.error('Error fetching store picture:', error);
+        })
+       }
+      }
+
+    
+
+      useEffect(() =>{
+        if(props.storeItem.pictureId){
+            fetchPicture(props.storeItem)
+        }
+      }, [])
    
     return (
-            <> 
-                {props.storeItems.map((storeItem , index) => (
-
-                     <div key={index} className={`card ${storeItemCss.card_item} `} >
-                             <img src={props.image} className="card-img-top" alt="..."/>
-    
-                            <div className="card-body">
-                                    <h5 className="card-title fw-bold">$ {storeItem.price}</h5>
-                                    <p className="card-text">{storeItem.description} </p>
+            <>
+                
+                     <div  className={`card ${storeItemCss.card_item} `} >
+                             {pictureUrl ? <img src={pictureUrl}  alt="item picture"/> :
+                                             <img src={noPicture}  alt="item pictire"/>        }
+                                <div className={`card-body ${storeItemCss.card_body}`}>
+                                    <h5 className="card-title fw-bold">$ {props.storeItem.price}</h5>
+                                    <p className="card-text">{props.storeItem.description} </p>
                                 </div>
                                 <div className={` card-text ${storeItemCss.stats}`}>
                                     <AiOutlineStar className="mx-3"/> <span >0(1)</span>
                                 </div>
                                 <div className={` d-flex justify-content-between ${storeItemCss.city}`}>
-                                    <h5 className="">{storeItem.name}</h5>
+                                    <h6 className="">{props.storeItem.name}</h6>
                                     <span><VscVerifiedFilled/></span>
     
                                 </div>
@@ -34,14 +68,13 @@ const StoreItem = (props) => {
                                     <a
                                         href="#"
                                         className={`card-link  ${storeItemCss.btn} `}
-                                        onClick={()  => addToCart(storeItem)}
+                                        onClick={()  => addToCart(props.storeItem)}
                                     >
-                                         + Add to Cart
+                                         Add to Cart
                                     </a>
                                 </div>
                      </div>
-
-                    ))}              
+          
             </>        
     )
 }

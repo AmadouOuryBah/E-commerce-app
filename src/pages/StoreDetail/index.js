@@ -1,8 +1,5 @@
 import React from "react";
 import hamburger from "../../assets/storeItemImage/hamburger-494706_640.jpg"
-import iceCream from "../../assets/storeItemImage/ice-cream-1274894_640.jpg"
-import istockPhoto_1 from "../../assets/storeItemImage/istockphoto-1481323897-1024x1024.jpg"
-import istockPhoto_2 from "../../assets/storeItemImage/istockphoto-542817430-1024x1024.jpg"
 import StoreDetailHeader from "../../components/StoreDetail/StoreDetailHeader";
 import style from  "../StoreDetail/index.module.css"
 import StoreSearchBar from "../../components/StoreDetail/StoreSearchBar";
@@ -35,12 +32,12 @@ const Index = () => {
            
           })
           .catch(error => {
-           
+            console.log(error)
           });
 
-        }
+    }
 
-        const getStoreItems = () =>{
+    const getStoreItems = () =>{
           
             fetch(`${APP_URL}/stores/${id}/items` , {
               method: 'GET',
@@ -57,9 +54,15 @@ const Index = () => {
              
             })
             .catch(error => {
-             
+             console.log(error)
             });
   
+          }
+
+          const noItems = () => {
+            if(storeItems.length == 0){
+              return <h4 className={style.noItems}>NO ITEMS FOR THIS STORE YET</h4>
+            }
           }
 
      useEffect(() => {
@@ -73,8 +76,13 @@ const Index = () => {
             <div className={style.container}>
                   <StoreDetailHeader store={store}/>
                   <StoreSearchBar/>
+               
                   <div className={style.card_container}>
-                        <StoreItem  storeItems={storeItems} image={hamburger}/>
+                    {noItems()}
+                    {storeItems.map(storeItem => {
+                      return <StoreItem storeId={id} key={storeItem.id} storeItem={storeItem} />
+                    })}
+                        
                   </div>
                     
             </div>

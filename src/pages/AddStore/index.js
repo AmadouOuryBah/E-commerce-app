@@ -4,12 +4,14 @@ import {
     FormLabel,
     Input,
     Select,
-   
+    useToast
   } from '@chakra-ui/react'
+
 import { useEffect, useState } from 'react'
 import { APP_URL} from "../../utils/constants/applicationConstants";
 
 const Index = () => {
+    const toast = useToast()
 
     const [store, setStore ] = useState({
         photo: "",
@@ -30,25 +32,23 @@ const Index = () => {
 
     const [categories, setCategories] = useState(null)
     const [page ,setPage] = useState(1)
+    const [isStoreAdded, setIsStoreAdded ] = useState(false)
 
     const [file, setFile] = useState(null);
 
-    const handleFileChange = (event) => {
+   /* const handleFileChange = (event) => {
         setFile(event.target.files[0]);
       };
-
+*/
     const handleStorePropertyChange = (e) => {
         setStore({ ...store, [e.target.name] : e.target.value});
-      }
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(store)
         setFile(document.getElementById('fileInput').files[0])
-        createStore()
-        console.log(newStore)
-       
-      }
+        createStore()  
+    }
 
 
     const createPicture = () => {
@@ -72,7 +72,9 @@ const Index = () => {
             console.error('There was a problem with the fetch operation:', err);
         })
     } 
+
     const createStore = () => {
+
         fetch(`${APP_URL}/stores` , {
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
@@ -85,9 +87,12 @@ const Index = () => {
             return response.json()
         })
         .then(data => {
-            console.log(data)
             setNewStore(data)
             createPicture()
+            {toast({ title:'new product added succesully', 
+                    status: isStoreAdded? 'success' : null,
+                     duration:'3000', 
+                     position:'top'}) }
         })
         .catch(err => {
             console.error('There was a problem with the fetch operation:', err);
@@ -144,7 +149,7 @@ const Index = () => {
 
 
                     <FormControl mr={4}>
-                                <FormLabel>Photo</FormLabel>
+                                <FormLabel>choose a picture</FormLabel>
                                 <Input id="fileInput" type='file' />
                     </FormControl>
                     <form onSubmit={handleSubmit}> 

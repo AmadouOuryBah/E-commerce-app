@@ -20,6 +20,10 @@ const Register = () => {
     role: 'user'
   })
 
+  const toast = useToast()
+  
+  const [isUserCreated, setIsUserCreated ] = useState(false)
+
   const handleOnchangeUserCredentials = (e) => {
     setUserCredentials({...userCredentials , [e.target.name] : e.target.value })
   }
@@ -28,6 +32,7 @@ const Register = () => {
     e.preventDefault();
     console.log(userCredentials)
     createUser()
+    setIsUserCreated(true)
   }
 
   const createUser = () => {
@@ -58,7 +63,9 @@ const Register = () => {
               padding:'30px' ,
               borderRadius:'8px',
        }}>
- 
+          {/*}  {isUserCreated ? toast({ title:'account created succesfully', status: 'success', duration:'9000', position:'top'})
+            : toast({ title:'error', status: 'error', description:'passwords must match', duration:'9000', position:'top'})}
+          */}
             <h3 style={{marginBottom:'20px'}}>Sign up</h3>
             <form onSubmit={handleSubmit}>
               <FormControl mb={4} mr={4}>

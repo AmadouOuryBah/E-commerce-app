@@ -2,14 +2,15 @@ import React from "react";
 import storeDetailCss from "../../components/StoreDetail/StoreDetailHeader.module.css"
 import storeImage from "../../assets/storePageDetail/storeImage.jpg"
 import storeMiniImage from "../../assets/storePageDetail/storeLogo.jpg"
-import {BsShare} from "react-icons/bs"
+import ModalAddItem from "../../components/ModalAddItem/ModalAddItem"
 
 
 const StoreDetailHeader = (props) => {
 
     return (
         <>
-            <section>
+            <ModalAddItem storeId={props.store.id}/>
+            <section >
                 <div className={storeDetailCss.image_container}>
                     <img src={storeImage} className="rounded " alt="picture of the store"/>
                 </div>
@@ -34,6 +35,7 @@ const StoreDetailHeader = (props) => {
                     </div>
 
                     <div>
+                        
                         <button className="btn btn-outline-secondary px-3 mx-2 ">Follow</button>
                     </div>
                 </div>

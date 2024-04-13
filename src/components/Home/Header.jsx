@@ -18,7 +18,7 @@ const Header = () => {
 
               <div className={` navbar-nav ${HeaderCss.navbar_nav} `} >
                 <a className="nav-link active" aria-current="page" href="/home">Home</a>
-                <a className="nav-link" href="#">About</a>
+                <a className="nav-link" href="/createItem">add item</a>
                 <a className="nav-link" href="/stores">Stores</a>
                 <a className="nav-link" href="/createStore">create store</a>
                 <a className="nav-link" href="#">Contact</a>

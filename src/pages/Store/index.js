@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState , useRef} from "react";
 import {FaChevronDown} from "react-icons/fa"
 import FooterLinks from "../../components/Home/FooterLinks";
 import Footer from "../../components/Home/Footer";
@@ -53,6 +53,7 @@ const Index =  () => {
     useEffect(() => {
       getStores()
  }, [pageNumber])
+
  /*   const  fetchStorePicture = async () => {
 
         if(stores){
@@ -91,6 +92,8 @@ const Index =  () => {
 
     return (
         <>
+
+      
           <div className={style.container}>
             <hr />
             <p className="d-flex align-items-center mb-4 justify-content-between">
