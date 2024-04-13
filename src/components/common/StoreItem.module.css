@@ -14,12 +14,11 @@
     cursor: pointer;
     width: 100%;
   }
-  .card_item{
+.card_item{
     width: 24%;
     height: 380px;
-    margin-right: 12px;
+    margin-right: 10px;
     margin-bottom: 20px;
-  
 }
 .card_body{
   margin-bottom: -50px;

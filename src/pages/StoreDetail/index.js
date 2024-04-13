@@ -61,7 +61,7 @@ const Index = () => {
 
           const noItems = () => {
             if(storeItems.length == 0){
-              return <h4 className={style.noItems}>NO ITEMS FOR THIS STORE YET</h4>
+              return <h6 className={style.noItems}>NO ITEMS FOR THIS STORE YET</h6>
             }
           }
 
