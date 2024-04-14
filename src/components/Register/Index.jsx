@@ -43,12 +43,14 @@ const Register = () => {
       })
       .then(response => {
           if(!response.ok){
-              throw new Error('Network response was not ok')
+            toast({ title:'error', status: 'error', description:'passwords must match', duration:'2000', position:'top'})
+            throw new Error('Network response was not ok')
           }
           return response.json()
       })
       .then(data => {
           console.log(data)
+          toast({ title:'account created succesfully', status: 'success', duration:'2000', position:'top'})
       })
       .catch(err => {
           console.error('There was a problem with the fetch operation:', err);

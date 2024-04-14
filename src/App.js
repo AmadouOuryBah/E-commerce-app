@@ -6,6 +6,7 @@ import Login from "./pages/Login"
 import Store from "./pages/Store"
 import AddStore from "./pages/AddStore"
 import StoreDetail from  "./pages/StoreDetail"
+import ManageStore from "./pages/ManageStore/index"
 import Cart from "./pages/Cart/index"
 import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
 import React from "react";
@@ -26,7 +27,7 @@ function App() {
                <Route path="/stores/:id" exact element={<StoreDetail/>} />
               <Route path="/cart" exact element={<Cart/>} />
               <Route path="/createStore" exact element={<AddStore/>} />
-           
+              <Route path="/manage_store/:id" exact element={<ManageStore/>} />
            </Routes>
           </BrowserRouter>
          

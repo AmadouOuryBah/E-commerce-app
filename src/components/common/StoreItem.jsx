@@ -6,12 +6,18 @@ import { CartContext } from '../../context/CartContext'
 import { useContext, useEffect, useState } from 'react'
 import noPicture from '../../assets/noImage.jpg'
 import { APP_URL } from "../../utils/constants/applicationConstants";
+import { AiTwotoneDelete } from "react-icons/ai";
+import { FaRegEdit } from "react-icons/fa";
+import { useToast } from "@chakra-ui/react";
+import { Navigate } from "react-router-dom";
 
 
 const StoreItem = (props) => {
 
     const {addToCart } =  useContext(CartContext)
     const [pictureUrl, setPictureUrl] = useState("")
+    const [isItemDeleted, setIsItemDelted ] = useState(false)
+    const toast = useToast()
 
     const fetchPicture = (storeItem) => {
         if(storeItem.pictureId){
@@ -36,6 +42,37 @@ const StoreItem = (props) => {
         })
        }
       }
+
+      const deleteItem = (itemId) => {
+
+        console.log(itemId)
+
+        fetch(`${APP_URL}/stores/${props.storeId}/items/${itemId}`, {
+            method: 'DELETE',
+            headers: {
+            'Content-Type' : 'application/json'
+            }
+        })
+        .then( response => {
+            if(!response.ok){
+                throw new Error('Network response was not ok')
+            }
+
+            return response.json()
+        })
+        .then(data => {
+            console.log('it s been deleted',data)
+            toast({ title:'product has been deleted', 
+              status: 'success',
+              duration:'3000', 
+              position:'top'})
+              alert('product has been deleted refresh the page')
+
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+          });
+        }
 
     
 
@@ -65,13 +102,35 @@ const StoreItem = (props) => {
                                 </div>
     
                                 <div className="card-body d-flex align-items-center justify-content-center">
-                                    <a
+                                  {!props.isOwner ?  <a
+                                          href="#"
+                                          className={`card-link  ${storeItemCss.btn} `}
+                                          onClick={()  => addToCart(props.storeItem)}
+                                      >
+                                      Add to Cart
+                                      </a> :
+
+                                     <> <a 
+                                       href="#"
+                                       onClick={()=> deleteItem(props.storeItem.id)}
+                                      className={`card-link  ${storeItemCss.btn_delete} `}
+                                    
+                                      >
+                                      <AiTwotoneDelete />
+                                      </a>
+
+                                      <a 
                                         href="#"
-                                        className={`card-link  ${storeItemCss.btn} `}
-                                        onClick={()  => addToCart(props.storeItem)}
-                                    >
-                                         Add to Cart
-                                    </a>
+                                       className={`card-link  ${storeItemCss.btn_edit} `}
+                                     
+                                       >
+                                         <FaRegEdit />
+                                       </a>
+                                      </>
+
+
+                                   }    
+                                   
                                 </div>
                      </div>
           

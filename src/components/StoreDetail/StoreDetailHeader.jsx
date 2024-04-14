@@ -1,24 +1,62 @@
-import React from "react";
+import {useState, useEffect } from "react";
 import storeDetailCss from "../../components/StoreDetail/StoreDetailHeader.module.css"
 import storeImage from "../../assets/storePageDetail/storeImage.jpg"
 import storeMiniImage from "../../assets/storePageDetail/storeLogo.jpg"
 import ModalAddItem from "../../components/ModalAddItem/ModalAddItem"
+import { APP_URL } from "../../utils/constants/applicationConstants";
 
 
 const StoreDetailHeader = (props) => {
 
+    console.log(props.store)
+    const [pictureUrl, setPictureUrl ] = useState("")
+
+    const fetchPicture = (store) => {
+        if(store.pictureId){
+          fetch(`${APP_URL}/stores/${props.store.id}/pictures/${props.store.pictureId}`)
+          .then(async response => {
+            if (response.ok) {
+              const blob = await response.blob();
+              const url = URL.createObjectURL(blob);
+              store.pictureId = url
+              setPictureUrl(url)
+          
+            } else if (response.status === 404) {
+              console.error('Store picture not found');
+            } else {
+              console.error('Failed to fetch store picture');
+            }
+          
+          })
+          .catch(error => {
+          console.error('Error fetching store picture:', error);
+        })
+       }
+      }
+
+      useEffect(()=> {
+        if(props.store.pictureId){
+            fetchPicture(props.store)
+        }
+      },[props.store.pictureId])
+
+     
+
     return (
         <>
-            <ModalAddItem storeId={props.store.id}/>
+            <div className={storeDetailCss.modal}>
+                <ModalAddItem storeId={props.store.id}/>
+               
+            </div>
             <section >
                 <div className={storeDetailCss.image_container}>
-                    <img src={storeImage} className="rounded " alt="picture of the store"/>
+                    <img src={pictureUrl} className="rounded " alt="picture of the store"/>
                 </div>
 
                 <div className="d-flex  align-items-center justify-content-between">
                     <div className="d-flex ">
                         <div className={storeDetailCss.MiniImage_container}>
-                              <img src={storeMiniImage} className="rounded" alt="logo"/>
+                              <img src={pictureUrl} className="rounded" alt="logo"/>
                         </div>
                       
                         <p className="d-flex flex-column"> 

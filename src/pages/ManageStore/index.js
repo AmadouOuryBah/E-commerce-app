@@ -1,8 +1,6 @@
 import React from "react";
-import hamburger from "../../assets/storeItemImage/hamburger-494706_640.jpg"
 import StoreDetailHeader from "../../components/StoreDetail/StoreDetailHeader";
 import style from  "../StoreDetail/index.module.css"
-import StoreSearchBar from "../../components/StoreDetail/StoreSearchBar";
 import StoreItem from "../../components/common/StoreItem";
 import { useParams } from "react-router-dom";
 import { useState , useEffect} from "react";
@@ -14,7 +12,6 @@ const Index = () => {
     const [store, setStore ] = useState({})
     const [storeItems, setStoreItems ] = useState([])
     const { id } = useParams()
-   
 
     const getStore = () =>{
           
@@ -38,8 +35,6 @@ const Index = () => {
 
     }
 
-   
-
     const getStoreItems = () =>{
           
             fetch(`${APP_URL}/stores/${id}/items` , {
@@ -60,7 +55,7 @@ const Index = () => {
              console.log(error)
             });
   
-          }
+    }
 
           const noItems = () => {
             if(storeItems.length == 0){
@@ -71,19 +66,17 @@ const Index = () => {
      useEffect(() => {
             getStore()
             getStoreItems()
-          
         },[])
     
+
     return (
         <>
             <div className={style.container}>
-                  <StoreDetailHeader  store={store}/>
-                  <StoreSearchBar/>
-               
+                  <StoreDetailHeader store={store}/>
                   <div className={style.card_container}>
                     {noItems()}
                     {storeItems.map(storeItem => {
-                      return <StoreItem storeId={id} key={storeItem.id} storeItem={storeItem} />
+                      return <StoreItem isOwner={true} storeId={id} key={storeItem.id} storeItem={storeItem} />
                     })}
                         
                   </div>

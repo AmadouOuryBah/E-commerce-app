@@ -12,7 +12,10 @@ import {
     ModalBody,
     ModalCloseButton ,
     useDisclosure,
-    useToast
+    useToast,
+    Breadcrumb,
+    BreadcrumbItem, 
+    BreadcrumbLink
 } from '@chakra-ui/react';      
 import { APP_URL } from "../../utils/constants/applicationConstants"
 
@@ -154,7 +157,23 @@ const Index = (props) => {
 
     return (<>
      
-                <Button mb={3} onClick={onOpen}>add new product </Button>
+
+                <div style={{marginLeft:'-30px', fontSize:'16px'}}>
+                    <Breadcrumb spacing='8px' separator='>'>
+                        <BreadcrumbItem>
+                            <BreadcrumbLink  onClick={onOpen} href='#'>add new product</BreadcrumbLink>
+                        </BreadcrumbItem>
+
+                        <BreadcrumbItem>
+                            <BreadcrumbLink  href={`/manage_store/${props.storeId}`}>manage store</BreadcrumbLink>
+                        </BreadcrumbItem>
+
+                        <BreadcrumbItem isCurrentPage>
+                            <BreadcrumbLink fontSize={18} href='#'>store</BreadcrumbLink>
+                        </BreadcrumbItem>
+                    </Breadcrumb>
+                </div>
+             
                 <Modal
                     initialFocusRef={initialRef}
                     isOpen={isOpen}
