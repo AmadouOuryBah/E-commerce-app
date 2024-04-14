@@ -168,8 +168,8 @@ const Index = (props) => {
                             <BreadcrumbLink  href={`/manage_store/${props.storeId}`}>manage store</BreadcrumbLink>
                         </BreadcrumbItem>
 
-                        <BreadcrumbItem isCurrentPage>
-                            <BreadcrumbLink fontSize={18} href='#'>store</BreadcrumbLink>
+                        <BreadcrumbItem >
+                            <BreadcrumbLink href={`/stores/${props.storeId}`} >store</BreadcrumbLink>
                         </BreadcrumbItem>
                     </Breadcrumb>
                 </div>

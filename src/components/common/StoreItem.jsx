@@ -9,15 +9,17 @@ import { APP_URL } from "../../utils/constants/applicationConstants";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { FaRegEdit } from "react-icons/fa";
 import { useToast } from "@chakra-ui/react";
-import { Navigate } from "react-router-dom";
+
 
 
 const StoreItem = (props) => {
 
     const {addToCart } =  useContext(CartContext)
     const [pictureUrl, setPictureUrl] = useState("")
-    const [isItemDeleted, setIsItemDelted ] = useState(false)
     const toast = useToast()
+    const [isItemDeleted, setIsItemAdded ] = useState(null)
+
+    console.log(isItemDeleted)
 
     const fetchPicture = (storeItem) => {
         if(storeItem.pictureId){
@@ -49,25 +51,22 @@ const StoreItem = (props) => {
 
         fetch(`${APP_URL}/stores/${props.storeId}/items/${itemId}`, {
             method: 'DELETE',
-            headers: {
-            'Content-Type' : 'application/json'
-            }
         })
         .then( response => {
             if(!response.ok){
                 throw new Error('Network response was not ok')
             }
 
-            return response.json()
+            return response
         })
         .then(data => {
             console.log('it s been deleted',data)
             toast({ title:'product has been deleted', 
-              status: 'success',
-              duration:'3000', 
-              position:'top'})
-              alert('product has been deleted refresh the page')
-
+                    description: "Refresh the page",
+                    status: 'success',
+                     duration:'4000', 
+                     position:'top'})
+            
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
@@ -84,7 +83,8 @@ const StoreItem = (props) => {
    
     return (
             <>
-                
+               
+
                      <div  className={`card ${storeItemCss.card_item} `} >
                              {pictureUrl ? <img src={pictureUrl}  alt="item picture"/> :
                                              <img src={noPicture}  alt="item pictire"/>        }
