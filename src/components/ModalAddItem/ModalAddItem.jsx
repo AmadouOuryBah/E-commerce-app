@@ -26,7 +26,7 @@ const Index = (props) => {
         categoryId:0
 
     })
-    const [file, setFile] = useState(null);
+    //const [file, setFile] = useState();
 
     const [newProduct, setNewProduct] = useState(null)
     const toast = useToast()
@@ -47,7 +47,7 @@ const Index = (props) => {
 
     const handleSubmit = (e) => {
        e.preventDefault()
-       setFile(document.getElementById('fileInput').files[0])
+       //setFile(document.getElementById('fileInput').files[0])
        addProduct()
     }
 
@@ -109,11 +109,12 @@ const Index = (props) => {
         })
         .then(data => {
             console.log(data)
-            setNewProduct(data)
-            addPictureToItem()
+            var fileFromInput = document.getElementById('fileInput').files[0]
+            console.log(fileFromInput)
+            addPictureToItem(data.id, fileFromInput)
             setIsItemAdded(true)
             {toast({ title:'new product added succesully', 
-                    status: isItemAdded? 'success' : null,
+                    status: isItemAdded? 'success' : undefined,
                      duration:'3000', 
                      position:'top'}) }
         })
@@ -121,13 +122,14 @@ const Index = (props) => {
             console.error('There was a problem with the fetch operation:', error);
           });
 
+
     }
 
-    const addPictureToItem = () => {
+    const addPictureToItem = (id, file) => {
         const formData = new FormData();
         formData.append('picture', file);
 
-        fetch(`${APP_URL}/stores/${props.storeId}/items/${newProduct.id}/pictures` , {
+        fetch(`${APP_URL}/stores/${props.storeId}/items/${id}/pictures` , {
             method: 'POST',
             body: formData 
         })
@@ -160,7 +162,7 @@ const Index = (props) => {
                 >
                     <ModalOverlay />
                     <ModalContent>
-                    <ModalHeader>New product to the store</ModalHeader>
+                    <ModalHeader>Add New product to the store</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody pb={6}>
 
@@ -211,7 +213,7 @@ const Index = (props) => {
                             <Button type='submit' colorScheme='orange' mr={3}>
                                 create
                             </Button>
-                            <Button  >Cancel</Button>
+                            <Button  colorScheme='blue'>Cancel</Button>
                         </div>
                     </form>           
                     
