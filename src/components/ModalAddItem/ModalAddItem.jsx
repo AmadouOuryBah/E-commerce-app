@@ -15,13 +15,15 @@ import {
     useToast,
     Breadcrumb,
     BreadcrumbItem, 
-    BreadcrumbLink
+    BreadcrumbLink,
+    position
 } from '@chakra-ui/react';      
 import { APP_URL } from "../../utils/constants/applicationConstants"
+import { useNavigate } from "react-router-dom";
 
 
 const Index = (props) => {
-
+    const navigate = useNavigate();
     const [item, setItem] = useState({
         name:"",
         description:"",
@@ -54,6 +56,21 @@ const Index = (props) => {
        addProduct()
     }
 
+    const verifyfFileHasBeenSelected = () =>{
+        var fileFromInput = document.getElementById('fileInput')?.files[0]
+        console.log(fileFromInput)
+            if(!fileFromInput){
+                toast({title: 'Choose a file first',
+                status: 'error',
+                duration: '3000',
+                position: 'top' })
+
+                 return false;
+            }
+
+            return true
+            
+    }
       const getCategories = () => {
 
         const params = {
@@ -90,6 +107,9 @@ const Index = (props) => {
 
     const addProduct= () => {
 
+        if(!verifyfFileHasBeenSelected()){
+            return;
+        }
         console.log(props.storeId)
         fetch(`${APP_URL}/stores/${props.storeId}/items`, {
             method: 'POST',
@@ -112,14 +132,20 @@ const Index = (props) => {
         })
         .then(data => {
             console.log(data)
-            var fileFromInput = document.getElementById('fileInput').files[0]
+            if(!verifyfFileHasBeenSelected()){
+                return;
+            }
+
+            var fileFromInput = document.getElementById('fileInput')?.files[0]
+
             console.log(fileFromInput)
             addPictureToItem(data.id, fileFromInput)
-            setIsItemAdded(true)
             {toast({ title:'new product added succesully', 
                     status: isItemAdded? 'success' : undefined,
                      duration:'3000', 
                      position:'top'}) }
+            console.log("navigating to the .....  " + props.storeId)
+            navigate(`/stores/${props.storeId}`)
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
@@ -143,6 +169,7 @@ const Index = (props) => {
             return response
         })
         .then(data => {
+            setIsItemAdded(true)
             console.log(data)
         })
         .catch(err => {
