@@ -17,7 +17,6 @@ function Home() {
             
              <Slider/>
              <MobileProducts/>
-             <SmartWatches/>
              <NewYearSale/>
              <LatestPosts/>
              <EmailSubscription/>

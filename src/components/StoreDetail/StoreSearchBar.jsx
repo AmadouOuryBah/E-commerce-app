@@ -11,7 +11,7 @@ const StoreSearchBar = () => {
         
                 <div className=" d-flex justify-content-between">
                     <h3>Home</h3>
-                     <SearchBar placeholder="search in store"/>             
+                     <SearchBar placeholder="search a product"/>             
                 </div>
             </section>
        </>

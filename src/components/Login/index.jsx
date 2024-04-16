@@ -17,7 +17,7 @@ const Index = () => {
     password:'',
   })
 
-  const [accessToken, setAccessToken ] = useState()
+  const toast = useToast()
 
   const handleOnchangeUserCredentials = (e) => {
     setUserCredentials({...userCredentials , [e.target.name] : e.target.value })
@@ -39,13 +39,15 @@ const Index = () => {
       })
       .then(response => {
           if(!response.ok){
-              throw new Error('Network response was not ok')
+            toast({ title:'Invalid password', status: 'error', description:'enter a correct password', duration:'2000', position:'top'})
+            throw new Error('Network response was not ok')
           }
           return response.json()
       })
       .then(data => {
-          console.log(data.accessToken)
-          setAccessToken(data.accessToken)
+        toast({ title:'you are connected', status: 'success', duration:'1000', position:'top'})
+        localStorage.setItem('currentUser',JSON.stringify( data))
+
       })
       .catch(err => {
           console.error('There was a problem with the fetch operation:', err);

@@ -1,9 +1,8 @@
 import {useState, useEffect } from "react";
 import storeDetailCss from "../../components/StoreDetail/StoreDetailHeader.module.css"
-import storeImage from "../../assets/storePageDetail/storeImage.jpg"
-import storeMiniImage from "../../assets/storePageDetail/storeLogo.jpg"
 import ModalAddItem from "../../components/ModalAddItem/ModalAddItem"
 import { APP_URL } from "../../utils/constants/applicationConstants";
+import noImage from "../../assets/noImage.jpg"
 
 
 const StoreDetailHeader = (props) => {
@@ -45,18 +44,26 @@ const StoreDetailHeader = (props) => {
     return (
         <>
             <div className={storeDetailCss.modal}>
-                <ModalAddItem storeId={props.store.id}/>
+                <ModalAddItem store={props.store}/>
                
             </div>
             <section >
                 <div className={storeDetailCss.image_container}>
-                    <img src={pictureUrl} className="rounded " alt="picture of the store"/>
+                    {
+                        pictureUrl ?    <img src={pictureUrl} className="rounded " alt="picture of the store"/> 
+                        : <img src={noImage} className="rounded " alt="picture of the store"/>
+                    }
+                  
                 </div>
 
                 <div className="d-flex  align-items-center justify-content-between">
                     <div className="d-flex ">
                         <div className={storeDetailCss.MiniImage_container}>
-                              <img src={pictureUrl} className="rounded" alt="logo"/>
+                            {
+                                pictureUrl ?  <img src={pictureUrl} className="rounded" alt="picture of store"/>
+                                :  <img src={noImage} className="rounded" alt="picture of store"/>
+                            }
+                             
                         </div>
                       
                         <p className="d-flex flex-column"> 

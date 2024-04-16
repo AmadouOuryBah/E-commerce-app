@@ -16,7 +16,6 @@ import {
     Breadcrumb,
     BreadcrumbItem, 
     BreadcrumbLink,
-    position
 } from '@chakra-ui/react';      
 import { APP_URL } from "../../utils/constants/applicationConstants"
 import { useNavigate } from "react-router-dom";
@@ -31,7 +30,8 @@ const Index = (props) => {
         categoryId:0
 
     })
-    //const [file, setFile] = useState();
+    const currentUser = JSON.parse(localStorage.getItem('currentUser')).userId
+
 
     const [newProduct, setNewProduct] = useState(null)
     const toast = useToast()
@@ -110,8 +110,8 @@ const Index = (props) => {
         if(!verifyfFileHasBeenSelected()){
             return;
         }
-        console.log(props.storeId)
-        fetch(`${APP_URL}/stores/${props.storeId}/items`, {
+        console.log(props.store.id)
+        fetch(`${APP_URL}/stores/${props.store.id}/items`, {
             method: 'POST',
             headers: {
                     'Content-Type': 'application/json'
@@ -144,8 +144,8 @@ const Index = (props) => {
                     status: isItemAdded? 'success' : undefined,
                      duration:'3000', 
                      position:'top'}) }
-            console.log("navigating to the .....  " + props.storeId)
-            navigate(`/stores/${props.storeId}`)
+            console.log("navigating to the .....  " + props.store.id)
+            navigate(`/stores/${props.store.useDisclosure}`)
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
@@ -158,7 +158,7 @@ const Index = (props) => {
         const formData = new FormData();
         formData.append('picture', file);
 
-        fetch(`${APP_URL}/stores/${props.storeId}/items/${id}/pictures` , {
+        fetch(`${APP_URL}/stores/${props.store.id}/items/${id}/pictures` , {
             method: 'POST',
             body: formData 
         })
@@ -180,11 +180,11 @@ const Index = (props) => {
     useEffect( () => {
         getCategories()
     },[])
-
+console.log('local st', )
 
     return (<>
-     
-
+            {props.store.userId == currentUser &&
+          
                 <div style={{marginLeft:'-30px', fontSize:'16px'}}>
                     <Breadcrumb spacing='8px' separator='>'>
                         <BreadcrumbItem>
@@ -192,15 +192,15 @@ const Index = (props) => {
                         </BreadcrumbItem>
 
                         <BreadcrumbItem>
-                            <BreadcrumbLink  href={`/manage_store/${props.storeId}`}>manage store</BreadcrumbLink>
+                            <BreadcrumbLink  href={`/manage_store/${props.store.id}`}>manage store</BreadcrumbLink>
                         </BreadcrumbItem>
 
                         <BreadcrumbItem >
-                            <BreadcrumbLink href={`/stores/${props.storeId}`} >store</BreadcrumbLink>
+                            <BreadcrumbLink href={`/stores/${props.store.id}`} >store</BreadcrumbLink>
                         </BreadcrumbItem>
                     </Breadcrumb>
                 </div>
-             
+            }
                 <Modal
                     initialFocusRef={initialRef}
                     isOpen={isOpen}

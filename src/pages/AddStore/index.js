@@ -15,7 +15,7 @@ const Index = () => {
 
     const [store, setStore ] = useState({
         photo: "",
-        userId:0,
+        userId: JSON.parse(localStorage.getItem('currentUser')).userId,
         name:"",
         description:"",
         country: "",
@@ -26,8 +26,8 @@ const Index = () => {
         postalCode:"",
         storeRating:1,
         categoryId:0
-
     })
+    
     const [newStore, setNewStore] = useState(null)
 
     const [categories, setCategories] = useState(null)

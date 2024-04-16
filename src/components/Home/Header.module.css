@@ -8,10 +8,10 @@
     margin-top: 20px;
  
  }
- .navbar{
-   
-    
+ .active{
+color: brown;
  }
+ 
  .cart_logo{
     display: flex;
     justify-content: center;
