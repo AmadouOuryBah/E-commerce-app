@@ -46,11 +46,12 @@ const Index = () => {
         createStore()  
     }
 
-    const createPicture = () => {
+
+    const createPicture = (newStoreId, file) => {
         const formData = new FormData();
         formData.append('picture', file);
 
-        fetch(`${APP_URL}/stores/${newStore.id}/pictures` , {
+        fetch(`${APP_URL}/stores/${newStoreId}/pictures` , {
             method: 'POST',
             body: formData 
         })
@@ -82,9 +83,10 @@ const Index = () => {
             return response.json()
         })
         .then(data => {
-            setNewStore(data)
-            createPicture()
-            {toast({ title:'new product added succesully', 
+            //setNewStore(data)
+            createPicture(data.id, document.getElementById("fileInput").files[0])
+            setIsStoreAdded(true)
+            {isStoreAdded && toast({ title:'new product added succesully', 
                     status: isStoreAdded? 'success' : null,
                      duration:'3000', 
                      position:'top'}) }
@@ -253,7 +255,7 @@ const Index = () => {
                                 <Button type='submit' colorScheme='orange' mr={3}>
                                     create
                                 </Button>
-                                <Button  >Cancel</Button>
+                                <Button colorScheme='blue' >Cancel</Button>
                             </div>
                     </form>   
                 </div> 
