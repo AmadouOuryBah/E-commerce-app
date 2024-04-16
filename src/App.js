@@ -10,17 +10,14 @@ import ManageStore from "./pages/ManageStore/index"
 import Cart from "./pages/Cart/index"
 import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
 import React from "react";
-import Header from "./components/Home/Header"
 import './App.css'
 
 function App() {
   return (
         <>
           <BrowserRouter>
-            <Header/>
             <Routes>
               <Route path='/' element={<Home/>} />
-              <Route path="/home" exact element={<Home/>} />
               <Route path="/register" exact element={<Register/>} />
               <Route path="/login" exact element={<Login/>} />
               <Route path="/stores" exact element={<Store/>} />

@@ -4,7 +4,7 @@ import {AiOutlineDelete} from "react-icons/ai"
 import image from "../../assets/storeItemImage/hamburger-494706_640.jpg"
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
-
+import Header from "../../components/Home/Header";
 const Index = () => {
     const {cartItems , addToCart,  removeFromCart, getCartTotalPrice} = useContext(CartContext)
 
@@ -12,6 +12,7 @@ const Index = () => {
 
     return (
         <>
+        <Header/>
            <section className={CartCss.section_container}>
                 <hr/>
                 <div className={CartCss.Cart_title}>

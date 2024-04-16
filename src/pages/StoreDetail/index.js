@@ -7,6 +7,7 @@ import StoreItem from "../../components/common/StoreItem";
 import { useParams } from "react-router-dom";
 import { useState , useEffect} from "react";
 import { APP_URL } from "../../utils/constants/applicationConstants";
+import Header from "../../components/Home/Header";
 
 
 const Index = () => {
@@ -62,7 +63,7 @@ const Index = () => {
   
           }
 
-          const noItems = () => {
+      const noItems = () => {
             if(storeItems.length == 0){
               return <h6 className={style.noItems}>NO ITEMS FOR THIS STORE YET</h6>
             }
@@ -76,6 +77,7 @@ const Index = () => {
     
     return (
         <>
+            <Header/>
             <div className={style.container}>
                   <StoreDetailHeader  store={store}/>
                   <StoreSearchBar/>

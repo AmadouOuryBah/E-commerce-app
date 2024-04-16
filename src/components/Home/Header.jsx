@@ -11,11 +11,6 @@ const Header = () => {
   const {cartItems } = useContext(CartContext)
 
   
-  useEffect(() => {
-    
-  })
-
-
 
     return (
       <nav className={`${HeaderCss.navbar} navbar-expand-lg`}>
@@ -24,10 +19,9 @@ const Header = () => {
               <a className={`${HeaderCss.navbar_brand}`} href="#">NvBusiness</a>
 
               <div className={` navbar-nav ${HeaderCss.navbar_nav} `} >
-                <a className="nav-link " aria-current="page" href="/home">Home</a>
+                <a className="nav-link " aria-current="page" href="/">Home</a>
                 <a className="nav-link " href="/stores">Stores</a>
                 <a className="nav-link " href="/createStore">Create store</a>
-                <a className="nav-link " href="#">Contact</a>
 
                 <div className={ `navbar-nav ${HeaderCss.Icon_Container}`}>
                   <a className="nav-link" href=""><img src={search}/></a>

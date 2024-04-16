@@ -7,6 +7,7 @@ import style from  "../Store/index.module.css"
 import SearchBar from "../../components/common/SearchBar";
 import { APP_URL } from "../../utils/constants/applicationConstants";
 import { Spinner } from '@chakra-ui/react';
+import Header  from "../../components/Home/Header";
 
  
 
@@ -93,7 +94,7 @@ const Index =  () => {
     return (
         <>
 
-      
+          <Header/>
           <div className={style.container}>
             <hr />
             <p className="d-flex align-items-center mb-4 justify-content-between">

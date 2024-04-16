@@ -3,10 +3,12 @@ import CardCss from "../../components/Store/StoreCard.module.css"
 import noPicture from "../../assets/noImage.jpg"
 import {BiMap} from "react-icons/bi";
 import { APP_URL } from "../../utils/constants/applicationConstants";
+import { Skeleton } from "@chakra-ui/react";
 
 const StoreCard = (props) => {
     
     const [pictureUrl, setPictureUrl] = useState("");
+    const [isImageLoaded, setIsImageLoaded ] = useState(false)
 
     const fetchPicture = (store) => {
         if(store.pictureId){
@@ -17,7 +19,9 @@ const StoreCard = (props) => {
               const url = URL.createObjectURL(blob);
               store.pictureId = url
               console.log(url)
+              setIsImageLoaded(true)
               setPictureUrl(url)
+            
           
             } else if (response.status === 404) {
               console.error('Store picture not found');
@@ -35,6 +39,7 @@ const StoreCard = (props) => {
       useEffect(() =>{
         if(props.store.pictureId){
             fetchPicture(props.store)
+        
         }
       }, [])
 
@@ -42,8 +47,11 @@ const StoreCard = (props) => {
     return (
             <> 
                <a  href={`stores/${props.store.id}`} className={CardCss.card} >
-                            {pictureUrl ? <img src={pictureUrl} className={CardCss.card_img_top} alt="..."/>  :
-                            <img  className={CardCss.card_img_top} src={noPicture}/>
+                        { props.store.pictureId ?
+                              <Skeleton    isLoaded={isImageLoaded}>
+                                  <img src={pictureUrl}  className={CardCss.card_img_top}  alt="..."/>  
+                              </Skeleton>:
+                              <img  className={CardCss.card_img_top} src={noPicture}/>
                         }
                      
                         <div className={CardCss.card_body}>

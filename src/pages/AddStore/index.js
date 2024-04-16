@@ -9,6 +9,7 @@ import {
 
 import { useEffect, useState } from 'react'
 import { APP_URL} from "../../utils/constants/applicationConstants";
+import Header from '../../components/Home/Header';
 
 const Index = () => {
     const toast = useToast()
@@ -27,19 +28,14 @@ const Index = () => {
         storeRating:1,
         categoryId:0
     })
-    
+
     const [newStore, setNewStore] = useState(null)
 
     const [categories, setCategories] = useState(null)
     const [page ,setPage] = useState(1)
     const [isStoreAdded, setIsStoreAdded ] = useState(false)
-
     const [file, setFile] = useState(null);
 
-   /* const handleFileChange = (event) => {
-        setFile(event.target.files[0]);
-      };
-*/
     const handleStorePropertyChange = (e) => {
         setStore({ ...store, [e.target.name] : e.target.value});
     }
@@ -49,7 +45,6 @@ const Index = () => {
         setFile(document.getElementById('fileInput').files[0])
         createStore()  
     }
-
 
     const createPicture = () => {
         const formData = new FormData();
@@ -136,6 +131,7 @@ const Index = () => {
 
     return (
       <>
+            <Header/>
             <div style={{  backgroundColor:"#D7DDDF",  padding:'15px' }}>
                 <div style={{maxWidth: '500px',
                             margin: '10px auto', 

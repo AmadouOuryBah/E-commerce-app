@@ -8,13 +8,14 @@ import EmailSubscription from "../../components/Home/EmailSubscription";
 import ProductShop from "../../components/Home/ProductShop";
 import FooterLinks from "../../components/Home/FooterLinks";
 import Footer from "../../components/Home/Footer";
+import Header from "../../components/Home/Header"
 
 
 function Home() {
 
     return (
           <>
-            
+              <Header/>
              <Slider/>
              <MobileProducts/>
              <NewYearSale/>
