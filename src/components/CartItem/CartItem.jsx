@@ -32,6 +32,10 @@ const CartItem = ({item}) => {
         })
         .then(data => {
             setProduct(data);
+            if(data.pictureId){
+              fetchPicture(data)
+            
+          }
          })
         .catch(error => {
          console.log(error)
@@ -65,12 +69,7 @@ const CartItem = ({item}) => {
 
       useEffect(() =>{
         getItem()
-        if(product.pictureId){
-            fetchPicture(product)
-          
-        }
-
-
+        
       }, [])
 
     return (
