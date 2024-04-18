@@ -10,6 +10,7 @@ import {
 import { useEffect, useState } from 'react'
 import { APP_URL} from "../../utils/constants/applicationConstants";
 import Header from '../../components/Home/Header';
+import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
     const toast = useToast()
@@ -30,14 +31,13 @@ const Index = () => {
     })
 
     const [newStore, setNewStore] = useState(null)
-
     const [categories, setCategories] = useState(null)
     const [page ,setPage] = useState(1)
-    const [isStoreAdded, setIsStoreAdded ] = useState(false)
-    const [file, setFile] = useState(null);
+    const [file, setFile] = useState(null)
+    const navigate = useNavigate()
 
     const handleStorePropertyChange = (e) => {
-        setStore({ ...store, [e.target.name] : e.target.value});
+        setStore({ ...store, [e.target.name] : e.target.value})
     }
 
     const handleSubmit = (e) => {
@@ -85,11 +85,13 @@ const Index = () => {
         .then(data => {
             //setNewStore(data)
             createPicture(data.id, document.getElementById("fileInput").files[0])
-            setIsStoreAdded(true)
-            {isStoreAdded && toast({ title:'new product added succesully', 
-                    status: isStoreAdded? 'success' : null,
-                     duration:'3000', 
+            {toast({ title:'new product added succesully', 
+                    status: 'success',
+                     duration:'4000', 
                      position:'top'}) }
+                     
+            navigate("/stores")
+
         })
         .catch(err => {
             console.error('There was a problem with the fetch operation:', err);
