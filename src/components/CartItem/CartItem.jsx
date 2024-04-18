@@ -70,7 +70,7 @@ const CartItem = ({item}) => {
       useEffect(() =>{
         getItem()
         
-      }, [])
+      }, [item])
 
     return (
         <>

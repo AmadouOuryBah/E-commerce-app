@@ -7,11 +7,12 @@ import { CartContext } from "../../context/CartContext";
 import Header from "../../components/Home/Header";
 import CartItem from "../../components/CartItem/CartItem";
 import { APP_URL } from "../../utils/constants/applicationConstants";
+import { useToast } from "@chakra-ui/react";
 
 const Index = () => {
     const currentDate = new Date();
     const formattedDate = currentDate.toISOString();
-    
+    const toast = useToast()
     const {cartItems , getCartTotalPrice} = useContext(CartContext)
     
     const itemsId = []
@@ -28,8 +29,35 @@ const Index = () => {
         orderDate: formattedDate
       };
       
+      const getStoreIdOfFirstItem = () =>{
+       
+        if(cartItems.length !== 0){
+            return cartItems[0].store
+        }
+
+        return 0
+      }
+
       const makeOrder = () => {
-        const storeId = 49  // Replace 'your_store_id' with the actual store ID
+
+        if(cartItems.length === 0){
+            {toast({ title:'No Items in the Cart', 
+            status: "error",
+             duration:'3000', 
+             position:'top'}) }
+        }
+
+        const storeId =  getStoreIdOfFirstItem()
+        
+        if(storeId === 0){
+            {toast({ title:'Something went wrong try again later', 
+            status: "error",
+             duration:'3000', 
+             position:'top'}) }
+
+             return 
+        }
+        
       
         fetch(`${APP_URL}/stores/${storeId}/orders`, {
           method: 'POST',
