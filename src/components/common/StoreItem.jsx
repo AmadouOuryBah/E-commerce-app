@@ -66,9 +66,14 @@ const StoreItem = (props) => {
                     status: 'success',
                      duration:'4000', 
                      position:'top'})
+                     window.location.reload();
             
         })
         .catch(error => {
+          toast({ title:'Could not delete the item', 
+           status: 'error',
+           duration:'3000', 
+           position:'top'})
             console.error('There was a problem with the fetch operation:', error);
           });
         }

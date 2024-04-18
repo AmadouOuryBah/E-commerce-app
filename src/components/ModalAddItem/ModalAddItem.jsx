@@ -31,19 +31,17 @@ const Index = (props) => {
 
     })
     const currentUser = JSON.parse(localStorage.getItem('currentUser')).userId
-console.log(currentUser)
+    console.log(currentUser)
 
     const [newProduct, setNewProduct] = useState(null)
     const toast = useToast()
 
     const [isItemAdded, setIsItemAdded ] = useState(false)
-
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const [isOpen, setIsOpen] = useState(false);
   
     const [page , setPage] = useState(1)
     const initialRef = useRef(null)
-
-
+    
     const [categories, setCategories ] = useState(null) 
 
     const handleStorePropertyChange = (e) => {
@@ -142,13 +140,19 @@ console.log(currentUser)
                      duration:'3000', 
                      position:'top'}) }
             console.log("navigating to the .....  " + props.store.id)
-            navigate(`/stores/${props.store.useDisclosure}`)
+            setIsOpen(false)
+            navigate(`/stores/${props.store.id}`)
+            
         })
         .catch(error => {
-            console.error('There was a problem with the fetch operation:', error);
+            {toast({ title:'Could not add the item to the store', 
+                    status: "error",
+                     duration:'3000', 
+                     position:'top'}) };
+            console.log(`something went wrong... ${error}`)
           });
 
-
+          
     }
 
     const addPictureToItem = (id, file) => {
@@ -174,10 +178,14 @@ console.log(currentUser)
         })
     } 
 
+    const onClose = () => setIsOpen(false);
+    
     useEffect( () => {
         getCategories()
     },[])
-console.log('local st', )
+    const onOpen = () => {
+        setIsOpen(true)
+    }
 
     return (<>
             {props.store.userId == currentUser &&

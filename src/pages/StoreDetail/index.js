@@ -11,7 +11,7 @@ import Header from "../../components/Home/Header";
 
 
 const Index = () => {
-
+   
     const [store, setStore ] = useState({})
     const [storeItems, setStoreItems ] = useState([])
     const { id } = useParams()
@@ -72,7 +72,7 @@ const Index = () => {
      useEffect(() => {
             getStore()
             getStoreItems()
-          
+           
         },[])
     
     return (
