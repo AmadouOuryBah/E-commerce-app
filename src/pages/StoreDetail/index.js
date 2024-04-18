@@ -77,7 +77,7 @@ const Index = () => {
     
     return (
         <>
-            <Header/>
+       
             <div className={style.container}>
                   <StoreDetailHeader  store={store}/>
                   <StoreSearchBar/>

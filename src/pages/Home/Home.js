@@ -15,7 +15,7 @@ function Home() {
 
     return (
           <>
-              <Header/>
+
              <Slider/>
              <MobileProducts/>
              <NewYearSale/>

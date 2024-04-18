@@ -93,8 +93,6 @@ const Index =  () => {
 
     return (
         <>
-
-          <Header/>
           <div className={style.container}>
             <hr />
             <p className="d-flex align-items-center mb-4 justify-content-between">

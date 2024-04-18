@@ -5,11 +5,17 @@ import search from "../../assets/search.png"
 import { useContext, useEffect } from "react";
 import { CartContext } from "../../context/CartContext";
 import HeaderCss from "../../components/Home/Header.module.css"
+import { NavLink } from "react-router-dom";
 
 
 const Header = () => {
   const {cartItems } = useContext(CartContext)
 
+  const navigation = [
+    {name : 'Home', href: '/'},
+    {name : 'Stores', href: '/stores'},
+    {name : 'Create store', href: 'createStore'},
+  ]
   
 
     return (
@@ -19,9 +25,23 @@ const Header = () => {
               <a className={`${HeaderCss.navbar_brand}`} href="#">NvBusiness</a>
 
               <div className={` navbar-nav ${HeaderCss.navbar_nav} `} >
-                <a className="nav-link " aria-current="page" href="/">Home</a>
-                <a className="nav-link " href="/stores">Stores</a>
-                <a className="nav-link " href="/createStore">Create store</a>
+                
+                {
+                  navigation.map((item) => (
+                    <NavLink 
+                        className={({isActive}) => {
+                          return 'nav-link' + (isActive ? 'primary' : null)  
+                        }}
+                        aria-current="page"
+                        to={item.href}
+                    
+                    >
+                      {item.name}
+                    </NavLink>
+
+                  ))
+                }
+            
 
                 <div className={ `navbar-nav ${HeaderCss.Icon_Container}`}>
                   <a className="nav-link" href=""><img src={search}/></a>

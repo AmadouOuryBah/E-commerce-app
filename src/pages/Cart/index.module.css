@@ -10,6 +10,9 @@
     justify-content: center;
  
 }
+.card p {
+    width: 100px;
+}
 .price{
     display: block;
     color: brown;
@@ -27,10 +30,9 @@
 .Cart_info{
     display: flex;
     margin-bottom: 30px;
-    border-bottom: 1px solid beige;
+    border-bottom: 1px solid rgb(238, 238, 229);
     margin-right: 30px;
-  
-
+padding-bottom: 10px;
 }
 
 .img_container{

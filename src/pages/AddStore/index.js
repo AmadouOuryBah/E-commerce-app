@@ -133,7 +133,6 @@ const Index = () => {
 
     return (
       <>
-            <Header/>
             <div style={{  backgroundColor:"#D7DDDF",  padding:'15px' }}>
                 <div style={{maxWidth: '500px',
                             margin: '10px auto', 

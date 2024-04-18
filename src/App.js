@@ -11,11 +11,13 @@ import Cart from "./pages/Cart/index"
 import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
 import React from "react";
 import './App.css'
+import Header from './components/Home/Header';
 
 function App() {
   return (
         <>
           <BrowserRouter>
+           <Header/>
             <Routes>
               <Route path='/' element={<Home/>} />
               <Route path="/register" exact element={<Register/>} />

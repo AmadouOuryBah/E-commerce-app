@@ -31,7 +31,7 @@ const Index = (props) => {
 
     })
     const currentUser = JSON.parse(localStorage.getItem('currentUser')).userId
-
+console.log(currentUser)
 
     const [newProduct, setNewProduct] = useState(null)
     const toast = useToast()
@@ -110,7 +110,6 @@ const Index = (props) => {
         if(!verifyfFileHasBeenSelected()){
             return;
         }
-        console.log(props.store.id)
         fetch(`${APP_URL}/stores/${props.store.id}/items`, {
             method: 'POST',
             headers: {
@@ -131,14 +130,12 @@ const Index = (props) => {
             return response.json()
         })
         .then(data => {
-            console.log(data)
             if(!verifyfFileHasBeenSelected()){
                 return;
             }
 
             var fileFromInput = document.getElementById('fileInput')?.files[0]
 
-            console.log(fileFromInput)
             addPictureToItem(data.id, fileFromInput)
             {toast({ title:'new product added succesully', 
                     status: isItemAdded? 'success' : undefined,

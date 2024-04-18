@@ -23,7 +23,7 @@ const StoreItem = (props) => {
 
     const fetchPicture = (storeItem) => {
         if(storeItem.pictureId){
-          fetch(`${APP_URL}/stores/60/items/${storeItem.id}/pictures/${storeItem.pictureId}`)
+          fetch(`${APP_URL}/stores/${props.storeId}/items/${storeItem.id}/pictures/${storeItem.pictureId}`)
           .then(async response => {
             if (response.ok) {
               const blob = await response.blob();
@@ -105,7 +105,7 @@ const StoreItem = (props) => {
                                   {!props.isOwner ?  <a
                                           href="#"
                                           className={`card-link  ${storeItemCss.btn} `}
-                                          onClick={()  => addToCart(props.storeItem)}
+                                          onClick={()  => addToCart(props.storeItem, props.storeId)}
                                       >
                                       Add to Cart
                                       </a> :

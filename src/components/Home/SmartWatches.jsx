@@ -10,7 +10,7 @@ const SmartWatches = () => {
     return (
             <div  className= {SmartWatchCss.container}> 
               <div className={SmartWatchCss.section_title} >
-                <h3>SMART WATCHES</h3>
+                <h4></h4>
                 <p>GO TO SHOP</p>
               </div>
               <div className={SmartWatchCss.card_container}>

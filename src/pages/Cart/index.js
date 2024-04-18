@@ -1,18 +1,66 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CartCss from "../Cart/index.module.css"
 import {AiOutlineDelete} from "react-icons/ai"
 import image from "../../assets/storeItemImage/hamburger-494706_640.jpg"
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import Header from "../../components/Home/Header";
+import CartItem from "../../components/CartItem/CartItem";
+import { APP_URL } from "../../utils/constants/applicationConstants";
+
 const Index = () => {
-    const {cartItems , addToCart,  removeFromCart, getCartTotalPrice} = useContext(CartContext)
+    const currentDate = new Date();
+    const formattedDate = currentDate.toISOString();
+    
+    const {cartItems , getCartTotalPrice} = useContext(CartContext)
+    
+    const itemsId = []
+    cartItems.map( cartItem => {
+        return itemsId.push(cartItem.id)
+    })
 
-    console.log(cartItems)
+    console.log(itemsId)
 
+    const body = {
+        userId: JSON.parse(localStorage.getItem('currentUser')).userId,
+        itemsId: itemsId,
+        totalCost: 34,
+        orderDate: formattedDate
+      };
+      
+      const makeOrder = () => {
+        const storeId = 49  // Replace 'your_store_id' with the actual store ID
+      
+        fetch(`${APP_URL}/stores/${storeId}/orders`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(body)
+        })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then(data => {
+            checkout(data.pubKey, data.sessionId)
+            console.log('Success:', data);
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+  
+      }
+
+      function checkout(pubKey, sessionId) {
+        const stripe = window.Stripe(pubKey);
+        stripe.redirectToCheckout({ sessionId });
+    }
+    
     return (
         <>
-        <Header/>
            <section className={CartCss.section_container}>
                 <hr/>
                 <div className={CartCss.Cart_title}>
@@ -24,30 +72,10 @@ const Index = () => {
                     <div className={CartCss.items_container}>
                             {cartItems.map( (item, index ) => ( 
                                 
-                                    <div  key={index} className={CartCss.Cart_info}>
-                                        <div className={CartCss.card}>
-                                            <div className={CartCss.img_container}>
-                                                <img src={image} alt="product image"/>
-                                            </div>
-                                            <p>
-                                            {item.description}
-                                                <span className={CartCss.price}>${item.price * item.quantity}</span>
-                                            </p>
-                                        </div>
-                
-                                        <div className="d-flex align-items-center">
-                                            
-                                            <span onClick={() =>  removeFromCart(item)} className={CartCss.sign}>-</span> 
-                                            <span className={CartCss.total_item}>{item.quantity}</span>
-                                            <span  onClick={() => addToCart(item)} className={CartCss.sign}>+</span>
-                                            <span className={CartCss.delete_icon}><AiOutlineDelete /></span>
-                                                
-                                        </div>
-                                    </div>
+                                   <CartItem item={item} key={index} />
                                 ))
 
                              }
-
                     </div>
                    
                 
@@ -86,7 +114,7 @@ const Index = () => {
                                     {getCartTotalPrice()}
                                 </p>
                             </div>
-                            <button>Checkout</button>
+                            <button onClick={makeOrder}>Checkout</button>
                     </div>
                         
                 </div>
