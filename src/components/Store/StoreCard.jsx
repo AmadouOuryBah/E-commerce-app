@@ -19,8 +19,8 @@ const StoreCard = (props) => {
               const url = URL.createObjectURL(blob);
               store.pictureId = url
               console.log(url)
-              setIsImageLoaded(true)
               setPictureUrl(url)
+              setIsImageLoaded(true)
             
           
             } else if (response.status === 404) {
@@ -47,12 +47,13 @@ const StoreCard = (props) => {
     return (
             <> 
                <a  href={`stores/${props.store.id}`} className={CardCss.card} >
-                        { props.store.pictureId ?
-                              
-                                  <img src={pictureUrl}  className={CardCss.card_img_top}  alt="..."/>  
-                            
-                            :  <img  className={CardCss.card_img_top} src={noPicture}/>
+                        {
+                          isImageLoaded ?  props.store.pictureId ? <img src={pictureUrl}  className={CardCss.card_img_top}  alt="..."/> :  <img  className={CardCss.card_img_top} src={noPicture}/>
+                          : <div className={CardCss.cart_img_skeleton}>
+                                  <Skeleton width="100%" height="100%" />
+                            </div>
                         }
+                        
                      
                         <div className={CardCss.card_body}>
                             <h5 className={CardCss.card_title}>
