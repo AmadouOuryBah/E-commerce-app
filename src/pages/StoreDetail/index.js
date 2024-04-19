@@ -12,7 +12,7 @@ import ModalDeleteStore from '../../components/ModalDeleteStore/ModalDeleteStore
 
 
 const Index = () => {
-
+   
     const [store, setStore ] = useState({})
     const [storeItems, setStoreItems ] = useState([])
     const { id } = useParams()
@@ -73,7 +73,7 @@ const Index = () => {
      useEffect(() => {
             getStore()
             getStoreItems()
-          
+           
         },[])
     
     return (

@@ -4,11 +4,13 @@ import noPicture from "../../assets/noImage.jpg"
 import {BiMap} from "react-icons/bi";
 import { APP_URL } from "../../utils/constants/applicationConstants";
 import { Skeleton } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 
 const StoreCard = (props) => {
     
     const [pictureUrl, setPictureUrl] = useState("");
     const [isImageLoaded, setIsImageLoaded ] = useState(false)
+    const toast = useToast()
 
     const fetchPicture = (store) => {
         if(store.pictureId){
@@ -19,17 +21,31 @@ const StoreCard = (props) => {
               const url = URL.createObjectURL(blob);
               store.pictureId = url
               console.log(url)
+              setPictureUrl(url)
               setIsImageLoaded(true)
-              setPictureUrl(url)         
+            
+          
             } else if (response.status === 404) {
               console.error('Store picture not found');
+              {toast({ title:'Store picture not found', 
+                status: "error",
+                duration:'4000', 
+                position:'top'}) }
             } else {
+              {toast({ title:'Failed to fetch store picture', 
+                status: "error",
+                duration:'4000', 
+                position:'top'}) }
               console.error('Failed to fetch store picture');
             }
-          
+            
           })
           .catch(error => {
-          console.error('Error fetching store picture:', error);
+            {toast({ title:'Could not load stores', 
+            status: "error",
+             duration:'4000', 
+             position:'top'}) }
+            console.error('Error fetching store picture:', error);
         })
        }
       }
@@ -45,12 +61,13 @@ const StoreCard = (props) => {
     return (
             <> 
                <a  href={`stores/${props.store.id}`} className={CardCss.card} >
-                        { props.store.pictureId ?
-                              
-                                  <img src={pictureUrl}  className={CardCss.card_img_top}  alt="..."/>  
-                            
-                            :  <img  className={CardCss.card_img_top} src={noPicture}/>
+                        {
+                          isImageLoaded ?  props.store.pictureId ? <img src={pictureUrl}  className={CardCss.card_img_top}  alt="..."/> :  <img  className={CardCss.card_img_top} src={noPicture}/>
+                          : <div className={CardCss.cart_img_skeleton}>
+                                  <Skeleton width="100%" height="100%" />
+                            </div>
                         }
+                        
                      
                         <div className={CardCss.card_body}>
                             <h5 className={CardCss.card_title}>

@@ -9,7 +9,8 @@ import {
 
 import { useEffect, useState } from 'react'
 import { APP_URL} from "../../utils/constants/applicationConstants";
-import { useNavigate } from "react-router-dom";
+import Header from '../../components/Home/Header';
+import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
     const toast = useToast()
@@ -31,14 +32,13 @@ const Index = () => {
     })
 
     const [newStore, setNewStore] = useState(null)
-
     const [categories, setCategories] = useState(null)
     const [page ,setPage] = useState(1)
-    const [isStoreAdded, setIsStoreAdded ] = useState(false)
-    const [file, setFile] = useState(null);
+    const [file, setFile] = useState(null)
+    const navigate = useNavigate()
 
     const handleStorePropertyChange = (e) => {
-        setStore({ ...store, [e.target.name] : e.target.value});
+        setStore({ ...store, [e.target.name] : e.target.value})
     }
 
     const handleSubmit = (e) => {
@@ -86,13 +86,13 @@ const Index = () => {
         .then(data => {
             //setNewStore(data)
             createPicture(data.id, document.getElementById("fileInput").files[0])
-            setIsStoreAdded(true)
-            toast({ title:'new store has been added succesully', 
-                    status: 'success' ,
-                     duration:'3000', 
-                     position:'bottom'}) 
+            {toast({ title:'new product added succesully', 
+                    status: 'success',
+                     duration:'4000', 
+                     position:'top'}) }
+                     
+            navigate("/stores")
 
-             navigate(`/stores`)
         })
         .catch(err => {
             console.error('There was a problem with the fetch operation:', err);

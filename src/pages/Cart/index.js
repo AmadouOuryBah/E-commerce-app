@@ -25,7 +25,7 @@ const Index = () => {
     const body = {
         userId: JSON.parse(localStorage.getItem('currentUser')).userId,
         itemsId: itemsId,
-        totalCost: 34,
+        totalCost: getCartTotalPrice(),
         orderDate: formattedDate
       };
       
@@ -50,6 +50,7 @@ const Index = () => {
         const storeId =  getStoreIdOfFirstItem()
         
         if(storeId === 0){
+
             {toast({ title:'Something went wrong try again later', 
             status: "error",
              duration:'3000', 

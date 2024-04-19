@@ -36,19 +36,21 @@ const Index = (props) => {
     const [isDelteModalActive, setIsDelteModalActive] = useState(false)
 
     const currentUser = JSON.parse(localStorage.getItem('currentUser')).userId
+<<<<<<< HEAD
 
+=======
+    console.log(currentUser)
+>>>>>>> 15b69112da6231a0839336ce17a64459b465d35c
 
     const [newProduct, setNewProduct] = useState(null)
     const toast = useToast()
 
     const [isItemAdded, setIsItemAdded ] = useState(false)
-
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const [isOpen, setIsOpen] = useState(false);
   
     const [page , setPage] = useState(1)
     const initialRef = useRef(null)
-
-
+    
     const [categories, setCategories ] = useState(null) 
 
     const handleStorePropertyChange = (e) => {
@@ -145,13 +147,24 @@ const Index = (props) => {
                     status: isItemAdded? 'success' : undefined,
                      duration:'3000', 
                      position:'top'}) }
+<<<<<<< HEAD
             navigate(`/stores/${props.store.id}`)
+=======
+            console.log("navigating to the .....  " + props.store.id)
+            setIsOpen(false)
+            navigate(`/stores/${props.store.id}`)
+            
+>>>>>>> 15b69112da6231a0839336ce17a64459b465d35c
         })
         .catch(error => {
-            console.error('There was a problem with the fetch operation:', error);
+            {toast({ title:'Could not add the item to the store', 
+                    status: "error",
+                     duration:'3000', 
+                     position:'top'}) };
+            console.log(`something went wrong... ${error}`)
           });
 
-
+          
     }
 
     const addPictureToItem = (id, file) => {
@@ -177,10 +190,14 @@ const Index = (props) => {
         })
     } 
 
+    const onClose = () => setIsOpen(false);
+    
     useEffect( () => {
         getCategories()
     },[])
-console.log('local st', )
+    const onOpen = () => {
+        setIsOpen(true)
+    }
 
     return (<>
             {isDelteModalActive ? <ModalDeleteStore store={props.store} /> : null}
