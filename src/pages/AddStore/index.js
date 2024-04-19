@@ -35,7 +35,7 @@ const Index = () => {
     const [categories, setCategories] = useState(null)
     const [page ,setPage] = useState(1)
     const [file, setFile] = useState(null)
-    const navigate = useNavigate()
+   
 
     const handleStorePropertyChange = (e) => {
         setStore({ ...store, [e.target.name] : e.target.value})

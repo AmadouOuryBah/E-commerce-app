@@ -9,7 +9,6 @@ import { APP_URL } from "../../utils/constants/applicationConstants";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { FaRegEdit } from "react-icons/fa";
 import { useToast } from "@chakra-ui/react";
-import { Skeleton } from "@chakra-ui/react";
 
 
 
@@ -19,12 +18,9 @@ const StoreItem = (props) => {
     const [pictureUrl, setPictureUrl] = useState("")
     const toast = useToast()
     const [isItemDeleted, setIsItemAdded ] = useState(null)
-    const [isPictureLoaded, setIsPictureLoaded] = useState(false)
 
-    console.log(isItemDeleted)
 
     const fetchPicture = (storeItem) => {
-      setIsPictureLoaded(true)
         if(storeItem.pictureId){
           fetch(`${APP_URL}/stores/${props.storeId}/items/${storeItem.id}/pictures/${storeItem.pictureId}`)
           .then(async response => {
@@ -34,13 +30,13 @@ const StoreItem = (props) => {
               storeItem.pictureId = url
               console.log(url)
               setPictureUrl(url)
-              
+          
             } else if (response.status === 404) {
               console.error('Store picture not found');
             } else {
               console.error('Failed to fetch store picture');
             }
-            setIsPictureLoaded(false);
+          
           })
           .catch(error => {
           console.error('Error fetching store picture:', error);
@@ -69,14 +65,9 @@ const StoreItem = (props) => {
                     status: 'success',
                      duration:'4000', 
                      position:'top'})
-                     window.location.reload();
             
         })
         .catch(error => {
-          toast({ title:'Could not delete the item', 
-           status: 'error',
-           duration:'3000', 
-           position:'top'})
             console.error('There was a problem with the fetch operation:', error);
           });
         }
@@ -84,10 +75,8 @@ const StoreItem = (props) => {
     
 
       useEffect(() =>{
-        setIsPictureLoaded(true)
         if(props.storeItem.pictureId){
             fetchPicture(props.storeItem)
-            
         }
       }, [])
    
@@ -96,11 +85,8 @@ const StoreItem = (props) => {
                
 
                      <div  className={`card ${storeItemCss.card_item} `} >
-                             { isPictureLoaded? < Skeleton width="100%" height="50%" /> : 
-                                              pictureUrl ? <img src={pictureUrl}  alt="item picture"/> :
-                                             <img src={noPicture}  alt="item picture"/> 
-                                             
-                             }
+                             {pictureUrl ? <img src={pictureUrl}  alt="item picture"/> :
+                                             <img src={noPicture}  alt="item pictire"/>        }
                                 <div className={`card-body ${storeItemCss.card_body}`}>
                                     <h5 className="card-title fw-bold">$ {props.storeItem.price}</h5>
                                     <p className="card-text">{props.storeItem.description} </p>
@@ -120,24 +106,26 @@ const StoreItem = (props) => {
                                           className={`card-link  ${storeItemCss.btn} `}
                                           onClick={()  => addToCart(props.storeItem, props.storeId)}
                                       >
-                                      Add to Cart
+                                        Add to Cart
                                       </a> :
 
-                                     <> <a 
-                                       href="#"
-                                       onClick={()=> deleteItem(props.storeItem.id)}
-                                      className={`card-link  ${storeItemCss.btn_delete} `}
+                                     <> 
+                                     
+                                      <a 
+                                        href="#"
+                                        onClick={()=> deleteItem(props.storeItem.id)}
+                                        className={`card-link  ${storeItemCss.btn_delete} `}
                                     
                                       >
-                                      <AiTwotoneDelete />
+                                        <AiTwotoneDelete />
                                       </a>
 
                                       <a 
                                         href="#"
-                                       className={`card-link  ${storeItemCss.btn_edit} `}
+                                        className={`card-link  ${storeItemCss.btn_edit} `}
                                      
                                        >
-                                         <FaRegEdit />
+                                          <FaRegEdit />
                                        </a>
                                       </>
 

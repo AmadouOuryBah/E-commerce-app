@@ -36,11 +36,8 @@ const Index = (props) => {
     const [isDelteModalActive, setIsDelteModalActive] = useState(false)
 
     const currentUser = JSON.parse(localStorage.getItem('currentUser')).userId
-<<<<<<< HEAD
 
-=======
     console.log(currentUser)
->>>>>>> 15b69112da6231a0839336ce17a64459b465d35c
 
     const [newProduct, setNewProduct] = useState(null)
     const toast = useToast()
@@ -147,14 +144,10 @@ const Index = (props) => {
                     status: isItemAdded? 'success' : undefined,
                      duration:'3000', 
                      position:'top'}) }
-<<<<<<< HEAD
-            navigate(`/stores/${props.store.id}`)
-=======
             console.log("navigating to the .....  " + props.store.id)
             setIsOpen(false)
             navigate(`/stores/${props.store.id}`)
             
->>>>>>> 15b69112da6231a0839336ce17a64459b465d35c
         })
         .catch(error => {
             {toast({ title:'Could not add the item to the store', 
@@ -217,15 +210,16 @@ const Index = (props) => {
                             <BreadcrumbLink href={`/stores/${props.store.id}`} >Store</BreadcrumbLink>
                         </BreadcrumbItem>
                     </Breadcrumb>
+                    
+
                     {
                         window.location.pathname != `/stores/${props.store.id}` ? 
                         <div>
-                        <Button  onClick={()=> setIsDelteModalActive(!isDelteModalActive)}  colorScheme='red'>Delete store</Button>
+                        <Button  onClick={() => setIsDelteModalActive(!isDelteModalActive)}  colorScheme='red'>Delete store</Button>
                         </div>
                         : null
                     
                     }
-                    
                 </div>
             }
                 <Modal
