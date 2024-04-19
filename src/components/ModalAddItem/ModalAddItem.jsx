@@ -19,6 +19,9 @@ import {
 } from '@chakra-ui/react';      
 import { APP_URL } from "../../utils/constants/applicationConstants"
 import { useNavigate } from "react-router-dom";
+import ModalStyle from '../ModalAddItem/ModalAddItem.module.css'
+import { color } from "framer-motion";
+import ModalDeleteStore from "../ModalDeleteStore/ModalDeleteStore";
 
 
 const Index = (props) => {
@@ -30,8 +33,10 @@ const Index = (props) => {
         categoryId:0
 
     })
+    const [isDelteModalActive, setIsDelteModalActive] = useState(false)
+
     const currentUser = JSON.parse(localStorage.getItem('currentUser')).userId
-console.log(currentUser)
+
 
     const [newProduct, setNewProduct] = useState(null)
     const toast = useToast()
@@ -58,7 +63,6 @@ console.log(currentUser)
 
     const verifyfFileHasBeenSelected = () =>{
         var fileFromInput = document.getElementById('fileInput')?.files[0]
-        console.log(fileFromInput)
             if(!fileFromInput){
                 toast({title: 'Choose a file first',
                 status: 'error',
@@ -141,8 +145,7 @@ console.log(currentUser)
                     status: isItemAdded? 'success' : undefined,
                      duration:'3000', 
                      position:'top'}) }
-            console.log("navigating to the .....  " + props.store.id)
-            navigate(`/stores/${props.store.useDisclosure}`)
+            navigate(`/stores/${props.store.id}`)
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
@@ -180,22 +183,32 @@ console.log(currentUser)
 console.log('local st', )
 
     return (<>
+            {isDelteModalActive ? <ModalDeleteStore store={props.store} /> : null}
             {props.store.userId == currentUser &&
           
-                <div style={{marginLeft:'-30px', fontSize:'16px'}}>
-                    <Breadcrumb spacing='8px' separator='>'>
+                <div  className={ModalStyle.breadcrumb_container}>
+                    <Breadcrumb flex={1} spacing='8px' marginLeft={-7} separator='>'>
                         <BreadcrumbItem>
-                            <BreadcrumbLink  onClick={onOpen} href='#'>add new product</BreadcrumbLink>
+                            <BreadcrumbLink   onClick={onOpen} href='#'> Add product</BreadcrumbLink>
                         </BreadcrumbItem>
 
                         <BreadcrumbItem>
-                            <BreadcrumbLink  href={`/manage_store/${props.store.id}`}>manage store</BreadcrumbLink>
+                            <BreadcrumbLink  href={`/manage_store/${props.store.id}`}>Manage store</BreadcrumbLink>
                         </BreadcrumbItem>
 
                         <BreadcrumbItem >
-                            <BreadcrumbLink href={`/stores/${props.store.id}`} >store</BreadcrumbLink>
+                            <BreadcrumbLink href={`/stores/${props.store.id}`} >Store</BreadcrumbLink>
                         </BreadcrumbItem>
                     </Breadcrumb>
+                    {
+                        window.location.pathname != `/stores/${props.store.id}` ? 
+                        <div>
+                        <Button  onClick={()=> setIsDelteModalActive(!isDelteModalActive)}  colorScheme='red'>Delete store</Button>
+                        </div>
+                        : null
+                    
+                    }
+                    
                 </div>
             }
                 <Modal
@@ -256,7 +269,7 @@ console.log('local st', )
                             <Button type='submit' colorScheme='orange' mr={3}>
                                 create
                             </Button>
-                            <Button  colorScheme='blue'>Cancel</Button>
+                            <Button  onClick={onClose}  colorScheme='blue'>Cancel</Button>
                         </div>
                     </form>           
                     
@@ -265,6 +278,8 @@ console.log('local st', )
                     </ModalContent>
                 </Modal>
          
+
+                
      </>)
 }
 

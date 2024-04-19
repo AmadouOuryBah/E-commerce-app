@@ -7,7 +7,6 @@ import noImage from "../../assets/noImage.jpg"
 
 const StoreDetailHeader = (props) => {
 
-    console.log(props.store)
     const [pictureUrl, setPictureUrl ] = useState("")
 
     const fetchPicture = (store) => {

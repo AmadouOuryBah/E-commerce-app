@@ -9,10 +9,11 @@ import {
 
 import { useEffect, useState } from 'react'
 import { APP_URL} from "../../utils/constants/applicationConstants";
-import Header from '../../components/Home/Header';
+import { useNavigate } from "react-router-dom";
 
 const Index = () => {
     const toast = useToast()
+    const navigate = useNavigate()
 
     const [store, setStore ] = useState({
         photo: "",
@@ -86,10 +87,12 @@ const Index = () => {
             //setNewStore(data)
             createPicture(data.id, document.getElementById("fileInput").files[0])
             setIsStoreAdded(true)
-            {isStoreAdded && toast({ title:'new product added succesully', 
-                    status: isStoreAdded? 'success' : null,
+            toast({ title:'new store has been added succesully', 
+                    status: 'success' ,
                      duration:'3000', 
-                     position:'top'}) }
+                     position:'bottom'}) 
+
+             navigate(`/stores`)
         })
         .catch(err => {
             console.error('There was a problem with the fetch operation:', err);

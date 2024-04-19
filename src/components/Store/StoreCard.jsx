@@ -20,9 +20,7 @@ const StoreCard = (props) => {
               store.pictureId = url
               console.log(url)
               setIsImageLoaded(true)
-              setPictureUrl(url)
-            
-          
+              setPictureUrl(url)         
             } else if (response.status === 404) {
               console.error('Store picture not found');
             } else {

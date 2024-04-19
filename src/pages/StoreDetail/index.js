@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import { useState , useEffect} from "react";
 import { APP_URL } from "../../utils/constants/applicationConstants";
 import Header from "../../components/Home/Header";
+import ModalDeleteStore from '../../components/ModalDeleteStore/ModalDeleteStore'
 
 
 const Index = () => {
@@ -15,7 +16,7 @@ const Index = () => {
     const [store, setStore ] = useState({})
     const [storeItems, setStoreItems ] = useState([])
     const { id } = useParams()
-   
+    const [isOpen ,  setIsOpen] = useState(false)
 
     const getStore = () =>{
           
@@ -90,6 +91,7 @@ const Index = () => {
                         
                   </div>
                     
+                  
             </div>
          
         </>
