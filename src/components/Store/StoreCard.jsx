@@ -4,11 +4,13 @@ import noPicture from "../../assets/noImage.jpg"
 import {BiMap} from "react-icons/bi";
 import { APP_URL } from "../../utils/constants/applicationConstants";
 import { Skeleton } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 
 const StoreCard = (props) => {
     
     const [pictureUrl, setPictureUrl] = useState("");
     const [isImageLoaded, setIsImageLoaded ] = useState(false)
+    const toast = useToast()
 
     const fetchPicture = (store) => {
         if(store.pictureId){
@@ -25,13 +27,25 @@ const StoreCard = (props) => {
           
             } else if (response.status === 404) {
               console.error('Store picture not found');
+              {toast({ title:'Store picture not found', 
+                status: "error",
+                duration:'4000', 
+                position:'top'}) }
             } else {
+              {toast({ title:'Failed to fetch store picture', 
+                status: "error",
+                duration:'4000', 
+                position:'top'}) }
               console.error('Failed to fetch store picture');
             }
-          
+            
           })
           .catch(error => {
-          console.error('Error fetching store picture:', error);
+            {toast({ title:'Could not load stores', 
+            status: "error",
+             duration:'4000', 
+             position:'top'}) }
+            console.error('Error fetching store picture:', error);
         })
        }
       }
