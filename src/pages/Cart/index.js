@@ -17,6 +17,12 @@ const Index = () => {
     
     const itemsId = []
     cartItems.map( cartItem => {
+        if(cartItem.quantity >= 2){
+            for(let i = 1; i < cartItem.quantity; i++){
+                itemsId.push(cartItem.id)
+            }
+        }
+        
         return itemsId.push(cartItem.id)
     })
 
