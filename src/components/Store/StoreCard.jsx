@@ -60,7 +60,7 @@ const StoreCard = (props) => {
       
     return (
             <> 
-               <a  href={`stores/${props.store.id}`} className={CardCss.card} >
+               <a  href={`stores/${props.store.id}`}  className={CardCss.card} >
                         {
                           isImageLoaded ?  props.store.pictureId ? <img src={pictureUrl}  className={CardCss.card_img_top}  alt="..."/> :  <img  className={CardCss.card_img_top} src={noPicture}/>
                           : <div className={CardCss.cart_img_skeleton}>
