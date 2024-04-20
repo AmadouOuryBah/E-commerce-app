@@ -12,6 +12,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React from "react";
 import './App.css'
 import Header from './components/Home/Header';
+import PrivateRoute from './components/common/PrivateRoute/index'
 
 function App() {
   return (
@@ -23,10 +24,14 @@ function App() {
               <Route path="/register" exact element={<Register/>} />
               <Route path="/login" exact element={<Login/>} />
               <Route path="/stores" exact element={<Store/>} />
-               <Route path="/stores/:id" exact element={<StoreDetail/>} />
-              <Route path="/cart" exact element={<Cart/>} />
-              <Route path="/createStore" exact element={<AddStore/>} />
-              <Route path="/manage_store/:id" exact element={<ManageStore/>} />
+              
+              <Route element={<PrivateRoute/>}>
+                <Route path="/stores/:id" exact element={<StoreDetail/>} />
+                <Route path="/cart" exact element={<Cart/>} />
+                <Route path="/createStore" exact element={<AddStore/>} />
+                <Route path="/manage_store/:id" exact element={<ManageStore/>} />
+              </Route>
+             
            </Routes>
           </BrowserRouter>
          

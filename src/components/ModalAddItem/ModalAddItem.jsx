@@ -84,7 +84,9 @@ const Index = (props) => {
         const headers = {
             'Content-Type': 'application/json',
             'size': params.size,
-            'page': params.page
+            'page': params.page,    
+            "Authorization": ' Bearer ' +  JSON.parse(localStorage.getItem('currentUser')).accessToken, 
+      
           };
 
         fetch(`${APP_URL}/categories`, {
@@ -116,7 +118,8 @@ const Index = (props) => {
         fetch(`${APP_URL}/stores/${props.store.id}/items`, {
             method: 'POST',
             headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    "Authorization": ' Bearer ' +  JSON.parse(localStorage.getItem('currentUser')).accessToken, 
             },
             body: JSON.stringify(item)
         })
@@ -166,7 +169,10 @@ const Index = (props) => {
 
         fetch(`${APP_URL}/stores/${props.store.id}/items/${id}/pictures` , {
             method: 'POST',
-            body: formData 
+            body: formData ,
+            headers: {
+                "Authorization": ' Bearer ' +  JSON.parse(localStorage.getItem('currentUser')).accessToken, 
+            }
         })
         .then(response => {
             if(!response.ok){

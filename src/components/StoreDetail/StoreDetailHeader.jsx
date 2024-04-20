@@ -11,7 +11,13 @@ const StoreDetailHeader = (props) => {
 
     const fetchPicture = (store) => {
         if(store.pictureId){
-          fetch(`${APP_URL}/stores/${props.store.id}/pictures/${props.store.pictureId}`)
+          fetch(`${APP_URL}/stores/${props.store.id}/pictures/${props.store.pictureId}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": ' Bearer ' +  JSON.parse(localStorage.getItem('currentUser')).accessToken, 
+    
+              },
+          })
           .then(async response => {
             if (response.ok) {
               const blob = await response.blob();
