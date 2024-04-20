@@ -20,7 +20,8 @@ const ModalDeleteStore = (props) => {
         fetch(`${APP_URL}/stores/${storeId}`, {
             method: 'DELETE',
             headers: {
-                userId: userId
+                userId: userId,
+                "Authorization": ' Bearer ' +  JSON.parse(localStorage.getItem('currentUser')).accessToken, 
             }
         })
         .then( response => {

@@ -54,6 +54,9 @@ const Index = () => {
 
         fetch(`${APP_URL}/stores/${newStoreId}/pictures` , {
             method: 'POST',
+            headers: {
+                "Authorization": ' Bearer ' +  JSON.parse(localStorage.getItem('currentUser')).accessToken, 
+            },
             body: formData 
         })
         .then(response => {

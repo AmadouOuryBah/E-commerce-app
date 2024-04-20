@@ -17,6 +17,11 @@ const Index = () => {
           
           fetch(`${APP_URL}/stores/${id}` , {
             method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              "Authorization": ' Bearer ' +  JSON.parse(localStorage.getItem('currentUser')).accessToken, 
+  
+            },
           })
           .then(response => {
             if (!response.ok) {
@@ -39,6 +44,11 @@ const Index = () => {
           
             fetch(`${APP_URL}/stores/${id}/items` , {
               method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+                "Authorization": ' Bearer ' +  JSON.parse(localStorage.getItem('currentUser')).accessToken, 
+    
+              },
             })
             .then(response => {
               if (!response.ok) {

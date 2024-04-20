@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import CartCss from "../Cart/index.module.css"
-import {AiOutlineDelete} from "react-icons/ai"
-import image from "../../assets/storeItemImage/hamburger-494706_640.jpg"
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
-import Header from "../../components/Home/Header";
 import CartItem from "../../components/CartItem/CartItem";
 import { APP_URL } from "../../utils/constants/applicationConstants";
 import { useToast } from "@chakra-ui/react";
 
 const Index = () => {
+
     const currentDate = new Date();
     const formattedDate = currentDate.toISOString();
     const toast = useToast()
@@ -25,8 +23,6 @@ const Index = () => {
         
         return itemsId.push(cartItem.id)
     })
-
-    console.log(itemsId)
 
     const body = {
         userId: JSON.parse(localStorage.getItem('currentUser')).userId,
@@ -69,7 +65,9 @@ const Index = () => {
         fetch(`${APP_URL}/stores/${storeId}/orders`, {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            "Authorization": ' Bearer ' +  JSON.parse(localStorage.getItem('currentUser')).accessToken, 
+
           },
           body: JSON.stringify(body)
         })

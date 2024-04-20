@@ -22,7 +22,12 @@ const StoreItem = (props) => {
 
     const fetchPicture = (storeItem) => {
         if(storeItem.pictureId){
-          fetch(`${APP_URL}/stores/${props.storeId}/items/${storeItem.id}/pictures/${storeItem.pictureId}`)
+          fetch(`${APP_URL}/stores/${props.storeId}/items/${storeItem.id}/pictures/${storeItem.pictureId}`, {
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": ' Bearer ' +  JSON.parse(localStorage.getItem('currentUser')).accessToken, 
+            },
+          })
           .then(async response => {
             if (response.ok) {
               const blob = await response.blob();
