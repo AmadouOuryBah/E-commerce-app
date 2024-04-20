@@ -5,22 +5,14 @@
 }
 .card_container{
     display: flex;
+    width: 100%;
+    background-color: aqua;
 
 }
-
 .container{ 
    margin-top: 110px;
-   scrollbar-color: #fff #51496b;
-   scrollbar-width: thin;
-   overflow-x: scroll;
    padding: 10px;
+   margin: 60px 150px 80px 150px;  
 }
+ 
 
-.scrollable-container{
-    overflow-y: scroll;
-     height: 400px;
-     padding: 13px;
-     width: 281px;
-     scrollbar-color: #fff #51496b;
-     scrollbar-width: thin;
-}

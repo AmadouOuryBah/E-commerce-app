@@ -3,6 +3,9 @@ import LatestPostsCss from "../../components/Home/LatestPosts.module.css"
 import { APP_URL } from "../../utils/constants/applicationConstants";
 import { useState } from "react";
 import Card from "../../components/common/Card";
+import  Slider from "react-slick"
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 
 
@@ -35,6 +38,14 @@ const LatestPosts = () => {
           });
     }
 
+    var settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 1
+      };
+
     useEffect(() => {
         getProducts()
     },[])
@@ -47,11 +58,14 @@ const LatestPosts = () => {
                         <p>READ BLOG</p>
                     </div>
 
-                    <div className={LatestPostsCss.card_container}>
-                          {products?.map((product, index) => (
-                            <Card key={index} product={product}/>
-                          ))}          
-                    </div >
+                    <Slider className={LatestPostsCss.card_container} {...settings}>
+                        
+                            {products?.map((product, index) => (
+                                <Card key={index} product={product}/>
+                            ))}  
+                    
+                                
+                  </Slider>
                 </div>
                 
             </>        

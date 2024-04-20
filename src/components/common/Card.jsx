@@ -11,26 +11,24 @@ const Card = (props) => {
             <> 
                
                 <div className={CardCss.card}>
-
-                        <div className={CardCss.image_container}>
-                            <img src={noImage} className={CardCss.img} alt="..."/>
-                        </div>
-
-                        <div className={CardCss.card_body}>
+                        <img className={CardCss.img} src={noImage}/>
+                    
+                        <div >
                             <h5 >{props.product.name}</h5>
                             <p >{props.product.description} </p>
                         </div>
                         <div >
                             <AiOutlineStar className="mx-3"/> <span >0(1)</span>
                         </div>
-                        <div className={CardCss.city}>
+                        <div >
                             <h5 >{props.product.price}</h5>
                             <span><VscVerifiedFilled/></span>
 
                         </div>
-
-                     
-                            <a href="#" className={` ${CardCss.btn} `}> + Add to Cart</a>
+                        <div>
+                                <a> + Add to Cart</a>
+                        </div>
+                           
                     
                 </div>
             </>        
