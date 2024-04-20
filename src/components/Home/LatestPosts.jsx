@@ -39,23 +39,53 @@ const LatestPosts = () => {
     }
 
     var settings = {
-        dots: true,
-        infinite: true,
+
+        infinite: false,
         speed: 500,
         slidesToShow: 4,
-        slidesToScroll: 1
+        slidesToScroll: 2,
+        initialSlide: 0,
+        nextArrow: <SampleNextArrow />,
+        prevArrow: <SamplePrevArrow />,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 4,
+              slidesToScroll: 3,
+              infinite: true,
+             
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2,
+              initialSlide: 2
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+        ]
       };
-
+      
     useEffect(() => {
         getProducts()
     },[])
+
     return (
             <> 
                 <div  className={LatestPostsCss.container}>
 
                     <div className={LatestPostsCss.title}>
                         <h3>NEW PRODUCTS </h3>
-                        <p>READ BLOG</p>
+                        <p><a href="#">VIEW ALL</a></p>
                     </div>
 
                     <Slider className={LatestPostsCss.card_container} {...settings}>
@@ -72,4 +102,43 @@ const LatestPosts = () => {
     )
 }
 
+function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "block", 
+            background: "#f4511e" ,
+            width:'30px', 
+            display:'flex',
+            alignItems:'center',
+            justifyContent:'center',
+            height:'30px',
+            borderRadius:'50px',
+            padding: "2px", 
+                
+        }}
+            onClick={onClick}
+      />
+    );
+  }
+
+  function SamplePrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style,
+            background: "#f4511e" ,
+            width:'30px', 
+            display:'flex',
+            alignItems:'center',
+            justifyContent:'center',
+            height:'30px',
+            borderRadius:'50px',
+     }}
+            onClick={onClick}
+      />
+    );
+  }
 export default LatestPosts

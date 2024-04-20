@@ -4,13 +4,13 @@
 }
 .card{
     display: block;
-    width: 90%;
-    min-height: 330px;
+    width: 93%;
+    min-height: 300px;
     position: relative;
     border: 1px solid rgba(49, 46, 46, 0.3);
     border-radius: 6px;
     margin-bottom: 45px;
-    margin-right: 20px;
+    transform: scale(1);
     text-decoration: none;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;   
 }
@@ -38,16 +38,14 @@ background-color: #f4511e;
     padding: 9px 10px;
     text-align: center;
     font-size: 14px;
-    opacity: 0.8;
     transition: 0.3s;
     display: inline-block;
     text-decoration: none;
     cursor: pointer;
     width: 100%;
   }
-  
-  .btn:hover {
-    opacity: 1;
+.btn:hover {
+    opacity: 0.8;
     color: white;
 }
 

@@ -8,6 +8,7 @@
 .section_title{
     display: flex;
     justify-content: space-between;
+    padding-right: 14px;
 }
 .section_title h3{
    
