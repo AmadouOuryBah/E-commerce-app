@@ -4,25 +4,20 @@
     object-fit:cover;
 }
 .card{
-    width: 230px;
-    height: 395px;
-    position: relative;
-    border: 0;
-    border-radius: 3px solid black;
-    transition: 3s;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 400px;
+    margin-right: 50px;
+    border:1px solid rgba(0,0 ,0,0.4)
+   
 }
 .image_container{
-    width: 100%;
+    width: 230px;
     height: 50%;
  
 }
 .price{
     color :#72AEC8;
 }
-.card:hover .btn{
-    display: block;
-} 
+
 .description{
     margin-top: 10px;
     display: flex;
@@ -30,32 +25,15 @@
 }
 
 
-@media screen and (max-width: 576px) {
-    .card{
-    
-        height: 300px;
-        width: 100%;
-    
-    }
-  
-}
-.card_body{
-    margin-left: 1rem;
-    margin-top: 0.6rem;
-    margin-bottom: 0.6rem; 
-}
-.card_body p{
-    margin-top: 0.4rem;
-}
 .btn {
-    background-color: #f4511e;
+background-color: #f4511e;
     border: none;
     border-radius: 8px;
     color: white;
-    padding: 10px 50px;
+    padding: 4px 10px;
     text-align: center;
     font-size: 14px;
-    opacity: 0.6;
+    opacity: 0.6    ;
     transition: 0.3s;
     display: inline-block;
     text-decoration: none;
@@ -66,6 +44,15 @@
     opacity: 1;
     color: white;
 }
+
+  
+.card_body{
+   
+}
+.card_body p{
+  
+}
+
 
 .city{
    

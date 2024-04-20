@@ -72,7 +72,7 @@ const Index = () => {
             return response.json();
           })
           .then(data => {
-            checkout(data.pubKey, data.sessionId)
+            checkout(data.pubKey, data.sessionId) 
             console.log('Success:', data);
           })
           .catch(error => {
