@@ -9,6 +9,7 @@ import {
   Text,
   useToast
 } from '@chakra-ui/react'
+import navigate, { useNavigate } from "react-router-dom"
 
 const Index = () => {
 
@@ -16,6 +17,8 @@ const Index = () => {
     email:'',
     password:'',
   })
+
+  const navigate = useNavigate()
 
   const toast = useToast()
 
@@ -38,15 +41,28 @@ const Index = () => {
 
       })
       .then(response => {
-          if(!response.ok){
-            toast({ title:'Invalid password', status: 'error', description:'enter a correct password', duration:'2000', position:'top'})
+          if(response.status == 401){
+            toast({ title:'Error',
+               status: 'error',
+               description:'Email or Password incorrect',
+               duration:'4000',
+                position:'top'})
+              throw new Error('Network response was not ok')
+          }
+          else if(!response.ok){
+            toast({ title:'Error',
+             status: 'error', 
+             description:'something went wrong try again', 
+             duration:'4000',
+              position:'top'})
             throw new Error('Network response was not ok')
           }
           return response.json()
       })
       .then(data => {
-        toast({ title:'you are connected', status: 'success', duration:'1000', position:'top'})
+        toast({ title:'you are connected', status: 'success', duration:'4000', position:'top'})
         localStorage.setItem('currentUser',JSON.stringify( data))
+        navigate('/')
 
       })
       .catch(err => {
