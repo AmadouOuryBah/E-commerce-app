@@ -2,7 +2,7 @@ import React from "react";
 import CardCss from "../../components/common/Card.module.css"
 import {AiOutlineStar} from "react-icons/ai"
 import {VscVerifiedFilled} from "react-icons/vsc"
-import noImage from '../../assets/noImage.jpg'
+import noImage from '../../assets/product1.jpg'
 
 
 const Card = (props) => {
@@ -13,20 +13,19 @@ const Card = (props) => {
                 <div className={CardCss.card}>
                         <img className={CardCss.img} src={noImage}/>
                     
-                        <div >
-                            <h5 >{props.product.name}</h5>
+                        <div className={CardCss.info_section}>
+                            <h5 > ${props.product.price}</h5>
                             <p >{props.product.description} </p>
                         </div>
-                        <div >
-                            <AiOutlineStar className="mx-3"/> <span >0(1)</span>
+                        <div className={CardCss.rating}>
+                            <AiOutlineStar /> <span >0(1)</span>
                         </div>
-                        <div >
-                            <h5 >{props.product.price}</h5>
-                            <span><VscVerifiedFilled/></span>
-
+                        <div  className={CardCss.product_name_section}>
+                            <h6>{props.product.name}</h6>
+                    
                         </div>
-                        <div>
-                                <a> + Add to Cart</a>
+                        <div className={CardCss.btn_container}>
+                                <a className={CardCss.btn}> Add to cart</a>
                         </div>
                            
                     
