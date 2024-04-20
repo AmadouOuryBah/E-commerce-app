@@ -40,13 +40,13 @@ const LatestPosts = () => {
 
     var settings = {
 
-        infinite: false,
-        speed: 500,
+        infinite: true,
+        dots:true,
         slidesToShow: 4,
         slidesToScroll: 2,
         initialSlide: 0,
-        nextArrow: <SampleNextArrow />,
-        prevArrow: <SamplePrevArrow />,
+        cssEase: "linear",
+        autoplay:true,
         responsive: [
           {
             breakpoint: 1024,
