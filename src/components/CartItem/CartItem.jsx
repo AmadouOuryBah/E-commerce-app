@@ -3,15 +3,16 @@ import {AiOutlineDelete} from "react-icons/ai"
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import image from "../../assets/storeItemImage/hamburger-494706_640.jpg"
-import  noImage from "../../assets/noImage.jpg"
+import  noPicture from "../../assets/noImage.jpg"
 import { useState, useEffect } from "react";
 import { APP_URL } from "../../utils/constants/applicationConstants";
+import { Skeleton } from "@chakra-ui/react";
 
 const CartItem = ({item}) => {
 
     const { addToCart,  removeFromCart } = useContext(CartContext)
     const [product, setProduct ] = useState({})
-
+    const [isPictureLoading, setIsPictureLoading] = useState(false)
     const [pictureUrl , setPictureUrl ] = useState('')
 
     console.log(product)
@@ -19,9 +20,13 @@ const CartItem = ({item}) => {
 
 
     const getItem = () =>{
-          
+        setIsPictureLoading(true)  
         fetch(`${APP_URL}/stores/${item.store}/items/${item.id}` , {
           method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            "Authorization": ' Bearer ' +  JSON.parse(localStorage.getItem('currentUser')).accessToken, 
+          }
         })
         .then(response => {
           if (!response.ok) {
@@ -34,18 +39,26 @@ const CartItem = ({item}) => {
             setProduct(data);
             if(data.pictureId){
               fetchPicture(data)
-            
           }
+
+          
          })
         .catch(error => {
          console.log(error)
         });
-
+        
       }
 
     const fetchPicture = (storeItem) => {
         if(storeItem.pictureId){
-          fetch(`${APP_URL}/stores/${item.store}/items/${storeItem.id}/pictures/${storeItem.pictureId}`)
+          fetch(`${APP_URL}/stores/${item.store}/items/${storeItem.id}/pictures/${storeItem.pictureId}`, {
+              method: "GET",
+              headers: {
+                'Content-Type': 'application/json',
+                "Authorization": ' Bearer ' +  JSON.parse(localStorage.getItem('currentUser')).accessToken, 
+              }
+            }
+          )
           .then(async response => {
             if (response.ok) {
               const blob = await response.blob();
@@ -53,7 +66,7 @@ const CartItem = ({item}) => {
               storeItem.pictureId = url
               console.log(url)
               setPictureUrl(url)
-          
+              setIsPictureLoading(false)
             } else if (response.status === 404) {
               console.error('Store picture not found');
             } else {
@@ -77,10 +90,9 @@ const CartItem = ({item}) => {
          <div  className={CartCss.Cart_info}>
                <div className={CartCss.card}>
                      <div className={CartCss.img_container}>
-                         {
-                            pictureUrl ?   <img src={pictureUrl} alt="product image"/> : 
-                                 <img src={noImage} alt="product image"/>
-                       } 
+                     { isPictureLoading ? < Skeleton width="100%" height="100%" /> :
+                                             pictureUrl ? <img src={pictureUrl}  alt="item picture"/> : <img src={noPicture}  alt="item picture"/>}
+                   
                      </div>
                          <p>
                             {item.description}
