@@ -111,7 +111,8 @@ const Index = () => {
         const headers = {
             'Content-Type': 'application/json',
             'size': params.size,
-            'page': params.page
+            'page': params.page,
+            "Authorization": ' Bearer ' +  JSON.parse(localStorage.getItem('currentUser')).accessToken, 
           };
 
         fetch(`${APP_URL}/categories`, {

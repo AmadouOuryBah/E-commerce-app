@@ -2,14 +2,18 @@ import {useState, useEffect } from "react";
 import storeDetailCss from "../../components/StoreDetail/StoreDetailHeader.module.css"
 import ModalAddItem from "../../components/ModalAddItem/ModalAddItem"
 import { APP_URL } from "../../utils/constants/applicationConstants";
-import noImage from "../../assets/noImage.jpg"
+import noImage from "../../assets/noImage.jpg";
+import { Skeleton } from "@chakra-ui/react";
+import noPicture from "../../assets/noImage.jpg"
 
 
 const StoreDetailHeader = (props) => {
 
     const [pictureUrl, setPictureUrl ] = useState("")
+    const [isPictureLoading, setIsPictureLoading] = useState(false)
 
     const fetchPicture = (store) => {
+        setIsPictureLoading(true)
         if(store.pictureId){
           fetch(`${APP_URL}/stores/${props.store.id}/pictures/${props.store.pictureId}`, {
             headers: {
@@ -31,6 +35,7 @@ const StoreDetailHeader = (props) => {
               console.error('Failed to fetch store picture');
             }
           
+            setIsPictureLoading(false)
           })
           .catch(error => {
           console.error('Error fetching store picture:', error);
@@ -54,10 +59,8 @@ const StoreDetailHeader = (props) => {
             </div>
             <section >
                 <div className={storeDetailCss.image_container}>
-                    {
-                        pictureUrl ?    <img src={pictureUrl} className="rounded " alt="picture of the store"/> 
-                        : <img src={noImage} className="rounded " alt="picture of the store"/>
-                    }
+                { isPictureLoading ? < Skeleton width="100%" height="100%" /> :
+                                             pictureUrl ? <img src={pictureUrl}  alt="item picture"/> : <img src={noPicture}  alt="item picture"/>}
                   
                 </div>
 

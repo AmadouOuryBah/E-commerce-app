@@ -8,7 +8,7 @@ import noPicture from '../../assets/noImage.jpg'
 import { APP_URL } from "../../utils/constants/applicationConstants";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { FaRegEdit } from "react-icons/fa";
-import { useToast } from "@chakra-ui/react";
+import { useToast, Skeleton } from "@chakra-ui/react";
 
 
 
@@ -18,9 +18,11 @@ const StoreItem = (props) => {
     const [pictureUrl, setPictureUrl] = useState("")
     const toast = useToast()
     const [isItemDeleted, setIsItemAdded ] = useState(null)
+    const [isPictureLoading, setIsPictureLoading ] = useState(false)
 
 
     const fetchPicture = (storeItem) => {
+       setIsPictureLoading(true)
         if(storeItem.pictureId){
           fetch(`${APP_URL}/stores/${props.storeId}/items/${storeItem.id}/pictures/${storeItem.pictureId}`, {
             headers: {
@@ -35,13 +37,14 @@ const StoreItem = (props) => {
               storeItem.pictureId = url
               console.log(url)
               setPictureUrl(url)
+            
           
             } else if (response.status === 404) {
               console.error('Store picture not found');
             } else {
               console.error('Failed to fetch store picture');
             }
-          
+            setIsPictureLoading(false);
           })
           .catch(error => {
           console.error('Error fetching store picture:', error);
@@ -90,8 +93,8 @@ const StoreItem = (props) => {
                
 
                      <div  className={`card ${storeItemCss.card_item} `} >
-                             {pictureUrl ? <img src={pictureUrl}  alt="item picture"/> :
-                                             <img src={noPicture}  alt="item pictire"/>        }
+                              { isPictureLoading ? < Skeleton width="100%" height="50%" /> :
+                                             pictureUrl ? <img src={pictureUrl}  alt="item picture"/> : <img src={noPicture}  alt="item picture"/>}
                                 <div className={`card-body ${storeItemCss.card_body}`}>
                                     <h5 className="card-title fw-bold">$ {props.storeItem.price}</h5>
                                     <p className="card-text">{props.storeItem.description} </p>
