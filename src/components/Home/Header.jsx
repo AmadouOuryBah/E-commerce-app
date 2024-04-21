@@ -14,7 +14,7 @@ const Header = () => {
   const [fix , setFix ] = useState (false)
 
   const setFixedNavbar = () => {
-    if(window.scrollY > 0) {
+    if(window.scrollY > 100) {
       setFix(true)
     }
     else{
@@ -36,13 +36,14 @@ const Header = () => {
       <nav  style ={ fix ? {backgroundColor:'rgb(146, 133, 133)'} : null}  className={`${HeaderCss.navbar} navbar-expand-lg `  }>
           <div className={`${HeaderCss.container}`}>
               
-              <a className={`${HeaderCss.navbar_brand}`} href="#">NvBusiness</a>
+              <a  style ={ fix ? {color:'#fff'} : null} className={`${HeaderCss.navbar_brand}`} href="#">NvBusiness</a>
 
               <div className={` navbar-nav ${HeaderCss.navbar_nav} `} >
                 
                 {
                   navigation.map((item) => (
                     <NavLink 
+                        style ={ fix ? {color:'#fff'} : null}
                         className={({isActive}) => {
                           return 'nav-link' + (isActive ? 'primary' : null)  
                         }}
