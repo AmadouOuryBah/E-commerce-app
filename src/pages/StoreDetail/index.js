@@ -1,5 +1,4 @@
 import React from "react";
-import hamburger from "../../assets/storeItemImage/hamburger-494706_640.jpg"
 import StoreDetailHeader from "../../components/StoreDetail/StoreDetailHeader";
 import style from  "../StoreDetail/index.module.css"
 import StoreSearchBar from "../../components/StoreDetail/StoreSearchBar";
@@ -7,8 +6,10 @@ import StoreItem from "../../components/common/StoreItem";
 import { useParams } from "react-router-dom";
 import { useState , useEffect} from "react";
 import { APP_URL } from "../../utils/constants/applicationConstants";
-import Header from "../../components/Home/Header";
-import ModalDeleteStore from '../../components/ModalDeleteStore/ModalDeleteStore'
+import { Menu,
+MenuList,
+MenuItem,
+MenuGroup,MenuDivider } from "@chakra-ui/react";
 
 
 const Index = () => {
@@ -86,21 +87,36 @@ const Index = () => {
     
     return (
         <>
-       
-            <div className={style.container}>
-                  <StoreDetailHeader  store={store}/>
-                  <StoreSearchBar/>
-               
-                  <div className={style.card_container}>
-                    {noItems()}
-                    {storeItems.map(storeItem => {
-                      return <StoreItem storeId={id} key={storeItem.id} storeItem={storeItem} />
-                    })}
-                        
-                  </div>
-                    
-                  
+          <div className={style.storeDetail_container}>
+            <div className={style.side_bar_menu}>
+              <h6  style={{marginLeft:'10px'}}>Menu  </h6>
+              <Menu>
+                    <MenuItem >Home</MenuItem>
+                    <MenuItem>Order</MenuItem>
+                    <MenuItem>Payments </MenuItem>
+                    <MenuItem>Delete store</MenuItem>
+                    <MenuItem>Edit store</MenuItem>
+                    <MenuItem>Payments </MenuItem>
+                    <MenuItem>Policies</MenuItem>
+                    <MenuItem>FAQ</MenuItem>
+              </Menu>
             </div>
+
+            <div className={style.container}>
+              <StoreDetailHeader  store={store}/>
+               <StoreSearchBar/>
+                
+               <div className={style.card_container}>
+                  {noItems()}
+                  {storeItems.map(storeItem => {
+                      return <StoreItem storeId={id} key={storeItem.id} storeItem={storeItem} />
+                  })}
+                          
+                </div>      
+              </div>
+
+          </div>
+         
          
         </>
                   

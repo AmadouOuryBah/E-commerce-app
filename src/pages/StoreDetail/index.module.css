@@ -1,7 +1,19 @@
 .container{
-    margin-top: 20px;
-    margin-left: 150px;
-    margin-right: 150px;    
+    margin-right: 80px;   
+    width: 100%;
+    margin-left: 200px;
+   
+}
+.side_bar_menu{
+    margin-right: 20px;
+    position: fixed;
+    width: 14%;
+    height: 79vh;
+}
+.storeDetail_container{
+    display: flex;
+    padding-left: 80px;
+    margin-top: 80px;
    
 }
 .noItems{
