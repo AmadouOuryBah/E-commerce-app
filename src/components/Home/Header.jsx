@@ -2,7 +2,7 @@
 import person from "../../assets/ion_person.png"
 import { FiShoppingCart } from "react-icons/fi";
 import search from "../../assets/search.png"
-import { useContext, useEffect } from "react";
+import { useContext, useEffect , useRef, useState} from "react";
 import { CartContext } from "../../context/CartContext";
 import HeaderCss from "../../components/Home/Header.module.css"
 import { NavLink } from "react-router-dom";
@@ -10,16 +10,30 @@ import { NavLink } from "react-router-dom";
 
 const Header = () => {
   const {cartItems } = useContext(CartContext)
+  
+  const [fix , setFix ] = useState (false)
 
+  const setFixedNavbar = () => {
+    if(window.scrollY > 0) {
+      setFix(true)
+    }
+    else{
+      setFix(false)
+    }
+  }
+ 
+
+  window.addEventListener('scroll', setFixedNavbar)
   const navigation = [
     {name : 'Home', href: '/'},
     {name : 'Stores', href: '/stores'},
     {name : 'Create store', href: 'createStore'},
   ]
   
-
+ 
+ 
     return (
-      <nav className={`${HeaderCss.navbar} navbar-expand-lg`}>
+      <nav  style ={ fix ? {backgroundColor:'rgb(146, 133, 133)'} : null}  className={`${HeaderCss.navbar} navbar-expand-lg `  }>
           <div className={`${HeaderCss.container}`}>
               
               <a className={`${HeaderCss.navbar_brand}`} href="#">NvBusiness</a>
