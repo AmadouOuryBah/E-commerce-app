@@ -11,6 +11,8 @@ import { Menu,
 MenuList,
 MenuItem,
 MenuGroup, MenuDivider , useToast} from "@chakra-ui/react";
+import CardManageStoreItem from "../../components/CardManageStoreItem/CardManageStoreItem";
+import AlertDialogModal from "../../components/AlertDialog/AlertDialogModal";
 
 
 const Index = () => {
@@ -18,6 +20,7 @@ const Index = () => {
     const [store, setStore ] = useState({})
     const [storeItems, setStoreItems ] = useState([])
     const { id } = useParams()
+    const [isOpenDeleteAlert ,  setIsOpenDeleteAlert] = useState(false)
     const [isOpen ,  setIsOpen] = useState(false)
     const toast = useToast()
 
@@ -26,35 +29,7 @@ const Index = () => {
 
    const currentUser = JSON.parse(localStorage.getItem('currentUser')).userId
 
-    const deleteStore = (storeId) => {
-
-      fetch(`${APP_URL}/stores/${storeId}`, {
-          method: 'DELETE',
-          headers: {
-              userId: currentUser,
-              "Authorization": ' Bearer ' +  JSON.parse(localStorage.getItem('currentUser')).accessToken, 
-          }
-      })
-      .then( response => {
-          if(!response.ok){
-              throw new Error('Network response was not ok')
-          }
-
-          return response
-      })
-      .then(data => {
-          console.log('store has been deleted',data)
-          toast({ title:'store has been deleted', 
-                  description: "Refresh the page",
-                  status: 'success',
-                   duration:'4000', 
-                   position:'top'})           
-   })
-     .catch(error => {
-          console.error('There was a problem with the fetch operation:', error);
-        });
-      }
-
+    
     const getStore = () =>{
           
           fetch(`${APP_URL}/stores/${id}` , {
@@ -130,6 +105,14 @@ const Index = () => {
     
     return (
         <>
+
+        <AlertDialogModal
+          isOpen={isOpenDeleteAlert} 
+          onClose={onClose}
+          storeId={id}
+          message="store"
+          setIsOpenDeleteAlert={setIsOpenDeleteAlert}
+        />
           <ModalAddItem 
             isOpen={isOpen}
             setIsOpen={setIsOpen} 
@@ -144,16 +127,16 @@ const Index = () => {
                     {store.userId == currentUser && 
                       <MenuItem onClick={()=> handleActiveContent(3)}>Order</MenuItem>
                     }
-                    <MenuItem>Payments </MenuItem>
+                  
 
                     <MenuDivider/>
                     {store.userId == currentUser &&
                      <Fragment>
                         <MenuItem  onClick={onOpen} >Add product</MenuItem>
-                        <MenuItem>Delete store</MenuItem>
+                        <MenuItem onClick={()=>setIsOpenDeleteAlert(true)}>Delete store</MenuItem>
                         <MenuItem>Edit store</MenuItem>
                         <MenuItem onClick={()=> handleActiveContent(2)}>Manage store</MenuItem>
-                        
+              
                         <MenuDivider/>
                       </Fragment>
 
@@ -180,11 +163,28 @@ const Index = () => {
                 </div>      
               </div>
 
+            } 
+
+            {
+              activeContent === 2 && 
+              <div className={style.container}>
+                   <h5 className="mb-4 opacity-3">Edit or delete a product from your store </h5>
+                   {noItems()}
+                  
+                    <div className={style.manageStore_items}>
+                      {
+                       storeItems.map(storeItem => {
+                        return    <CardManageStoreItem storeId={id} key={storeItem.id} storeItem={storeItem} />
+                      })
+                    }
+                    </div>
+              </div>
+            
             }
 
             {
               activeContent === 3 && 
-              <div className={style.container}>
+              <div className={style.container} >
                    <h3> Order </h3>
               </div>
             
