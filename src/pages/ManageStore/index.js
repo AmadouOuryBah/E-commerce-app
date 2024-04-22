@@ -5,10 +5,7 @@ import StoreItem from "../../components/common/StoreItem";
 import { useParams } from "react-router-dom";
 import { useState , useEffect} from "react";
 import { APP_URL } from "../../utils/constants/applicationConstants";
-import { Menu,
-  MenuList,
-  MenuItem,
-  MenuGroup,MenuDivider } from "@chakra-ui/react";
+
 
 const Index = () => {
 
@@ -84,8 +81,8 @@ const Index = () => {
 
     return (
         <>
-       
-
+        
+          <h6>product card delete</h6>
         </>
                   
     )
