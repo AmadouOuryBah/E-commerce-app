@@ -19,6 +19,10 @@ const Index = () => {
     const { id } = useParams()
     const [isOpen ,  setIsOpen] = useState(false)
 
+    const [activeContent, setActive] = useState(1)
+
+    const currentUser = JSON.parse(localStorage.getItem('currentUser')).userId
+
     const getStore = () =>{
           
           fetch(`${APP_URL}/stores/${id}` , {
@@ -45,7 +49,10 @@ const Index = () => {
 
     }
 
-   
+   const handleActiveContent = (index) =>{
+    setActive(index)
+   }
+
 
     const getStoreItems = () =>{
           
@@ -91,17 +98,32 @@ const Index = () => {
             <div className={style.side_bar_menu}>
               <h6  style={{marginLeft:'10px'}}>Menu  </h6>
               <Menu>
-                    <MenuItem >Home</MenuItem>
-                    <MenuItem>Order</MenuItem>
+                    <MenuItem onClick={()=> handleActiveContent(1)}>Home</MenuItem>
+                    {store.userId == currentUser && 
+                      <MenuItem>Order</MenuItem>
+                    }
                     <MenuItem>Payments </MenuItem>
-                    <MenuItem>Delete store</MenuItem>
-                    <MenuItem>Edit store</MenuItem>
-                    <MenuItem>Payments </MenuItem>
+                    {store.userId == currentUser &&
+                      <MenuItem>Add product</MenuItem>
+                     }
+                    {store.userId == currentUser && 
+                      <MenuItem>Delete store</MenuItem>
+                    }
+                     {store.userId == currentUser &&
+                      <MenuItem>Edit store</MenuItem>
+                     }
+                     
+                     {store.userId == currentUser &&
+                      <MenuItem onClick={()=> handleActiveContent(2)}>Manage store</MenuItem>
+                     }
+                     
+
                     <MenuItem>Policies</MenuItem>
                     <MenuItem>FAQ</MenuItem>
               </Menu>
             </div>
 
+          {activeContent === 1 &&
             <div className={style.container}>
               <StoreDetailHeader  store={store}/>
                <StoreSearchBar/>
@@ -115,8 +137,24 @@ const Index = () => {
                 </div>      
               </div>
 
-          </div>
+            }
+
+            {
+              activeContent === 2 && 
+               <div className={style.container}>
+                 <div className={style.card_container}>
+                  {noItems()}
+                  {storeItems.map(storeItem => {
+                      return <StoreItem isOwner={true} storeId={id} key={storeItem.id} storeItem={storeItem} />
+                  })}
+                          
+                </div>   
+               
+                </div>
+            
+            }
          
+         </div>
          
         </>
                   

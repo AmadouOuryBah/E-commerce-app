@@ -1,11 +1,14 @@
 import React from "react";
-import StoreDetailHeader from "../../components/StoreDetail/StoreDetailHeader";
+import manageStyle from "../ManageStore/index.module.css"
 import style from  "../StoreDetail/index.module.css"
 import StoreItem from "../../components/common/StoreItem";
 import { useParams } from "react-router-dom";
 import { useState , useEffect} from "react";
 import { APP_URL } from "../../utils/constants/applicationConstants";
-
+import { Menu,
+  MenuList,
+  MenuItem,
+  MenuGroup,MenuDivider } from "@chakra-ui/react";
 
 const Index = () => {
 
@@ -81,18 +84,8 @@ const Index = () => {
 
     return (
         <>
-            <div className={style.container}>
-                  <StoreDetailHeader store={store}/>
-                  <div className={style.card_container}>
-                    {noItems()}
-                    {storeItems.map(storeItem => {
-                      return <StoreItem isOwner={true} storeId={id} key={storeItem.id} storeItem={storeItem} />
-                    })}
-                        
-                  </div>
-                    
-            </div>
-         
+       
+
         </>
                   
     )

@@ -20,8 +20,7 @@ import {
 import { APP_URL } from "../../utils/constants/applicationConstants"
 import { useNavigate } from "react-router-dom";
 import ModalStyle from '../ModalAddItem/ModalAddItem.module.css'
-import { color } from "framer-motion";
-import ModalDeleteStore from "../ModalDeleteStore/ModalDeleteStore";
+
 
 
 const Index = (props) => {
@@ -33,13 +32,10 @@ const Index = (props) => {
         categoryId:0
 
     })
-    const [isDelteModalActive, setIsDelteModalActive] = useState(false)
-
+   
     const currentUser = JSON.parse(localStorage.getItem('currentUser')).userId
 
-    console.log(currentUser)
 
-    const [newProduct, setNewProduct] = useState(null)
     const toast = useToast()
 
     const [isItemAdded, setIsItemAdded ] = useState(false)
@@ -199,7 +195,7 @@ const Index = (props) => {
     }
 
     return (<>
-            {isDelteModalActive ? <ModalDeleteStore store={props.store} /> : null}
+
             {props.store.userId == currentUser &&
           
                 <div  className={ModalStyle.breadcrumb_container}>
@@ -208,24 +204,13 @@ const Index = (props) => {
                             <BreadcrumbLink   onClick={onOpen} href='#'> Add product</BreadcrumbLink>
                         </BreadcrumbItem>
 
-                        <BreadcrumbItem>
-                            <BreadcrumbLink  href={`/manage_store/${props.store.id}`}>Manage store</BreadcrumbLink>
-                        </BreadcrumbItem>
-
                         <BreadcrumbItem >
                             <BreadcrumbLink href={`/stores/${props.store.id}`} >Store</BreadcrumbLink>
                         </BreadcrumbItem>
                     </Breadcrumb>
                     
 
-                    {
-                        window.location.pathname != `/stores/${props.store.id}` ? 
-                        <div>
-                        <Button  onClick={() => setIsDelteModalActive(!isDelteModalActive)}  colorScheme='red'>Delete store</Button>
-                        </div>
-                        : null
-                    
-                    }
+
                 </div>
             }
                 <Modal
