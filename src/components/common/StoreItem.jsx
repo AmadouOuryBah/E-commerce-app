@@ -51,34 +51,7 @@ const StoreItem = (props) => {
        }
       }
 
-      const deleteItem = (itemId) => {
-
-        console.log(itemId)
-
-        fetch(`${APP_URL}/stores/${props.storeId}/items/${itemId}`, {
-            method: 'DELETE',
-        })
-        .then( response => {
-            if(!response.ok){
-                throw new Error('Network response was not ok')
-            }
-
-            return response
-        })
-        .then(data => {
-            console.log('it s been deleted',data)
-            toast({ title:'product has been deleted', 
-                    description: "Refresh the page",
-                    status: 'success',
-                     duration:'4000', 
-                     position:'top'})
-            
-        })
-        .catch(error => {
-            console.error('There was a problem with the fetch operation:', error);
-          });
-        }
-
+    
     
 
       useEffect(() =>{
@@ -108,36 +81,13 @@ const StoreItem = (props) => {
                                 </div>
     
                                 <div className="card-body d-flex align-items-center justify-content-center">
-                                  {!props.isOwner ?  <a
+                                  <a
                                           href="#"
                                           className={`card-link  ${storeItemCss.btn} `}
                                           onClick={()  => addToCart(props.storeItem, props.storeId)}
                                       >
                                         Add to Cart
-                                      </a> :
-
-                                     <> 
-                                     
-                                      <a 
-                                        href="#"
-                                        onClick={()=> deleteItem(props.storeItem.id)}
-                                        className={`card-link  ${storeItemCss.btn_delete} `}
-                                    
-                                      >
-                                        <AiTwotoneDelete />
-                                      </a>
-
-                                      <a 
-                                        href="#"
-                                        className={`card-link  ${storeItemCss.btn_edit} `}
-                                     
-                                       >
-                                          <FaRegEdit />
-                                       </a>
-                                      </>
-
-
-                                   }    
+                                      </a>   
                                    
                                 </div>
                      </div>

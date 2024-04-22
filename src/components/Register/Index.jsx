@@ -30,7 +30,6 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(userCredentials)
     createUser()
     setIsUserCreated(true)
   }
@@ -60,14 +59,12 @@ const Register = () => {
     return (
 
       <section style={{maxWidth: '350px',
-              margin: '50px auto', 
+              margin: '90px auto', 
               border: '1px solid black' ,
               padding:'30px' ,
               borderRadius:'8px',
        }}>
-          {/*}  {isUserCreated ? toast({ title:'account created succesfully', status: 'success', duration:'9000', position:'top'})
-            : toast({ title:'error', status: 'error', description:'passwords must match', duration:'9000', position:'top'})}
-          */}
+        
             <h3 style={{marginBottom:'20px'}}>Sign up</h3>
             <form onSubmit={handleSubmit}>
               <FormControl mb={4} mr={4}>

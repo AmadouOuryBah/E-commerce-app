@@ -73,7 +73,7 @@ const Index = () => {
     return (
 
       <section style={{maxWidth: '350px',
-              margin: '50px auto', 
+              margin: '90px auto', 
               border: '1px solid black' ,
               padding:'30px' ,
               borderRadius:'8px',

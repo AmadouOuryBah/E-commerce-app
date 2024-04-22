@@ -4,6 +4,10 @@
     margin-left: 200px;
    
 }
+
+.manageStore_items{
+display: flex;
+}
 .side_bar_menu{
     margin-right: 20px;
     position: fixed;
