@@ -70,11 +70,11 @@ const Index = () => {
   
     }
 
-          const noItems = () => {
-            if(storeItems.length == 0){
-              return <h6 className={style.noItems}>NO ITEMS FOR THIS STORE YET</h6>
-            }
-          }
+    const noItems = () => {
+          if(storeItems.length == 0){
+            return <h6 className={style.noItems}>NO ITEMS FOR THIS STORE YET</h6>
+         }
+    }
 
      useEffect(() => {
             getStore()

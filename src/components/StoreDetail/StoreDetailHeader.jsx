@@ -2,7 +2,6 @@ import {useState, useEffect } from "react";
 import storeDetailCss from "../../components/StoreDetail/StoreDetailHeader.module.css"
 import ModalAddItem from "../../components/ModalAddItem/ModalAddItem"
 import { APP_URL } from "../../utils/constants/applicationConstants";
-import noImage from "../../assets/noImage.jpg";
 import { Skeleton } from "@chakra-ui/react";
 import noPicture from "../../assets/noImage.jpg"
 
@@ -54,25 +53,29 @@ const StoreDetailHeader = (props) => {
     return (
         <>
             <div className={storeDetailCss.modal}>
-                <ModalAddItem store={props.store}/>
                
             </div>
             <section >
                 <div className={storeDetailCss.image_container}>
-                { isPictureLoading ? < Skeleton width="100%" height="100%" /> :
-                                             pictureUrl ? <img src={pictureUrl}  alt="item picture"/> : <img src={noPicture}  alt="item picture"/>}
-                  
+                    { isPictureLoading ? 
+                        < Skeleton width="100%" height="100%" /> :
+                      pictureUrl ? 
+                         <img src={pictureUrl}  alt="item picture"/> :
+                         <img src={noPicture}  alt="item picture"/>
+                    }
                 </div>
 
                 <div className="d-flex  align-items-center justify-content-between">
                     <div className="d-flex ">
                         <div className={storeDetailCss.MiniImage_container}>
-                            {
-                                pictureUrl ?  <img src={pictureUrl} className="rounded" alt="picture of store"/>
-                                :  <img src={noImage} className="rounded" alt="picture of store"/>
+                            { isPictureLoading ?
+                                < Skeleton width="100%" height="100%" /> :
+                              pictureUrl ?
+                                <img src={pictureUrl}  alt="item picture"/> : 
+                                <img src={noPicture}  alt="item picture"/>
                             }
                              
-                        </div>
+                    </div>
                       
                         <p className="d-flex flex-column"> 
                            <span className={storeDetailCss.store_name}>{props.store.name}</span> 

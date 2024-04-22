@@ -1,6 +1,6 @@
 .section_container{
     min-height: 308px;
-    margin-top: 15px;
+    margin-top: 65px;
     margin-left: 150px;
     margin-right: 150px;
 }
@@ -21,7 +21,7 @@
 .items_container{
     width: 60%;
 }
-.price , .pricing{
+.price ,.pricing{
     font-weight: 600;
 } 
 .section_items{

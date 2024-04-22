@@ -17,7 +17,6 @@ const StoreItem = (props) => {
     const {addToCart } =  useContext(CartContext)
     const [pictureUrl, setPictureUrl] = useState("")
     const toast = useToast()
-    const [isItemDeleted, setIsItemAdded ] = useState(null)
     const [isPictureLoading, setIsPictureLoading ] = useState(false)
 
 

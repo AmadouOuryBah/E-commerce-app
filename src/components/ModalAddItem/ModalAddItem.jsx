@@ -13,14 +13,10 @@ import {
     ModalCloseButton ,
     useDisclosure,
     useToast,
-    Breadcrumb,
-    BreadcrumbItem, 
-    BreadcrumbLink,
+   
 } from '@chakra-ui/react';      
 import { APP_URL } from "../../utils/constants/applicationConstants"
 import { useNavigate } from "react-router-dom";
-import ModalStyle from '../ModalAddItem/ModalAddItem.module.css'
-
 
 
 const Index = (props) => {
@@ -33,13 +29,9 @@ const Index = (props) => {
 
     })
    
-    const currentUser = JSON.parse(localStorage.getItem('currentUser')).userId
-
-
     const toast = useToast()
 
     const [isItemAdded, setIsItemAdded ] = useState(false)
-    const [isOpen, setIsOpen] = useState(false);
   
     const [page , setPage] = useState(1)
     const initialRef = useRef(null)
@@ -144,7 +136,7 @@ const Index = (props) => {
                      duration:'3000', 
                      position:'top'}) }
             console.log("navigating to the .....  " + props.store.id)
-            setIsOpen(false)
+            props.setIsOpen(false)
             navigate(`/stores/${props.store.id}`)
             
         })
@@ -185,38 +177,21 @@ const Index = (props) => {
         })
     } 
 
-    const onClose = () => setIsOpen(false);
+   
     
     useEffect( () => {
         getCategories()
     },[])
-    const onOpen = () => {
-        setIsOpen(true)
-    }
+    
 
     return (<>
 
-            {props.store.userId == currentUser &&
-          
-                <div  className={ModalStyle.breadcrumb_container}>
-                    <Breadcrumb flex={1} spacing='8px' marginLeft={-7} separator='>'>
-                        <BreadcrumbItem>
-                            <BreadcrumbLink   onClick={onOpen} href='#'> Add product</BreadcrumbLink>
-                        </BreadcrumbItem>
-
-                        <BreadcrumbItem >
-                            <BreadcrumbLink href={`/stores/${props.store.id}`} >Store</BreadcrumbLink>
-                        </BreadcrumbItem>
-                    </Breadcrumb>
-                    
-
-
-                </div>
-            }
+              
+            
                 <Modal
                     initialFocusRef={initialRef}
-                    isOpen={isOpen}
-                    onClose={onClose}
+                    isOpen={props.isOpen}
+                    onClose={props.onClose}
                 >
                     <ModalOverlay />
                     <ModalContent>
@@ -271,7 +246,7 @@ const Index = (props) => {
                             <Button type='submit' colorScheme='orange' mr={3}>
                                 create
                             </Button>
-                            <Button  onClick={onClose}  colorScheme='blue'>Cancel</Button>
+                            <Button  onClick={props.onClose}  colorScheme='blue'>Cancel</Button>
                         </div>
                     </form>           
                     
