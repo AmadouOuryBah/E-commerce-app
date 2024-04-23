@@ -11,11 +11,18 @@ import {
 Menu,
 MenuItem,
 MenuDivider,
-useToast} 
+useToast,
+Accordion,
+AccordionButton,
+AccordionPanel,
+AccordionIcon,
+Box,
+AccordionItem
+} 
 from "@chakra-ui/react";
 import CardManageStoreItem from "../../components/CardManageStoreItem/CardManageStoreItem";
 import AlertDialogModal from "../../components/AlertDialog/AlertDialogModal";
-import ModalEditProduct from "../../components/ModalEditProduct/ModalEditProduct";
+import Order from "../../components/Order/Order"
 
 
 const Index = () => {
@@ -26,7 +33,8 @@ const Index = () => {
     const [isOpenDeleteAlert ,  setIsOpenDeleteAlert] = useState(false)
     const [isOpen ,  setIsOpen] = useState(false)
     const toast = useToast()
-    
+    const [orders , setOrders] = useState([])
+
     const [activeContent, setActive] = useState(1)
 
    const currentUser = JSON.parse(localStorage.getItem('currentUser')).userId
@@ -87,7 +95,36 @@ const Index = () => {
              console.log(error)
             });
   
+    }
+
+
+    
+    const getOrders = () =>{
+          
+        fetch(`${APP_URL}/stores/${id}/orders` , {
+          method: 'GET',
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": ' Bearer ' +  JSON.parse(localStorage.getItem('currentUser')).accessToken, 
+          },
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
           }
+
+          return response.json()
+        })
+        .then(data => {
+          console.log(data)
+          setOrders(data);
+         
+        })
+        .catch(error => {
+          console.log(error)
+        });
+
+  }
 
       const noItems = () => {
             if(storeItems.length == 0){
@@ -98,6 +135,7 @@ const Index = () => {
      useEffect(() => {
             getStore()
             getStoreItems()
+            getOrders()
            
         },[])
 
@@ -146,11 +184,9 @@ const Index = () => {
                       </Fragment>
 
                      }
-          
-                 
-
+        
                     <MenuItem>Policies</MenuItem>
-                    <MenuItem>FAQ</MenuItem>
+                    <MenuItem onClick={()=> handleActiveContent(4)}>FAQ</MenuItem>
               </Menu>
             </div>
 
@@ -190,11 +226,43 @@ const Index = () => {
             {
               activeContent === 3 && 
               <div className={style.container} >
-                   <h3> Order </h3>
+                   <h3> Orders</h3>
+                   {
+                     orders?.map(order => {
+                      return <Order order={order}  />
+                     })
+                   }
+                 
               </div>
             
             }
          
+         {
+              activeContent === 4 && 
+              <div className={style.container} >
+                   <h3> FAQ </h3>
+                   <Accordion width={400} allowToggle>
+                      <AccordionItem>
+                        <h2>
+                          <AccordionButton _expanded={{ bg: 'tomato', color: 'white' }}>
+                            <Box as='span' flex='1' textAlign='left'>
+                              Frequently Ask Questions
+                            </Box>
+                            <AccordionIcon />
+                          </AccordionButton>
+                        </h2>
+                        <AccordionPanel>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                          commodo consequat.
+                        </AccordionPanel>
+                      </AccordionItem>
+                    </Accordion>
+                  
+              </div>
+            
+            }
          </div>
          
         </>

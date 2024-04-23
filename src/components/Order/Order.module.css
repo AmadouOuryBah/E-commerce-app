@@ -1,0 +1,19 @@
+.order_container {
+    display: flex;
+    justify-content: center;
+   
+    width: 70%;
+    background-color: rgb(206, 148, 78);
+}
+.order{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.img{
+    width: 20%;  
+}
+.date{
+    margin-right: 20px;
+}
