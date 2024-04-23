@@ -17,12 +17,17 @@ AccordionButton,
 AccordionPanel,
 AccordionIcon,
 Box,
-AccordionItem
+AccordionItem,
+Thead,
+Th,
+Tr,
+Table
 } 
 from "@chakra-ui/react";
 import CardManageStoreItem from "../../components/CardManageStoreItem/CardManageStoreItem";
 import AlertDialogModal from "../../components/AlertDialog/AlertDialogModal";
 import Order from "../../components/Order/Order"
+import { Tab } from "bootstrap";
 
 
 const Index = () => {
@@ -227,6 +232,17 @@ const Index = () => {
               activeContent === 3 && 
               <div className={style.container} >
                    <h3> Orders</h3>
+                   <Table>
+                    <Thead>
+                        <Tr>
+                            <Th>name</Th>
+                            <Th>price</Th>
+                            <Th>date</Th>
+                            <Th>cost</Th>
+                        </Tr>
+                    </Thead>
+                   </Table>
+                
                    {
                      orders?.map(order => {
                       return <Order order={order}  />

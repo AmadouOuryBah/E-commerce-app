@@ -27,26 +27,30 @@ const Order = ({order}) => {
    
     <>
         <TableContainer>
-        <Table variant='striped' colorScheme='orange'>
-            <Thead>
-            <Tr>
-                <Th>name</Th>
-                <Th>price</Th>
-                <Th>date</Th>
-                <Th>cost</Th>
-            </Tr>
+        <Table  colorScheme='orange'>
           
-            </Thead>
             <Tbody>
-            { order.items?.map( item => (
+            <>
+                
+                 
+                { order.items?.map( item => (
+               
+                    <Tr>
+                        <Td>{item.name}</Td>
+                        <Td>{item.price}</Td>
+                          
+                            <Td>{order.orderDate}</Td>
+                            <Td>{order.totalCost}</Td>
 
-                <Tr>
-                    <Td>{item.name}</Td>
-                    <Td>{item.price}</Td>
-                    <Td>{order.orderDate}</Td>
-                    <Td>{order.totalCost}</Td>
-                </Tr>
-            ))}
+                    
+                    </Tr>
+        
+                    ))}
+            
+              
+            
+                </>
+              
             </Tbody>
         
         </Table>
