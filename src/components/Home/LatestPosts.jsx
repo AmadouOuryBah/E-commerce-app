@@ -75,6 +75,8 @@ const LatestPosts = () => {
         ]
       };
       
+
+      
     useEffect(() => {
         getProducts()
     },[])

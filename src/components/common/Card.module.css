@@ -1,11 +1,12 @@
 .img{
     width:100%;
-    object-fit:cover;
+    height: 50%;
+ 
 }
 .card{
     display: block;
     width: 93%;
-    min-height: 300px;
+    height: 400px;
     position: relative;
     border: 1px solid rgba(49, 46, 46, 0.3);
     border-radius: 6px;

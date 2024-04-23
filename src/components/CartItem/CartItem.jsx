@@ -14,9 +14,6 @@ const CartItem = ({item}) => {
     const [isPictureLoading , setIsPictureLoading] = useState()
     const [pictureUrl , setPictureUrl ] = useState('')
 
-    console.log(product)
-    console.log(item)
-
 
     const getItem = () =>{
         setIsPictureLoading(true)  
