@@ -88,8 +88,8 @@ const AlertDialogModal = ({onClose, isOpen, storeId, storeItemId, message, setIs
        
         <AlertDialog
           motionPreset='slideInBottom'
-          onClose={onClose}
           isOpen={isOpen}
+          onClose={onClose}
           isCentered
         >
           <AlertDialogOverlay />
@@ -102,7 +102,7 @@ const AlertDialogModal = ({onClose, isOpen, storeId, storeItemId, message, setIs
            
             </AlertDialogBody>
             <AlertDialogFooter>
-              <Button  onClick={onClose}>
+              <Button  >
                 No
               </Button>
               <Button onClick={

@@ -195,7 +195,7 @@ const Index = (props) => {
                 >
                     <ModalOverlay />
                     <ModalContent>
-                    <ModalHeader>Add New product to the store</ModalHeader>
+                    <ModalHeader>{props.message}</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody pb={6}>
 

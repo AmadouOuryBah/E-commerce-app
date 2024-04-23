@@ -8,6 +8,7 @@ import { FaRegEdit } from "react-icons/fa";
 import { useToast, Skeleton } from "@chakra-ui/react";
 import { APP_URL } from "../../utils/constants/applicationConstants";
 import { useParams } from 'react-router-dom';
+import ModalEditProduct from '../ModalEditProduct/ModalEditProduct';
 
 
 const CardManageStoreItem = (props) => {
@@ -18,10 +19,10 @@ const CardManageStoreItem = (props) => {
     const { id } = useParams()
     const [store, setStore] = useState()
     const [storeItems, setStoreItems ] = useState()
-
+    const [isOpenEdit ,  setIsOpenEdit] = useState(false)
     const [isOpen , setIsOpen] =  useState(false)
 
-const onOpen = () => { setIsOpen(true)
+    const onOpen = () => { setIsOpen(true)
     }
 
   const onClose = () => setIsOpen(false);
@@ -119,10 +120,20 @@ return (
 
             storeId={id}
             storeItemId={props.storeItem.id}
-             isOpen={isOpen} 
-             onClose={onClose}
-             message="product"
+            isOpen={isOpen} 
+            onClose={onClose}
+            message="product"
         />
+
+        <ModalEditProduct
+            isOpen={isOpenEdit}
+            setIsOpenEdit={setIsOpen}
+            setIsOpen={setIsOpen}
+            onClose={onClose} 
+            storeId={id}
+            storeItemId={props.storeItem.id}       
+          />
+
         <div  className={`card ${storeItemCss.card_item} `} >
 
             { isPictureLoading ? < Skeleton width="100%" height="50%" /> :
@@ -153,7 +164,7 @@ return (
                 <a 
                     href="#"
                     className={`card-link  ${storeItemCss.btn_edit} `}
-            
+                    onClick={()=>setIsOpenEdit(true)}
                 >
                     <FaRegEdit />
                 </a>        

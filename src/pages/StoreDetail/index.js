@@ -7,12 +7,15 @@ import { useParams } from "react-router-dom";
 import { useState , useEffect} from "react";
 import { APP_URL } from "../../utils/constants/applicationConstants";
 import ModalAddItem from "../../components/ModalAddItem/ModalAddItem"
-import { Menu,
-MenuList,
+import {
+Menu,
 MenuItem,
-MenuGroup, MenuDivider , useToast} from "@chakra-ui/react";
+MenuDivider,
+useToast} 
+from "@chakra-ui/react";
 import CardManageStoreItem from "../../components/CardManageStoreItem/CardManageStoreItem";
 import AlertDialogModal from "../../components/AlertDialog/AlertDialogModal";
+import ModalEditProduct from "../../components/ModalEditProduct/ModalEditProduct";
 
 
 const Index = () => {
@@ -23,8 +26,7 @@ const Index = () => {
     const [isOpenDeleteAlert ,  setIsOpenDeleteAlert] = useState(false)
     const [isOpen ,  setIsOpen] = useState(false)
     const toast = useToast()
-
-
+    
     const [activeContent, setActive] = useState(1)
 
    const currentUser = JSON.parse(localStorage.getItem('currentUser')).userId
@@ -118,7 +120,10 @@ const Index = () => {
             setIsOpen={setIsOpen} 
             onClose={onClose} 
             store={store}
+            message="Add new product"
           />
+
+
           <div className={style.storeDetail_container}>
             <div className={style.side_bar_menu}>
               <h6  style={{marginLeft:'10px'}}>Menu  </h6>
@@ -132,10 +137,10 @@ const Index = () => {
                     <MenuDivider/>
                     {store.userId == currentUser &&
                      <Fragment>
-                        <MenuItem  onClick={onOpen} >Add product</MenuItem>
-                        <MenuItem onClick={()=>setIsOpenDeleteAlert(true)}>Delete store</MenuItem>
-                        <MenuItem>Edit store</MenuItem>
-                        <MenuItem onClick={()=> handleActiveContent(2)}>Manage store</MenuItem>
+                        <MenuItem  onClick={onOpen} > Add product </MenuItem>
+                        <MenuItem onClick={()=>setIsOpenDeleteAlert(true)}> Delete store </MenuItem>
+                        <MenuItem  > Edit store </MenuItem>
+                        <MenuItem onClick={()=> handleActiveContent(2)}> Manage store </MenuItem>
               
                         <MenuDivider/>
                       </Fragment>
