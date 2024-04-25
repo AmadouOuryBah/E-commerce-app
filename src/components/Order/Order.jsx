@@ -41,7 +41,6 @@ const Order = ({order}) => {
                           
                             <Td>{order.orderDate}</Td>
                             <Td>{order.totalCost}</Td>
-
                     
                     </Tr>
         
