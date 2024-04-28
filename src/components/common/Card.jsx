@@ -21,8 +21,7 @@ console.log(props.product)
         if(storeItem.pictureId){
           fetch(`${APP_URL}/stores/1/items/${storeItem.id}/pictures/${storeItem.pictureId}`, {
             headers: {
-              "Content-Type": "application/json",
-              "Authorization": ' Bearer ' +  JSON.parse(localStorage.getItem('currentUser')).accessToken, 
+              "Content-Type": "application/json"
             },
           })
           .then(async response => {

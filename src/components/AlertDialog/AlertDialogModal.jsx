@@ -102,8 +102,8 @@ const AlertDialogModal = ({onClose, isOpen, storeId, storeItemId, message, setIs
            
             </AlertDialogBody>
             <AlertDialogFooter>
-              <Button  >
-                No
+              <Button  onClick={onClose} >
+                No 
               </Button>
               <Button onClick={
                 () => message === "product" ?  

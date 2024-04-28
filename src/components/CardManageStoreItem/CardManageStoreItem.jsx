@@ -26,6 +26,7 @@ const CardManageStoreItem = (props) => {
     }
 
   const onClose = () => setIsOpen(false);
+  const onCloseEdit = () => setIsOpenEdit(false)
   
  const getStore = () =>{
           
@@ -127,9 +128,7 @@ return (
 
         <ModalEditProduct
             isOpen={isOpenEdit}
-            setIsOpenEdit={setIsOpen}
-            setIsOpen={setIsOpen}
-            onClose={onClose} 
+            onClose={onCloseEdit} 
             storeId={id}
             storeItemId={props.storeItem.id}       
           />

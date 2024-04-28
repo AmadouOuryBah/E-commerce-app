@@ -159,11 +159,11 @@ const ModalEditStore = (props) => {
                <Modal
                     initialFocusRef={initialRef}
                     isOpen={props.isOpen}
-                    onClose={props.onCloseModalEdit}
+                    onClose={props.onClose}
                 >
                     <ModalOverlay />
                     <ModalContent>
-                        <ModalHeader>Updating store</ModalHeader>
+                        <ModalHeader>{props.message}</ModalHeader>
                         <ModalCloseButton />
                         <ModalBody pb={6}>
                             <div style={{  backgroundColor:"#D7DDDF",  padding:'15px' }}>

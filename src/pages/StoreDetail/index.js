@@ -74,7 +74,11 @@ const Index = () => {
     }
 
    const handleActiveContent = (index) =>{
-    setActive(index)
+    if(index === 5) {
+      setIsOpenModalEdit(true)
+    }else{
+      setActive(index)
+    }
    }
 
 
@@ -152,6 +156,10 @@ const Index = () => {
       setIsOpen(false)
     }
 
+    const onCloseDeleteAlert = () =>{
+      setIsOpenDeleteAlert(false)
+    }
+
     const onOpenModalEdit = () => { 
       setIsOpenModalEdit(true)
     }
@@ -164,7 +172,7 @@ const Index = () => {
 
         <AlertDialogModal
           isOpen={isOpenDeleteAlert} 
-          onClose={onClose}
+          onClose={onCloseDeleteAlert}
           storeId={id}
           message="store"
           setIsOpenDeleteAlert={setIsOpenDeleteAlert}
@@ -291,15 +299,15 @@ const Index = () => {
             
             }
 
-            {activeContent == 5 && 
-            
-              <ModalEditStore
-                isOpen={true}
-                onCloseModalEdit={onCloseModalEdit} 
-                store={store}
+           
               
+              <ModalEditStore
+                isOpen={isOpenModalEdit}
+                store={store}
+                onClose={onCloseModalEdit}
+                message= "Update Product"
               />
-            }
+            
          </div>
          
         </>
