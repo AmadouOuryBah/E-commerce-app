@@ -28,6 +28,8 @@ const Index = (props) => {
         categoryId:0
 
     })
+
+    console.log(props)
    
     const toast = useToast()
 

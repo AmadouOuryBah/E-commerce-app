@@ -18,9 +18,9 @@ const Index = () => {
     password:'',
   })
 
-  const navigate = useNavigate()
+const navigate = useNavigate()
 
-  const toast = useToast()
+const toast = useToast()
 
   const handleOnchangeUserCredentials = (e) => {
     setUserCredentials({...userCredentials , [e.target.name] : e.target.value })

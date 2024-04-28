@@ -7,6 +7,10 @@ import { useParams } from "react-router-dom";
 import { useState , useEffect} from "react";
 import { APP_URL } from "../../utils/constants/applicationConstants";
 import ModalAddItem from "../../components/ModalAddItem/ModalAddItem"
+import CardManageStoreItem from "../../components/CardManageStoreItem/CardManageStoreItem";
+import AlertDialogModal from "../../components/AlertDialog/AlertDialogModal";
+import Order from "../../components/Order/Order"
+import ModalEditStore from "../../components/ModalEditStore/ModalEditStore";
 import {
 Menu,
 MenuItem,
@@ -24,10 +28,7 @@ Tr,
 Table
 } 
 from "@chakra-ui/react";
-import CardManageStoreItem from "../../components/CardManageStoreItem/CardManageStoreItem";
-import AlertDialogModal from "../../components/AlertDialog/AlertDialogModal";
-import Order from "../../components/Order/Order"
-import { Tab } from "bootstrap";
+
 
 
 const Index = () => {
@@ -36,6 +37,7 @@ const Index = () => {
     const [storeItems, setStoreItems ] = useState([])
     const { id } = useParams()
     const [isOpenDeleteAlert ,  setIsOpenDeleteAlert] = useState(false)
+    const [isOpenModalEdit ,  setIsOpenModalEdit] = useState(false)
     const [isOpen ,  setIsOpen] = useState(false)
     const toast = useToast()
     const [orders , setOrders] = useState([])
@@ -121,7 +123,6 @@ const Index = () => {
           return response.json()
         })
         .then(data => {
-          console.log(data)
           setOrders(data);
          
         })
@@ -144,9 +145,19 @@ const Index = () => {
            
         },[])
 
-    const onOpen = () => { setIsOpen(true)
+    const onOpen = () => { 
+        setIsOpen(true)
       }
-    const onClose = () => setIsOpen(false);
+    const onClose = () => {
+      setIsOpen(false)
+    }
+
+    const onOpenModalEdit = () => { 
+      setIsOpenModalEdit(true)
+    }
+  const onCloseModalEdit = () => {
+    setIsOpenModalEdit(false)
+  }
     
     return (
         <>
@@ -158,13 +169,13 @@ const Index = () => {
           message="store"
           setIsOpenDeleteAlert={setIsOpenDeleteAlert}
         />
-          <ModalAddItem 
-            isOpen={isOpen}
-            setIsOpen={setIsOpen} 
-            onClose={onClose} 
-            store={store}
-            message="Add new product"
-          />
+        <ModalAddItem 
+          isOpen={isOpen}
+          onClose={onClose} 
+          store={store}
+          message="Add new product"
+        />
+  
 
 
           <div className={style.storeDetail_container}>
@@ -182,7 +193,7 @@ const Index = () => {
                      <Fragment>
                         <MenuItem  onClick={onOpen} > Add product </MenuItem>
                         <MenuItem onClick={()=>setIsOpenDeleteAlert(true)}> Delete store </MenuItem>
-                        <MenuItem  > Edit store </MenuItem>
+                        <MenuItem onClick={() => handleActiveContent(5)}> Edit store </MenuItem>
                         <MenuItem onClick={()=> handleActiveContent(2)}> Manage store </MenuItem>
               
                         <MenuDivider/>
@@ -278,6 +289,16 @@ const Index = () => {
                   
               </div>
             
+            }
+
+            {activeContent == 5 && 
+            
+              <ModalEditStore
+                isOpen={true}
+                onCloseModalEdit={onCloseModalEdit} 
+                store={store}
+              
+              />
             }
          </div>
          

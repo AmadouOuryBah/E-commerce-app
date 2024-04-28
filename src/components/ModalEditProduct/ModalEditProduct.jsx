@@ -41,8 +41,13 @@ const ModalEditProduct = (props) => {
     const handleStorePropertyChange = (e) => {
         setItem({ ...item, [e.target.name] : e.target.value});
     }
+ 
+    const [IsModalOpen , setIsModalOpen] = useState(false)
 
-   
+    const open = () => {
+        setIsModalOpen(!props.isOpen)
+    }
+    
 
     const getCategories = () => {
 
@@ -156,7 +161,7 @@ const ModalEditProduct = (props) => {
           useEffect(() => {
             getItem()
             getCategories()
-          },[])
+          },[props.isOpen])
    
 return (<>
             

@@ -12,6 +12,7 @@ import React from "react";
 import './App.css'
 import Header from './components/Home/Header';
 import PrivateRoute from '../src/components/common/ProtectedRoute/index'
+import ModalEditStore from './components/ModalEditStore/ModalEditStore';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
                 <Route path="/stores/:id" exact element={<StoreDetail/>} />
                 <Route path="/cart" exact element={<Cart/>} />
                 <Route path="/createStore" exact element={<AddStore/>} />
+                <Route path="/editStore" exact element={<ModalEditStore/>} />
              
               </Route>
              
