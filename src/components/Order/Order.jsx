@@ -14,7 +14,7 @@ import {
   } from '@chakra-ui/react'
 
 const Order = ({order}) => {
-
+    const date = new Date(order.orderDate)
     console.log(order.totalCost, order.orderDate)
     const  NoOrders = () =>{
         if(!order){
@@ -39,7 +39,7 @@ const Order = ({order}) => {
                         <Td>{item.name}</Td>
                         <Td>{item.price}</Td>
                           
-                            <Td>{order.orderDate}</Td>
+                            <Td>{ date.toLocaleDateString()} {date.toLocaleTimeString()} </Td>
                             <Td>{order.totalCost}</Td>
                     
                     </Tr>
