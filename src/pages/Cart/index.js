@@ -11,7 +11,7 @@ const Index = () => {
     const currentDate = new Date();
     const formattedDate = currentDate.toISOString();
     const toast = useToast()
-    const {cartItems , getCartTotalPrice} = useContext(CartContext)
+    const {cartItems , getCartTotalPrice, clearCart} = useContext(CartContext)
     
     const itemsId = []
     cartItems.map( cartItem => {
@@ -74,6 +74,7 @@ const Index = () => {
           .then(data => {
             checkout(data.pubKey, data.sessionId) 
             console.log('Success:', data);
+            clearCart()
           })
           .catch(error => {
             console.error('Error:', error);

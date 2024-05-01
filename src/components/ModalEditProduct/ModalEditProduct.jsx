@@ -1,20 +1,18 @@
 import { useState, useEffect, useRef } from "react"
 import {
-    Button,
-    FormControl,
-    FormLabel,
-    Input,
-    Select,
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalBody,
-    ModalCloseButton ,
-    useDisclosure,
-    useToast,
-   
-} from '@chakra-ui/react';      
+Button,FormControl,
+FormLabel,
+Input,
+Select,
+Modal,
+ModalOverlay,
+ModalContent,
+ModalHeader,
+ModalBody,
+ModalCloseButton ,
+useToast,
+} 
+from '@chakra-ui/react';      
 import { APP_URL } from "../../utils/constants/applicationConstants"
 import { useNavigate } from "react-router-dom";
 
@@ -171,16 +169,17 @@ return (<>
                     isOpen={props.isOpen}
                     onClose={props.onClose}
                 >
-                    <ModalOverlay />
-                    <ModalContent>
-                    <ModalHeader>Edit product</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody pb={6}>
 
-                    <FormControl mr={4}>
+                <ModalOverlay />
+                        <ModalContent>
+                        <ModalHeader>Edit product</ModalHeader>
+                        <ModalCloseButton />
+                <ModalBody pb={6}>
+
+                <FormControl mr={4}>
                             <FormLabel> choose a picture</FormLabel>       
                             <Input id="fileInput" type='file' />
-                    </FormControl>
+                </FormControl>
                     <form > 
                                         
                     <div style={{display:'flex'}}>
@@ -232,10 +231,7 @@ return (<>
                     </ModalBody>
 
                     </ModalContent>
-                </Modal>     
-                    
-
-         
+                </Modal>              
 </>)
 }
 

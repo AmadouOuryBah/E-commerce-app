@@ -42,6 +42,7 @@ const ModalEditStore = (props) => {
     const initialRef = useRef(null)
     const [categories, setCategories] = useState(null)
     
+    console.log(store)
 
     
 
@@ -89,7 +90,7 @@ const ModalEditStore = (props) => {
             headers: { 'Content-Type': 'application/json',
                      "Authorization": ' Bearer ' +  JSON.parse(localStorage.getItem('currentUser')).accessToken
             },
-            body: JSON.stringify(newstoreValues) 
+            body: JSON.stringify(store) 
         })
         .then(response => {
             if(!response.ok){
@@ -109,7 +110,7 @@ const ModalEditStore = (props) => {
                      duration:'4000', 
                      position:'top'}) }
                      
-            navigate("/stores")
+           // navigate("/stores")
 
         })
         .catch(err => {
@@ -152,7 +153,7 @@ const ModalEditStore = (props) => {
     useEffect( () => {
         getCategories()
         getStore()
-    },[])
+    },[props.isOpen])
 
     return (
       <>
@@ -163,7 +164,7 @@ const ModalEditStore = (props) => {
                 >
                     <ModalOverlay />
                     <ModalContent>
-                        <ModalHeader>{props.message}</ModalHeader>
+                        <ModalHeader></ModalHeader>
                         <ModalCloseButton />
                         <ModalBody pb={6}>
                             <div style={{  backgroundColor:"#D7DDDF",  padding:'15px' }}>

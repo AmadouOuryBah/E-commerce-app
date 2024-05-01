@@ -11,17 +11,13 @@ import CardManageStoreItem from "../../components/CardManageStoreItem/CardManage
 import AlertDialogModal from "../../components/AlertDialog/AlertDialogModal";
 import Order from "../../components/Order/Order"
 import ModalEditStore from "../../components/ModalEditStore/ModalEditStore";
+import ModalAddFaq from "../../components/ModalAddFaq/ModalAddFaq";
+import FaqAccordion from "../../components/FaqAccordion/FaqAccordion";
 import {
 Menu,
 MenuItem,
 MenuDivider,
 useToast,
-Accordion,
-AccordionButton,
-AccordionPanel,
-AccordionIcon,
-Box,
-AccordionItem,
 Thead,
 Th,
 Tr,
@@ -30,14 +26,15 @@ Table
 from "@chakra-ui/react";
 
 
-
 const Index = () => {
    
     const [store, setStore ] = useState({})
     const [storeItems, setStoreItems ] = useState([])
+    const [faq, setFaqs] = useState(null)
     const { id } = useParams()
     const [isOpenDeleteAlert ,  setIsOpenDeleteAlert] = useState(false)
-    const [isOpenModalEdit ,  setIsOpenModalEdit] = useState(false)
+    const [isOpenModalAddFaq ,  setIsOpenModalAddFaq] = useState(false)
+    const [isOpenModalEdit, setIsOpenModalEdit ] = useState(false)
     const [isOpen ,  setIsOpen] = useState(false)
     const toast = useToast()
     const [orders , setOrders] = useState([])
@@ -81,7 +78,6 @@ const Index = () => {
     }
    }
 
-
     const getStoreItems = () =>{
           
             fetch(`${APP_URL}/stores/${id}/items` , {
@@ -108,8 +104,6 @@ const Index = () => {
   
     }
 
-
-    
     const getOrders = () =>{
           
         fetch(`${APP_URL}/stores/${id}/orders` , {
@@ -136,33 +130,65 @@ const Index = () => {
 
   }
 
-      const noItems = () => {
-            if(storeItems.length == 0){
-              return <h6 className={style.noItems}>NO ITEMS FOR THIS STORE YET</h6>
-            }
-          }
+  const noItems = () => {
+    if(storeItems.length == 0){
+      return <h6 className={style.noItems}>NO ITEMS FOR THIS STORE YET</h6>
+    }
+  }
 
-     useEffect(() => {
-            getStore()
-            getStoreItems()
-            getOrders()
-           
-        },[])
+  const getFaqs = () =>{
+          
+    fetch(`${APP_URL}/stores/${id}/faqs` , {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": ' Bearer ' +  JSON.parse(localStorage.getItem('currentUser')).accessToken, 
+      },
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      return response.json()
+    })
+    .then(data => {
+      console.log('inside request',data)
+      setFaqs(data);
+     
+    })
+    .catch(error => {
+      console.log(error)
+    });
+
+}
+console.log(faq)
+
+    useEffect(() => {
+       getStore()
+       getStoreItems()
+       getOrders()
+       getFaqs()
+    },[])
 
     const onOpen = () => { 
         setIsOpen(true)
+      }
+      const onOpenModalFaq = () => { 
+        setIsOpenModalAddFaq(true)
       }
     const onClose = () => {
       setIsOpen(false)
     }
 
+    const onCloseModalAddFaq = () => {
+      setIsOpenModalAddFaq(false)
+    }
     const onCloseDeleteAlert = () =>{
       setIsOpenDeleteAlert(false)
     }
 
-    const onOpenModalEdit = () => { 
-      setIsOpenModalEdit(true)
-    }
+
   const onCloseModalEdit = () => {
     setIsOpenModalEdit(false)
   }
@@ -183,8 +209,17 @@ const Index = () => {
           store={store}
           message="Add new product"
         />
-  
-
+        <ModalAddFaq 
+          isOpen={isOpenModalAddFaq}
+          onClose={onCloseModalAddFaq} 
+          storeId={id}
+        />
+         <ModalEditStore
+          isOpen={isOpenModalEdit}
+          store={store}
+          onClose={onCloseModalEdit}
+          message= "Update Product" 
+        />
 
           <div className={style.storeDetail_container}>
             <div className={style.side_bar_menu}>
@@ -211,6 +246,7 @@ const Index = () => {
         
                     <MenuItem>Policies</MenuItem>
                     <MenuItem onClick={()=> handleActiveContent(4)}>FAQ</MenuItem>
+                    <MenuItem onClick={onOpenModalFaq}> Add FAQ</MenuItem>
               </Menu>
             </div>
 
@@ -268,45 +304,16 @@ const Index = () => {
                      })
                    }
                  
-              </div>
-            
-            }
+           </div>
+          }
          
          {
-              activeContent === 4 && 
-              <div className={style.container} >
-                   <h3> FAQ </h3>
-                   <Accordion width={400} allowToggle>
-                      <AccordionItem>
-                        <h2>
-                          <AccordionButton _expanded={{ bg: 'tomato', color: 'white' }}>
-                            <Box as='span' flex='1' textAlign='left'>
-                              Frequently Ask Questions
-                            </Box>
-                            <AccordionIcon />
-                          </AccordionButton>
-                        </h2>
-                        <AccordionPanel>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                          commodo consequat.
-                        </AccordionPanel>
-                      </AccordionItem>
-                    </Accordion>
-                  
-              </div>
-            
-            }
-
-           
-              
-              <ModalEditStore
-                isOpen={isOpenModalEdit}
-                store={store}
-                onClose={onCloseModalEdit}
-                message= "Update Product"
-              />
+            activeContent === 4 && 
+            <div className={style.container} >
+              <h3> FAQ </h3>
+              <FaqAccordion faq={faq} />
+            </div>
+          }
             
          </div>
          

@@ -28,8 +28,6 @@ const Index = (props) => {
         categoryId:0
 
     })
-
-    console.log(props)
    
     const toast = useToast()
 
@@ -137,7 +135,6 @@ const Index = (props) => {
                     status: isItemAdded? 'success' : undefined,
                      duration:'3000', 
                      position:'top'}) }
-            console.log("navigating to the .....  " + props.store.id)
             props.setIsOpen(false)
             navigate(`/stores/${props.store.id}`)
             
