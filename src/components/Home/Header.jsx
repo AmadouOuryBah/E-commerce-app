@@ -2,11 +2,11 @@
 import person from "../../assets/ion_person.png"
 import { FiShoppingCart } from "react-icons/fi";
 import search from "../../assets/search.png"
-import { useContext, useEffect , useRef, useState} from "react";
+import { useContext,  useState} from "react";
 import { CartContext } from "../../context/CartContext";
 import HeaderCss from "../../components/Home/Header.module.css"
 import { NavLink } from "react-router-dom";
-
+import { Button } from "@chakra-ui/react";
 
 const Header = () => {
   const {cartItems } = useContext(CartContext)
@@ -61,11 +61,15 @@ const Header = () => {
                 <div className={ `navbar-nav ${HeaderCss.Icon_Container}`}>
                   <a className="nav-link" href=""><img src={search}/></a>
                   <a className="nav-link" href="/register"><img src={person}/></a>
+                
                   <div className={HeaderCss.cart_logo}>
                     <a className="nav-link" href="/cart"><FiShoppingCart /></a>
                     <span>({cartItems.length})</span>
+                   
                   </div>
-                
+                  <Button marginLeft={5} colorScheme='orange' size='sm'>
+                   Log out
+                 </Button>
                </div>
              </div>
             
