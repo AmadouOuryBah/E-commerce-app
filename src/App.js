@@ -4,6 +4,7 @@ import Home from  './pages/Home/Home';
 import Register from "./pages/Register"
 import Login from "./pages/Login"
 import Store from "./pages/Store"
+import Item from "./pages/Item"
 import AddStore from "./pages/AddStore"
 import StoreDetail from  "./pages/StoreDetail"
 import Cart from "./pages/Cart/index"
@@ -24,6 +25,7 @@ function App() {
               <Route path="/register" exact element={<Register/>} />
               <Route path="/login" exact element={<Login/>} />
               <Route path="/stores" exact element={<Store/>} />
+              <Route path='/items' exact element={<Item/>}/>
               
               <Route element={<PrivateRoute/>}>
                 <Route path="/stores/:id" exact element={<StoreDetail/>} />
