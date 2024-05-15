@@ -28,6 +28,7 @@ const Header = () => {
     {name : 'Home', href: '/'},
     {name : 'Stores', href: '/stores'},
     {name : 'Create store', href: 'createStore'},
+    {name : 'Items', href: '/items'}
   ]
   
  
