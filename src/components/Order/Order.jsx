@@ -28,26 +28,18 @@ const Order = ({order}) => {
     <>
         <TableContainer>
         <Table  colorScheme='orange'>
-          
             <Tbody>
             <>
-                
-                 
                 { order.items?.map( item => (
                
                     <Tr>
                         <Td>{item.name}</Td>
                         <Td>{item.price}</Td>
-                          
-                            <Td>{ date.toLocaleDateString()} {date.toLocaleTimeString()} </Td>
-                            <Td>{order.totalCost}</Td>
+                        <Td>{ date.toLocaleDateString()} {date.toLocaleTimeString()} </Td>
+                        <Td>{order.totalCost}</Td>
                     
                     </Tr>
-        
                     ))}
-            
-              
-            
                 </>
               
             </Tbody>

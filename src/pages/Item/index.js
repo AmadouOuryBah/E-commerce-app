@@ -8,21 +8,26 @@ import { APP_URL, APP_RECOGNITION } from "../../utils/constants/applicationConst
 import { Spinner } from '@chakra-ui/react';
 import Card from "../../components/common/Card";
 import {
-    Button,
-    FormControl,
-    FormLabel,
     Input,
-    Select,
-    useToast
   } from '@chakra-ui/react'
 
 const Item = () => {
     const [items, setItems] = useState([])
     const [loading, setLoading] = useState(false)
-    
-    function loadMoreStores(){
+    const [searchQuery, setSearchQuery] = useState('');
+    const loadMoreStores = () => {
 
-    }
+  }
+  
+    const handleSearch = (e) => {
+      setSearchQuery(e.target.value);
+      console.log(searchQuery)
+      const filteredData = items.filter((item) => 
+        item.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setItems(filteredData);
+    };
+
 
     const getItems = () =>{
       
@@ -84,15 +89,15 @@ const Item = () => {
     <>
         <div className={style.container}>
             <hr />
-            <p className="d-flex align-items-center mb-4 justify-content-between">
-              <SearchBar placeholder="search " />
-              <Input id="fileInput" type='file' placeholder="Choose Picture To Search" onChange={handleOnChange} />
-              <div className={style.filter_section}>
-                <div>Categories <FaChevronDown /></div>
-                <div>Brands <FaChevronDown /></div>
-              </div>
+            <p className="d-flex align-items-center  mb-4 justify-content-between">
+              <SearchBar
+                valueInput={searchQuery} 
+                ChangeInput={handleSearch} 
+                placeholder="Search product by name"
+              />
+              <Input id="fileInput" marginLeft={3} type='file' placeholder="Choose Picture To Search" onChange={handleOnChange} />
+              
             </p>
-
             <hr />
 
             <div className={style.card_container}>

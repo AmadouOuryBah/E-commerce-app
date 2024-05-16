@@ -10,7 +10,12 @@ const SearchBar = (props) => {
             <> 
                 <div className={searchBar.form_input}>
                         <FaSearch className={searchBar.search_icon}/>
-                        <input placeholder={props.placeholder} type="text"/>
+                        <input  
+                             onChange={props.ChangeInput} 
+                             value={props.valueInput} 
+                             placeholder={props.placeholder} 
+                             type="text"
+                        />
                 </div> 
               
             </>        
