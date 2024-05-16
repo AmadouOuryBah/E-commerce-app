@@ -93,7 +93,7 @@ const LatestPosts = () => {
                     <Slider className={LatestPostsCss.card_container} {...settings}>
                         
                             {products?.map((product, index) => (
-                                <Card key={index} product={product}/>
+                                <Card  isHomePage={true} key={index} product={product}/>
                             ))}  
                     
                                 

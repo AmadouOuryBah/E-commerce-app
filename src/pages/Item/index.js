@@ -102,7 +102,7 @@ const Item = () => {
 
             <div className={style.card_container}>
               {items.map((item, index) => (
-                <Card key={index} product={item}/>
+                <Card isHomePage={false} key={index} product={item}/>
               ))}
             </div>
 

@@ -7,6 +7,7 @@ import { APP_URL } from "../../utils/constants/applicationConstants";
 import { useState, useEffect, useContext} from "react";
 
 import { CartContext } from "../../context/CartContext";
+
 const Card = (props) => {
 
 console.log(props.product)
@@ -46,6 +47,7 @@ console.log(props.product)
        }
       }
 
+
       useEffect(() =>{
         if(props.product.pictureId){
             fetchPicture(props.product)
@@ -55,7 +57,7 @@ console.log(props.product)
     return (
             <> 
                
-                <div className={CardCss.card}>
+                <div style={{width: props.isHomePage ? 93+"%" : 24+"%" }} className={CardCss.card}>
                     {isPictureLoading ? < Skeleton width="100%" height="100%" /> :
                       pictureUrl ? <img className={CardCss.img} src={pictureUrl}  alt="item picture"/> :
                          <img src={noImage}  alt="item picture"/>
